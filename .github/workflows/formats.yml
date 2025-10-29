@@ -22,6 +22,8 @@ jobs:
       run: crystal tool format
     - name: sync
       run: crystal tool format
+    - name: pg
+      run: crystal tool format
     - name: lavinmq
       run: make format
     - name: db

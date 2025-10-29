@@ -4,3 +4,4 @@ commands:
   - crystal spec
 formats:
   - crystal tool format
+

@@ -1,0 +1,17 @@
+---
+name: pg
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/will/pg.git" "pg"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: pg
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: pg
+    shell: ${{ inputs.shell }}
