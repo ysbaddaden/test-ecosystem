@@ -1,1 +1,11 @@
-../projects.all/minitest.yaml
+name: "minitest"
+source: "https://github.com/ysbaddaden/minitest.cr.git"
+systems:
+  - darwin
+  - linux
+  # - windows (fails to compile)
+commands:
+  - make test
+  - make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+formats:
+  - crystal tool format

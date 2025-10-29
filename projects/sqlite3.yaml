@@ -1,1 +1,18 @@
-../projects.all/sqlite3.yaml
+name: "sqlite3"
+source: "https://github.com/crystal-lang/crystal-sqlite3.git"
+systems:
+  - linux
+  - darwin
+  #- windows fails with "can't find .lib for sqlite3"
+packages:
+  linux:
+    - libsqlite3-dev
+  darwin:
+    - sqlite
+  # windows:
+  #   - sqlite
+commands:
+  - crystal spec
+formats:
+  - crystal tool format
+

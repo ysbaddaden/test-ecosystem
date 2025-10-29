@@ -73,25 +73,16 @@ unless (packages = projects.flat_map(&.packages("darwin")).compact).empty?
   }
 end
 
-# WINDOWS: INSTALL MSYS2 + SYSTEM DEPENDENCIES
-windows_packages = projects.flat_map(&.packages("windows")).compact
-windows_steps << Step{
-  "name" => "Setup MSYS2",
-  "uses" => "msys2/setup-msys2@v2",
-  "with" => {
-    "path-type" => "inherit",
-    "msystem" => "UCRT64",
-    "install" => <<-TEXT
-      git
-      make
-      mingw-w64-ucrt-x86_64-pkgconf
-      #{windows_packages.map { |name| "mingw-w64-ucrt-x86_64-#{name}" }.join('\n')}
-      TEXT
+unless (packages = projects.flat_map(&.packages("windows")).compact).empty?
+  windows_steps << Step{
+    "name" => "Install system dependencies",
+    "run" => "choco --no-progress install #{packages.join(' ')}",
   }
-}
+end
+
+# SETUP SYSTEM
 windows_steps << Step{
   "run" => "git config --global core.autocrlf false",
-  "shell" => "msys2 {0}",
 }
 
 # GENERATE STEPS FOR EACH PROJECT
@@ -125,14 +116,7 @@ projects.each do |project|
   end
 
   if project.systems.includes?("windows")
-    steps.each do |step|
-      step = step.dup
-      if (run = step["run"]).is_a?(String)
-        step["run"] = run.sub("${CRYSTAL_FLAGS}", "--target x86_64-windows-gnu ${CRYSTAL_FLAGS}")
-      end
-      step["shell"] = "msys2 {0}"
-      windows_steps << step
-    end
+    windows_steps.concat(steps.map(&.dup))
   end
 
   if formats = project.formats
