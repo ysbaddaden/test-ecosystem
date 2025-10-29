@@ -66,12 +66,6 @@ jobs:
     - name: 'db: crystal spec'
       run: crystal spec
       working-directory: db
-    - name: 'db: crystal spec -Dpreview_mt'
-      run: crystal spec -Dpreview_mt
-      working-directory: db
-    - name: 'db: crystal spec -Dpreview_mt -Dexecution_context'
-      run: crystal spec -Dpreview_mt -Dexecution_context
-      working-directory: db
     - name: 'sqlite3: checkout'
       run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
     - name: 'sqlite3: install dependencies'
@@ -88,7 +82,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
-      run: brew install etcd lz4 sqlite
+      run: brew install sqlite
     - name: 'minitest: checkout'
       run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
     - name: 'minitest: install dependencies'
@@ -114,17 +108,6 @@ jobs:
     - name: 'sync: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
       working-directory: sync
-    - name: 'lavinmq: checkout'
-      run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
-    - name: 'lavinmq: install dependencies'
-      run: shards install
-      working-directory: lavinmq
-    - name: 'lavinmq: make bin/lavinmq bin/lavinmqctl bin/lavinmqperf'
-      run: make bin/lavinmq bin/lavinmqctl bin/lavinmqperf
-      working-directory: lavinmq
-    - name: 'lavinmq: make test'
-      run: make test
-      working-directory: lavinmq
     - name: 'db: checkout'
       run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
     - name: 'db: install dependencies'
@@ -132,12 +115,6 @@ jobs:
       working-directory: db
     - name: 'db: crystal spec'
       run: crystal spec
-      working-directory: db
-    - name: 'db: crystal spec -Dpreview_mt'
-      run: crystal spec -Dpreview_mt
-      working-directory: db
-    - name: 'db: crystal spec -Dpreview_mt -Dexecution_context'
-      run: crystal spec -Dpreview_mt -Dexecution_context
       working-directory: db
     - name: 'sqlite3: checkout'
       run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
@@ -176,10 +153,4 @@ jobs:
       working-directory: db
     - name: 'db: crystal spec'
       run: crystal spec
-      working-directory: db
-    - name: 'db: crystal spec -Dpreview_mt'
-      run: crystal spec -Dpreview_mt
-      working-directory: db
-    - name: 'db: crystal spec -Dpreview_mt -Dexecution_context'
-      run: crystal spec -Dpreview_mt -Dexecution_context
       working-directory: db

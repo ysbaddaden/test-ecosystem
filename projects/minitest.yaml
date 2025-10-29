@@ -3,7 +3,7 @@ source: "https://github.com/ysbaddaden/minitest.cr.git"
 systems:
   - darwin
   - linux
-  # - windows (fails to compile)
+  # - windows fails to compile specs
 commands:
   - make test
   - make test CRFLAGS='-Dpreview_mt -Dexecution_context'

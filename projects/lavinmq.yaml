@@ -1,12 +1,12 @@
 name: "lavinmq"
 source: "https://github.com/cloudamqp/lavinmq.git"
 systems:
-  - darwin
+  # - darwin linker can't find 'lz4' (despite being installed)
   - linux
 packages:
-  darwin:
-    - etcd
-    - lz4
+  # darwin:
+  #   - etcd
+  #   - lz4
   linux:
     - etcd-server
     - liblz4-dev
