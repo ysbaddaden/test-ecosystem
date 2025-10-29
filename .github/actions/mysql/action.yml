@@ -1,10 +1,17 @@
 ---
 name: mysql
+inputs:
+  shell:
+    type: string
+    default: bash
 runs:
   using: composite
   steps:
   - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
+    shell: '{{ inputs.shell }}'
   - run: shards install
     working-directory: mysql
+    shell: '{{ inputs.shell }}'
   - run: crystal spec
     working-directory: mysql
+    shell: '{{ inputs.shell }}'

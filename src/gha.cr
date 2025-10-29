@@ -108,10 +108,12 @@ projects.each do |project|
   steps = [
     Step{
       "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
+      "shell" => "{{ inputs.shell }}"
     },
     Step{
       "run" => "shards install",
       "working-directory" => project.name,
+      "shell" => "{{ inputs.shell }}"
     },
   ]
 
@@ -119,6 +121,7 @@ projects.each do |project|
     steps << Step{
       "run" => command,
       "working-directory" => project.name,
+      "shell" => "{{ inputs.shell }}"
     }
   end)
 
@@ -127,6 +130,9 @@ projects.each do |project|
   File.open(".github/actions/#{project.name}/action.yml", "w") do |file|
     {
       "name" => project.name,
+      "inputs" => {
+        "shell" => { "type" => "string", "default" => "bash" },
+      },
       "runs" => {
         "using" => "composite",
         "steps" => steps,
@@ -139,9 +145,18 @@ projects.each do |project|
     "if" => "success() || failure()",
     "uses" => "./.github/actions/#{project.name}",
   }
-  linux_steps << run_step.dup if project.systems.includes?("linux")
-  darwin_steps << run_step.dup if project.systems.includes?("darwin")
-  windows_steps << run_step.dup if project.systems.includes?("windows")
+
+  if project.systems.includes?("linux")
+    linux_steps << run_step.dup
+  end
+  if project.systems.includes?("darwin")
+    darwin_steps << run_step.dup
+  end
+  if project.systems.includes?("windows")
+    step = run_step.dup
+    step["with"] = { "shell" => "pwsh" }
+    windows_steps << step
+  end
 
   # ADD FORMAT STEP
   if formats = project.formats

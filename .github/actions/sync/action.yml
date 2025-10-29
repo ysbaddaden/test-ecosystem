@@ -1,14 +1,23 @@
 ---
 name: sync
+inputs:
+  shell:
+    type: string
+    default: bash
 runs:
   using: composite
   steps:
   - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+    shell: '{{ inputs.shell }}'
   - run: shards install
     working-directory: sync
+    shell: '{{ inputs.shell }}'
   - run: make test
     working-directory: sync
+    shell: '{{ inputs.shell }}'
   - run: make test CRFLAGS='-Dpreview_mt'
     working-directory: sync
+    shell: '{{ inputs.shell }}'
   - run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
     working-directory: sync
+    shell: '{{ inputs.shell }}'

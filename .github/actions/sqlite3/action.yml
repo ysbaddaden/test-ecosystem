@@ -1,10 +1,17 @@
 ---
 name: sqlite3
+inputs:
+  shell:
+    type: string
+    default: bash
 runs:
   using: composite
   steps:
   - run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
+    shell: '{{ inputs.shell }}'
   - run: shards install
     working-directory: sqlite3
+    shell: '{{ inputs.shell }}'
   - run: crystal spec
     working-directory: sqlite3
+    shell: '{{ inputs.shell }}'

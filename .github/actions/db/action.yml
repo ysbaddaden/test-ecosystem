@@ -1,10 +1,17 @@
 ---
 name: db
+inputs:
+  shell:
+    type: string
+    default: bash
 runs:
   using: composite
   steps:
   - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
+    shell: '{{ inputs.shell }}'
   - run: shards install
     working-directory: db
+    shell: '{{ inputs.shell }}'
   - run: crystal spec
     working-directory: db
+    shell: '{{ inputs.shell }}'

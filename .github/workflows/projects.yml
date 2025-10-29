@@ -75,7 +75,13 @@ jobs:
     - run: git config --global core.autocrlf false
     - if: success() || failure()
       uses: ./.github/actions/mysql
+      with:
+        shell: pwsh
     - if: success() || failure()
       uses: ./.github/actions/sync
+      with:
+        shell: pwsh
     - if: success() || failure()
       uses: ./.github/actions/db
+      with:
+        shell: pwsh
