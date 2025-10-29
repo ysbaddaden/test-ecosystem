@@ -1,7 +1,8 @@
 name: "pg"
 source: "https://github.com/will/crystal-pg.git"
+env:
+  DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"
 commands:
   - crystal spec
 formats:
   - crystal tool format
-

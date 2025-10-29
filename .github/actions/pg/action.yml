@@ -16,4 +16,4 @@ runs:
     working-directory: pg
     shell: ${{ inputs.shell }}
     env:
-      DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"
+      DATABASE_URL: postgresql://postgres:postgres@localhost/postgres

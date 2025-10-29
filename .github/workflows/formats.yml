@@ -16,17 +16,31 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
     - name: minitest
       run: crystal tool format
+      working-directory: minitest
+    - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
     - name: mysql
       run: crystal tool format
+      working-directory: mysql
+    - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: sync
       run: crystal tool format
+      working-directory: sync
+    - run: git clone "https://github.com/will/crystal-pg.git" "pg"
     - name: pg
       run: crystal tool format
+      working-directory: pg
+    - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
     - name: lavinmq
       run: make format
+      working-directory: lavinmq
+    - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
     - name: db
       run: crystal tool format
+      working-directory: db
+    - run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
     - name: sqlite3
       run: crystal tool format
+      working-directory: sqlite3

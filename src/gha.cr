@@ -17,6 +17,7 @@ class Project
   property source : String
   property systems : Array(String) = %w[darwin linux windows]
   property packages : Hash(String, Array(String)) = Hash(String, Array(String)).new
+  property env : Hash(String, String) | Nil
   property commands : String | Array(String) | Nil
   property formats : String | Array(String) | Nil
 
@@ -77,9 +78,6 @@ jobs.each do |steps|
   steps << Step{
     "uses" => "ikalnytskyi/action-setup-postgres@v8",
     "with" => {
-      "username" => "runner",
-      "password" => "",
-      "database" => "runner",
       "postgres-version" => "16",
     }
   }
@@ -126,12 +124,19 @@ projects.each do |project|
     },
   ]
 
+  if h = project.env
+    env = Hash(String, String).new
+    h.each { |k, v| env[k] = v }
+  end
+
   project.commands.try(&.each do |command|
-    steps << Step{
+    step = Step{
       "run" => command,
       "working-directory" => project.name,
-      "shell" => "${{ inputs.shell }}"
+      "shell" => "${{ inputs.shell }}",
     }
+    step["env"] = env if env
+    steps << step
   end)
 
   Dir.mkdir_p(".github/actions/#{project.name}")
@@ -170,8 +175,12 @@ projects.each do |project|
   # ADD FORMAT STEP
   if formats = project.formats
     format_steps << Step{
-      "name" => "#{project.name}",
+      "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
+    }
+    format_steps << Step{
+      "name" => project.name,
       "run" => formats.join("\n"),
+      "working-directory" => project.name,
     }
   end
 end
