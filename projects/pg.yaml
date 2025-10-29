@@ -1,0 +1,7 @@
+name: "pg"
+source: "https://github.com/will/crystal-pg.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format
+

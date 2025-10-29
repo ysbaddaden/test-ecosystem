@@ -7,7 +7,7 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/will/pg.git" "pg"
+  - run: git clone "https://github.com/will/crystal-pg.git" "pg"
     shell: ${{ inputs.shell }}
   - run: shards install
     working-directory: pg
@@ -15,3 +15,5 @@ runs:
   - run: crystal spec
     working-directory: pg
     shell: ${{ inputs.shell }}
+    env:
+      DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"

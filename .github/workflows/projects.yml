@@ -1,8 +1,8 @@
 ---
 name: Projects
 "on":
-  push: 
-  pull_request: 
+  push:
+  pull_request:
   workflow_dispatch:
     inputs:
       crystal:
@@ -20,29 +20,29 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "5.7"
+    #- uses: shogo82148/actions-setup-mysql@v1
+    #  with:
+    #    mysql-version: "5.7"
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
-        postgres-version: "17"
-    - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends etcd-server
-        liblz4-dev libsqlite3-dev
-    - if: success() || failure()
-      uses: ./.github/actions/minitest
-    - if: success() || failure()
-      uses: ./.github/actions/mysql
-    - if: success() || failure()
-      uses: ./.github/actions/sync
+        postgres-version: "16"
+    #- name: Install system dependencies
+    #  run: sudo apt-get install --quiet --yes --no-install-recommends etcd-server
+    #    liblz4-dev libsqlite3-dev
+    #- if: success() || failure()
+    #  uses: ./.github/actions/minitest
+    #- if: success() || failure()
+    #  uses: ./.github/actions/mysql
+    #- if: success() || failure()
+    #  uses: ./.github/actions/sync
     - if: success() || failure()
       uses: ./.github/actions/pg
-    - if: success() || failure()
-      uses: ./.github/actions/lavinmq
-    - if: success() || failure()
-      uses: ./.github/actions/db
-    - if: success() || failure()
-      uses: ./.github/actions/sqlite3
+    #- if: success() || failure()
+    #  uses: ./.github/actions/lavinmq
+    #- if: success() || failure()
+    #  uses: ./.github/actions/db
+    #- if: success() || failure()
+    #  uses: ./.github/actions/sqlite3
   macOS:
     runs-on: macos-latest
     steps:
@@ -51,26 +51,26 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "5.7"
+    #- uses: shogo82148/actions-setup-mysql@v1
+    #  with:
+    #    mysql-version: "5.7"
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
-        postgres-version: "17"
-    - name: Install system dependencies
-      run: brew install sqlite
-    - if: success() || failure()
-      uses: ./.github/actions/minitest
-    - if: success() || failure()
-      uses: ./.github/actions/mysql
-    - if: success() || failure()
-      uses: ./.github/actions/sync
+        postgres-version: "16"
+    #- name: Install system dependencies
+    #  run: brew install sqlite
+    #- if: success() || failure()
+    #  uses: ./.github/actions/minitest
+    #- if: success() || failure()
+    #  uses: ./.github/actions/mysql
+    #- if: success() || failure()
+    #  uses: ./.github/actions/sync
     - if: success() || failure()
       uses: ./.github/actions/pg
-    - if: success() || failure()
-      uses: ./.github/actions/db
-    - if: success() || failure()
-      uses: ./.github/actions/sqlite3
+    #- if: success() || failure()
+    #  uses: ./.github/actions/db
+    #- if: success() || failure()
+    #  uses: ./.github/actions/sqlite3
   Windows:
     runs-on: windows-latest
     steps:
@@ -79,26 +79,26 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "5.7"
+    #- uses: shogo82148/actions-setup-mysql@v1
+    #  with:
+    #    mysql-version: "5.7"
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
-        postgres-version: "17"
+        postgres-version: "16"
     - run: git config --global core.autocrlf false
-    - if: success() || failure()
-      uses: ./.github/actions/mysql
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      uses: ./.github/actions/sync
-      with:
-        shell: pwsh
+    #- if: success() || failure()
+    #  uses: ./.github/actions/mysql
+    #  with:
+    #    shell: pwsh
+    #- if: success() || failure()
+    #  uses: ./.github/actions/sync
+    #  with:
+    #    shell: pwsh
     - if: success() || failure()
       uses: ./.github/actions/pg
       with:
         shell: pwsh
-    - if: success() || failure()
-      uses: ./.github/actions/db
-      with:
-        shell: pwsh
+    #- if: success() || failure()
+    #  uses: ./.github/actions/db
+    #  with:
+    #    shell: pwsh

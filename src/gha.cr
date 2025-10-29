@@ -77,7 +77,10 @@ jobs.each do |steps|
   steps << Step{
     "uses" => "ikalnytskyi/action-setup-postgres@v8",
     "with" => {
-      "postgres-version" => "17"
+      "username" => "runner",
+      "password" => "",
+      "database" => "runner",
+      "postgres-version" => "16",
     }
   }
 end
