@@ -1,0 +1,12 @@
+---
+name: lavinmq
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
+  - run: shards install
+    working-directory: lavinmq
+  - run: make bin/lavinmq bin/lavinmqctl bin/lavinmqperf
+    working-directory: lavinmq
+  - run: make test
+    working-directory: lavinmq

@@ -1,0 +1,14 @@
+---
+name: sync
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+  - run: shards install
+    working-directory: sync
+  - run: make test
+    working-directory: sync
+  - run: make test CRFLAGS='-Dpreview_mt'
+    working-directory: sync
+  - run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+    working-directory: sync

@@ -46,9 +46,17 @@ linux_steps = [] of Step
 darwin_steps = [] of Step
 windows_steps = [] of Step
 format_steps = [] of Step
+jobs = [linux_steps, darwin_steps, windows_steps]
+
+# CHECKOUT
+jobs.each do |steps|
+  steps << Step{
+    "uses" => "actions/checkout@v5",
+  }
+end
 
 # INSTALL CRYSTAL + SHARDS
-[linux_steps, darwin_steps, windows_steps, format_steps].each do |steps|
+[*jobs, format_steps].each do |steps|
   steps << Step{
     "uses" => "crystal-lang/install-crystal@v1",
     "with" => {
@@ -59,7 +67,7 @@ format_steps = [] of Step
 end
 
 # INSTALL SERVICES
-[linux_steps, darwin_steps, windows_steps].each do |steps|
+jobs.each do |steps|
   steps << Step{
     "uses" => "shogo82148/actions-setup-mysql@v1",
     "with" => {
@@ -72,7 +80,7 @@ end
 unless (packages = projects.flat_map(&.packages("linux")).compact).empty?
   linux_steps << Step{
     "name" => "Install system dependencies",
-    "run" => "sudo apt-get install --yes --no-install-recommends #{packages.join(' ')}",
+    "run" => "sudo apt-get install --quiet --yes --no-install-recommends #{packages.join(' ')}",
   }
 end
 
@@ -95,19 +103,13 @@ windows_steps << Step{
   "run" => "git config --global core.autocrlf false",
 }
 
-# GENERATE STEPS FOR EACH PROJECT
-# TODO: generate a composite action for each project
-# TODO: each lin/mac/win job calls the composite actions
-# TODO: keep running composite actions, even if the previous one failed [if: success() || failure()]
-
+# GENERATE COMPOSITE ACTION FOR EACH PROJECT
 projects.each do |project|
   steps = [
     Step{
-      "name" => "#{project.name}: checkout",
       "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
     },
     Step{
-      "name" => "#{project.name}: install dependencies",
       "run" => "shards install",
       "working-directory" => project.name,
     },
@@ -115,24 +117,33 @@ projects.each do |project|
 
   project.commands.try(&.each do |command|
     steps << Step{
-      "name" => "#{project.name}: #{command}",
       "run" => command,
       "working-directory" => project.name,
     }
   end)
 
-  if project.systems.includes?("linux")
-    linux_steps.concat(steps.map(&.dup))
+  Dir.mkdir_p(".github/actions/#{project.name}")
+
+  File.open(".github/actions/#{project.name}/action.yml", "w") do |file|
+    {
+      "name" => project.name,
+      "runs" => {
+        "using" => "composite",
+        "steps" => steps,
+      }
+    }.to_yaml(file)
   end
 
-  if project.systems.includes?("darwin")
-    darwin_steps.concat(steps.map(&.dup))
-  end
+  # CALL THE COMPOSITE ACTION
+  run_step = Step{
+    "if" => "success() || failure()",
+    "uses" => "./.github/actions/#{project.name}",
+  }
+  linux_steps << run_step.dup if project.systems.includes?("linux")
+  darwin_steps << run_step.dup if project.systems.includes?("darwin")
+  windows_steps << run_step.dup if project.systems.includes?("windows")
 
-  if project.systems.includes?("windows")
-    windows_steps.concat(steps.map(&.dup))
-  end
-
+  # ADD FORMAT STEP
   if formats = project.formats
     format_steps << Step{
       "name" => "#{project.name}",

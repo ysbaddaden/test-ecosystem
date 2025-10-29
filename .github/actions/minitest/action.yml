@@ -1,0 +1,12 @@
+---
+name: minitest
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
+  - run: shards install
+    working-directory: minitest
+  - run: make test
+    working-directory: minitest
+  - run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+    working-directory: minitest
