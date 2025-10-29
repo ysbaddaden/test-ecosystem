@@ -23,7 +23,9 @@ jobs:
     - uses: shogo82148/actions-setup-mysql@v1
       with:
         mysql-version: "5.7"
-    - uses: ./.github/actions/postgresql
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "16"
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
         etcd-server liblz4-dev fossil mercurial libsqlite3-dev
@@ -56,7 +58,9 @@ jobs:
     - uses: shogo82148/actions-setup-mysql@v1
       with:
         mysql-version: "5.7"
-    - uses: ./.github/actions/postgresql
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "16"
     - name: Install system dependencies
       run: brew install fossil mercurial sqlite
     - if: success() || failure()
@@ -84,7 +88,9 @@ jobs:
     - uses: shogo82148/actions-setup-mysql@v1
       with:
         mysql-version: "5.7"
-    - uses: ./.github/actions/postgresql
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "16"
     - name: Install system dependencies
       run: choco install --no-progress fossil hg
     - run: git config --global core.autocrlf false

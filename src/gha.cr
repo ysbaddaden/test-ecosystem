@@ -52,11 +52,10 @@ jobs.each do |steps|
     }
   }
   steps << Step{
-    #"uses" => "ikalnytskyi/action-setup-postgres@v8",
-    #"with" => {
-    #  "postgres-version" => "16",
-    #}
-    "uses" => "./.github/actions/postgresql",
+    "uses" => "ikalnytskyi/action-setup-postgres@v8",
+    "with" => {
+      "postgres-version" => "16",
+    }
   }
 end
 
