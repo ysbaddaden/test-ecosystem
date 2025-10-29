@@ -51,8 +51,8 @@ jobs:
     - name: 'sqlite3: install dependencies'
       run: shards install
       working-directory: sqlite3
-    - name: 'sqlite3: crystal spec'
-      run: crystal spec
+    - name: 'sqlite3: crystal spec ${CRYSTAL_FLAGS}'
+      run: crystal spec ${CRYSTAL_FLAGS}
       working-directory: sqlite3
   macOS:
     runs-on: macos-latest
@@ -93,8 +93,8 @@ jobs:
     - name: 'sqlite3: install dependencies'
       run: shards install
       working-directory: sqlite3
-    - name: 'sqlite3: crystal spec'
-      run: crystal spec
+    - name: 'sqlite3: crystal spec ${CRYSTAL_FLAGS}'
+      run: crystal spec ${CRYSTAL_FLAGS}
       working-directory: sqlite3
   Windows:
     runs-on: windows-latest
@@ -106,6 +106,7 @@ jobs:
     - name: Setup MSYS2
       uses: msys2/setup-msys2@v2
       with:
+        path-type: inherit
         msystem: UCRT64
         install: 'git
 
@@ -115,6 +116,7 @@ jobs:
 
           mingw-w64-ucrt-x86_64-sqlite'
     - run: git config --global core.autocrlf false
+      shell: msys2 {0}
     - name: 'sync: checkout'
       run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
       shell: msys2 {0}
@@ -141,7 +143,7 @@ jobs:
       run: shards install
       working-directory: sqlite3
       shell: msys2 {0}
-    - name: 'sqlite3: crystal spec'
-      run: crystal spec
+    - name: 'sqlite3: crystal spec ${CRYSTAL_FLAGS}'
+      run: crystal spec --target x86_64-windows-gnu ${CRYSTAL_FLAGS}
       working-directory: sqlite3
       shell: msys2 {0}

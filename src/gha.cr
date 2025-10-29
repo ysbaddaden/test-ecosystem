@@ -79,8 +79,9 @@ windows_steps << Step{
   "name" => "Setup MSYS2",
   "uses" => "msys2/setup-msys2@v2",
   "with" => {
+    "path-type" => "inherit",
     "msystem" => "UCRT64",
-    "install" => p(<<-TEXT)
+    "install" => <<-TEXT
       git
       make
       mingw-w64-ucrt-x86_64-pkgconf
@@ -90,6 +91,7 @@ windows_steps << Step{
 }
 windows_steps << Step{
   "run" => "git config --global core.autocrlf false",
+  "shell" => "msys2 {0}",
 }
 
 # GENERATE STEPS FOR EACH PROJECT
@@ -125,6 +127,9 @@ projects.each do |project|
   if project.systems.includes?("windows")
     steps.each do |step|
       step = step.dup
+      if (run = step["run"]).is_a?(String)
+        step["run"] = run.sub("${CRYSTAL_FLAGS}", "--target x86_64-windows-gnu ${CRYSTAL_FLAGS}")
+      end
       step["shell"] = "msys2 {0}"
       windows_steps << step
     end
