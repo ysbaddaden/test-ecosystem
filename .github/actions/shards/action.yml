@@ -1,0 +1,23 @@
+---
+name: shards
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: shards
+    shell: ${{ inputs.shell }}
+  - run: shards build
+    working-directory: shards
+    shell: ${{ inputs.shell }}
+  - run: crystal spec spec/unit/
+    working-directory: shards
+    shell: ${{ inputs.shell }}
+  - run: crystal spec spec/integration/
+    working-directory: shards
+    shell: ${{ inputs.shell }}

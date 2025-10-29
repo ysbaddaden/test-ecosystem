@@ -1,0 +1,18 @@
+name: "shards"
+source: "https://github.com/crystal-lang/shards.git"
+packages:
+  linux:
+    - fossil
+    - mercurial
+  darwin:
+    - fossil
+    - mercurial
+  windows:
+    - fossil
+    - hg
+commands:
+  - shards build
+  - crystal spec spec/unit/
+  - crystal spec spec/integration/
+formats:
+  - crystal tool format src spec

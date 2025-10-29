@@ -1,0 +1,12 @@
+name: "invidious"
+source: "https://github.com/iv-org/invidious.git"
+systems:
+  - linux
+packages:
+  linux:
+    - libsqlite3-dev
+commands:
+  - crystal build src/invidious.cr
+  - crystal spec
+formats:
+  - crystal tool format

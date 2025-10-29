@@ -24,6 +24,10 @@ jobs:
     - name: mysql
       run: crystal tool format
       working-directory: mysql
+    - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
+    - name: invidious
+      run: crystal tool format
+      working-directory: invidious
     - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: sync
       run: crystal tool format
@@ -36,6 +40,10 @@ jobs:
     - name: lavinmq
       run: make format
       working-directory: lavinmq
+    - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
+    - name: shards
+      run: crystal tool format src spec
+      working-directory: shards
     - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
     - name: db
       run: crystal tool format

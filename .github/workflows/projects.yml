@@ -27,18 +27,22 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends etcd-server
-        liblz4-dev libsqlite3-dev
+      run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
+        etcd-server liblz4-dev fossil mercurial libsqlite3-dev
     - if: success() || failure()
       uses: ./.github/actions/minitest
     - if: success() || failure()
       uses: ./.github/actions/mysql
+    - if: success() || failure()
+      uses: ./.github/actions/invidious
     - if: success() || failure()
       uses: ./.github/actions/sync
     - if: success() || failure()
       uses: ./.github/actions/pg
     - if: success() || failure()
       uses: ./.github/actions/lavinmq
+    - if: success() || failure()
+      uses: ./.github/actions/shards
     - if: success() || failure()
       uses: ./.github/actions/db
     - if: success() || failure()
@@ -58,7 +62,7 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: brew install sqlite
+      run: brew install fossil mercurial sqlite
     - if: success() || failure()
       uses: ./.github/actions/minitest
     - if: success() || failure()
@@ -67,6 +71,8 @@ jobs:
       uses: ./.github/actions/sync
     - if: success() || failure()
       uses: ./.github/actions/pg
+    - if: success() || failure()
+      uses: ./.github/actions/shards
     - if: success() || failure()
       uses: ./.github/actions/db
     - if: success() || failure()
@@ -85,6 +91,8 @@ jobs:
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
         postgres-version: "16"
+    - name: Install system dependencies
+      run: choco --no-progress install fossil hg
     - run: git config --global core.autocrlf false
     - if: success() || failure()
       uses: ./.github/actions/mysql
@@ -96,6 +104,10 @@ jobs:
         shell: pwsh
     - if: success() || failure()
       uses: ./.github/actions/pg
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      uses: ./.github/actions/shards
       with:
         shell: pwsh
     - if: success() || failure()

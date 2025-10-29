@@ -1,0 +1,20 @@
+---
+name: invidious
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: invidious
+    shell: ${{ inputs.shell }}
+  - run: crystal build src/invidious.cr
+    working-directory: invidious
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: invidious
+    shell: ${{ inputs.shell }}
