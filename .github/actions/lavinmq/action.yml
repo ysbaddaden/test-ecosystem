@@ -8,13 +8,13 @@ runs:
   using: composite
   steps:
   - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
-    shell: '{{ inputs.shell }}'
+    shell: ${{ inputs.shell }}
   - run: shards install
     working-directory: lavinmq
-    shell: '{{ inputs.shell }}'
+    shell: ${{ inputs.shell }}
   - run: make bin/lavinmq bin/lavinmqctl bin/lavinmqperf
     working-directory: lavinmq
-    shell: '{{ inputs.shell }}'
+    shell: ${{ inputs.shell }}
   - run: make test
     working-directory: lavinmq
-    shell: '{{ inputs.shell }}'
+    shell: ${{ inputs.shell }}

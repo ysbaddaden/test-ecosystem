@@ -108,12 +108,12 @@ projects.each do |project|
   steps = [
     Step{
       "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
-      "shell" => "{{ inputs.shell }}"
+      "shell" => "${{ inputs.shell }}"
     },
     Step{
       "run" => "shards install",
       "working-directory" => project.name,
-      "shell" => "{{ inputs.shell }}"
+      "shell" => "${{ inputs.shell }}"
     },
   ]
 
@@ -121,7 +121,7 @@ projects.each do |project|
     steps << Step{
       "run" => command,
       "working-directory" => project.name,
-      "shell" => "{{ inputs.shell }}"
+      "shell" => "${{ inputs.shell }}"
     }
   end)
 
