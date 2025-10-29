@@ -1,0 +1,6 @@
+name: "mysql"
+source: "https://github.com/crystal-lang/crystal-mysql.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

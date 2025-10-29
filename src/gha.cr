@@ -58,6 +58,16 @@ format_steps = [] of Step
   }
 end
 
+# INSTALL SERVICES
+[linux_steps, darwin_steps, windows_steps].each do |steps|
+  steps << Step{
+    "uses" => "shogo82148/actions-setup-mysql@v1",
+    "with" => {
+      "mysql-version" => "5.7"
+    }
+  }
+end
+
 # INSTALL SYSTEM DEPENDENCIES
 unless (packages = projects.flat_map(&.packages("linux")).compact).empty?
   linux_steps << Step{
@@ -86,6 +96,10 @@ windows_steps << Step{
 }
 
 # GENERATE STEPS FOR EACH PROJECT
+# TODO: generate a composite action for each project
+# TODO: each lin/mac/win job calls the composite actions
+# TODO: keep running composite actions, even if the previous one failed [if: success() || failure()]
+
 projects.each do |project|
   steps = [
     Step{

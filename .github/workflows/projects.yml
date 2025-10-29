@@ -19,6 +19,9 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: "5.7"
     - name: Install system dependencies
       run: sudo apt-get install --yes --no-install-recommends etcd-server liblz4-dev
         libsqlite3-dev
@@ -33,6 +36,14 @@ jobs:
     - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
       working-directory: minitest
+    - name: 'mysql: checkout'
+      run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
+    - name: 'mysql: install dependencies'
+      run: shards install
+      working-directory: mysql
+    - name: 'mysql: crystal spec'
+      run: crystal spec
+      working-directory: mysql
     - name: 'sync: checkout'
       run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: 'sync: install dependencies'
@@ -81,6 +92,9 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: "5.7"
     - name: Install system dependencies
       run: brew install sqlite
     - name: 'minitest: checkout'
@@ -94,6 +108,14 @@ jobs:
     - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
       working-directory: minitest
+    - name: 'mysql: checkout'
+      run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
+    - name: 'mysql: install dependencies'
+      run: shards install
+      working-directory: mysql
+    - name: 'mysql: crystal spec'
+      run: crystal spec
+      working-directory: mysql
     - name: 'sync: checkout'
       run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: 'sync: install dependencies'
@@ -131,7 +153,18 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - uses: shogo82148/actions-setup-mysql@v1
+      with:
+        mysql-version: "5.7"
     - run: git config --global core.autocrlf false
+    - name: 'mysql: checkout'
+      run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
+    - name: 'mysql: install dependencies'
+      run: shards install
+      working-directory: mysql
+    - name: 'mysql: crystal spec'
+      run: crystal spec
+      working-directory: mysql
     - name: 'sync: checkout'
       run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: 'sync: install dependencies'

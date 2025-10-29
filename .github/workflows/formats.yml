@@ -18,6 +18,8 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: minitest
       run: crystal tool format
+    - name: mysql
+      run: crystal tool format
     - name: sync
       run: crystal tool format
     - name: lavinmq
