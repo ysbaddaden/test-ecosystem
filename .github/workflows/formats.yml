@@ -23,3 +23,5 @@ jobs:
       run: crystal tool format
     - name: sync
       run: crystal tool format
+    - name: sqlite3
+      run: crystal tool format
