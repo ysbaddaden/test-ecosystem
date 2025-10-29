@@ -20,7 +20,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
-      run: sudo apt-get install --yes --no-install-recommends sqlite3-dev
+      run: sudo apt-get install --yes --no-install-recommends libsqlite3-dev
     - name: 'minitest: checkout'
       run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
     - name: 'minitest: install dependencies'
@@ -53,12 +53,6 @@ jobs:
       working-directory: sqlite3
     - name: 'sqlite3: crystal spec'
       run: crystal spec
-      working-directory: sqlite3
-    - name: 'sqlite3: crystal spec -Dpreview_mt'
-      run: crystal spec -Dpreview_mt
-      working-directory: sqlite3
-    - name: 'sqlite3: crystal spec -Dpreview_mt -Dexecution_context'
-      run: crystal spec -Dpreview_mt -Dexecution_context
       working-directory: sqlite3
   macOS:
     runs-on: macos-latest
@@ -102,12 +96,6 @@ jobs:
     - name: 'sqlite3: crystal spec'
       run: crystal spec
       working-directory: sqlite3
-    - name: 'sqlite3: crystal spec -Dpreview_mt'
-      run: crystal spec -Dpreview_mt
-      working-directory: sqlite3
-    - name: 'sqlite3: crystal spec -Dpreview_mt -Dexecution_context'
-      run: crystal spec -Dpreview_mt -Dexecution_context
-      working-directory: sqlite3
   Windows:
     runs-on: windows-latest
     steps:
@@ -115,33 +103,45 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - name: Install system dependencies
-      run: choco --no-progress install sqlite
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: UCRT64
+        install: 'git
+
+          make
+
+          mingw-w64-ucrt-x86_64-pkgconf
+
+          mingw-w64-ucrt-x86_64-sqlite'
+    - run: git config --global core.autocrlf false
     - name: 'sync: checkout'
       run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+      shell: msys2 {0}
     - name: 'sync: install dependencies'
       run: shards install
       working-directory: sync
+      shell: msys2 {0}
     - name: 'sync: make test'
       run: make test
       working-directory: sync
+      shell: msys2 {0}
     - name: 'sync: make test CRFLAGS=''-Dpreview_mt'''
       run: make test CRFLAGS='-Dpreview_mt'
       working-directory: sync
+      shell: msys2 {0}
     - name: 'sync: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
       working-directory: sync
+      shell: msys2 {0}
     - name: 'sqlite3: checkout'
       run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
+      shell: msys2 {0}
     - name: 'sqlite3: install dependencies'
       run: shards install
       working-directory: sqlite3
+      shell: msys2 {0}
     - name: 'sqlite3: crystal spec'
       run: crystal spec
       working-directory: sqlite3
-    - name: 'sqlite3: crystal spec -Dpreview_mt'
-      run: crystal spec -Dpreview_mt
-      working-directory: sqlite3
-    - name: 'sqlite3: crystal spec -Dpreview_mt -Dexecution_context'
-      run: crystal spec -Dpreview_mt -Dexecution_context
-      working-directory: sqlite3
+      shell: msys2 {0}

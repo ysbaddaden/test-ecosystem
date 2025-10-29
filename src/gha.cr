@@ -38,11 +38,16 @@ class Project
   end
 end
 
+projects = Dir.glob("./projects/*.yaml").map do |path|
+  File.open(path) { |file| Project.from_yaml(file) }
+end
+
 linux_steps = [] of Step
 darwin_steps = [] of Step
 windows_steps = [] of Step
 format_steps = [] of Step
 
+# INSTALL CRYSTAL + SHARDS
 [linux_steps, darwin_steps, windows_steps, format_steps].each do |steps|
   steps << Step{
     "uses" => "crystal-lang/install-crystal@v1",
@@ -53,10 +58,7 @@ format_steps = [] of Step
   }
 end
 
-projects = Dir.glob("./projects/*.yaml").map do |path|
-  File.open(path) { |file| Project.from_yaml(file) }
-end
-
+# INSTALL SYSTEM DEPENDENCIES
 unless (packages = projects.flat_map(&.packages("linux")).compact).empty?
   linux_steps << Step{
     "name" => "Install system dependencies",
@@ -71,13 +73,26 @@ unless (packages = projects.flat_map(&.packages("darwin")).compact).empty?
   }
 end
 
-unless (packages = projects.flat_map(&.packages("windows")).compact).empty?
-  windows_steps << Step{
-    "name" => "Install system dependencies",
-    "run" => "choco --no-progress install #{packages.join(' ')}",
+# WINDOWS: INSTALL MSYS2 + SYSTEM DEPENDENCIES
+windows_packages = projects.flat_map(&.packages("windows")).compact
+windows_steps << Step{
+  "name" => "Setup MSYS2",
+  "uses" => "msys2/setup-msys2@v2",
+  "with" => {
+    "msystem" => "UCRT64",
+    "install" => p(<<-TEXT)
+      git
+      make
+      mingw-w64-ucrt-x86_64-pkgconf
+      #{windows_packages.map { |name| "mingw-w64-ucrt-x86_64-#{name}" }.join('\n')}
+      TEXT
   }
-end
+}
+windows_steps << Step{
+  "run" => "git config --global core.autocrlf false",
+}
 
+# GENERATE STEPS FOR EACH PROJECT
 projects.each do |project|
   steps = [
     Step{
@@ -108,7 +123,11 @@ projects.each do |project|
   end
 
   if project.systems.includes?("windows")
-    windows_steps.concat(steps.map(&.dup))
+    steps.each do |step|
+      step = step.dup
+      step["shell"] = "msys2 {0}"
+      windows_steps << step
+    end
   end
 
   if formats = project.formats
@@ -119,6 +138,7 @@ projects.each do |project|
   end
 end
 
+# GENERATE THE WORKFLOWS
 Dir.mkdir_p(".github/workflows")
 
 File.open(".github/workflows/projects.yml", "w") do |file|
@@ -160,7 +180,6 @@ File.open(".github/workflows/formats.yml", "w") do |file|
       "workflow_dispatch" => {
         "inputs": {
           "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
-          "shards" => { "type" => "string", "default" => DEFAULT_SHARDS },
         }
       }
     },

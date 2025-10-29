@@ -8,9 +8,6 @@ name: Formats
       crystal:
         type: string
         default: nightly
-      shards:
-        type: string
-        default: nightly
 jobs:
   Formats:
     runs-on: ubuntu-latest
