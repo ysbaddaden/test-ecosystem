@@ -30,6 +30,20 @@ jobs:
     - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
       working-directory: minitest
+    - name: 'sync: checkout'
+      run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+    - name: 'sync: install dependencies'
+      run: shards install
+      working-directory: sync
+    - name: 'sync: make test'
+      run: make test
+      working-directory: sync
+    - name: 'sync: make test CRFLAGS=''-Dpreview_mt'''
+      run: make test CRFLAGS='-Dpreview_mt'
+      working-directory: sync
+    - name: 'sync: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
+      run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+      working-directory: sync
   macOS:
     runs-on: macos-latest
     steps:
@@ -48,6 +62,20 @@ jobs:
     - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
       working-directory: minitest
+    - name: 'sync: checkout'
+      run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+    - name: 'sync: install dependencies'
+      run: shards install
+      working-directory: sync
+    - name: 'sync: make test'
+      run: make test
+      working-directory: sync
+    - name: 'sync: make test CRFLAGS=''-Dpreview_mt'''
+      run: make test CRFLAGS='-Dpreview_mt'
+      working-directory: sync
+    - name: 'sync: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
+      run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+      working-directory: sync
   Windows:
     runs-on: windows-latest
     steps:
@@ -55,14 +83,17 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - name: 'minitest: checkout'
-      run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
-    - name: 'minitest: install dependencies'
+    - name: 'sync: checkout'
+      run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+    - name: 'sync: install dependencies'
       run: shards install
-      working-directory: minitest
-    - name: 'minitest: make test'
+      working-directory: sync
+    - name: 'sync: make test'
       run: make test
-      working-directory: minitest
-    - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
+      working-directory: sync
+    - name: 'sync: make test CRFLAGS=''-Dpreview_mt'''
+      run: make test CRFLAGS='-Dpreview_mt'
+      working-directory: sync
+    - name: 'sync: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
       run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
-      working-directory: minitest
+      working-directory: sync
