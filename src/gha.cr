@@ -1,6 +1,6 @@
 #! /usr/bin/env -S crystal i
 
-require "yaml"
+require "./project"
 
 DEFAULT_CRYSTAL = ENV.fetch("DEFAULT_CRYSTAL", "nightly")
 DEFAULT_SHARDS = ENV.fetch("DEFAULT_SHARDS", "nightly")
@@ -10,35 +10,6 @@ DEFAULT_WINDOWS_RUNNER = ENV.fetch("DEFAULT_WINDOWS_RUNNER", "windows-latest")
 
 alias Step = Hash(String, Hash(String, String) | String)
 
-class Project
-  include YAML::Serializable
-
-  property name : String
-  property source : String
-  property systems : Array(String) = %w[darwin linux windows]
-  property packages : Hash(String, Array(String)) = Hash(String, Array(String)).new
-  property env : Hash(String, String) | Nil
-  property commands : String | Array(String) | Nil
-  property formats : String | Array(String) | Nil
-
-  def initialize(@name, @source, @systems, @packages, @commands, @formats)
-  end
-
-  def commands
-    commands = @commands
-    commands.is_a?(String) ? [commands] : commands
-  end
-
-  def formats
-    formats = @formats
-    formats.is_a?(String) ? [formats] : formats
-  end
-
-  def packages(system)
-    @packages[system]?
-  end
-end
-
 projects = Dir.glob("./projects/*.yaml").map do |path|
   File.open(path) { |file| Project.from_yaml(file) }
 end
@@ -47,7 +18,12 @@ linux_steps = [] of Step
 darwin_steps = [] of Step
 windows_steps = [] of Step
 format_steps = [] of Step
-jobs = [linux_steps, darwin_steps, windows_steps]
+
+jobs = [
+  linux_steps,
+  darwin_steps,
+  windows_steps
+]
 
 # CHECKOUT
 jobs.each do |steps|
@@ -101,7 +77,7 @@ end
 unless (packages = projects.flat_map(&.packages("windows")).compact).empty?
   windows_steps << Step{
     "name" => "Install system dependencies",
-    "run" => "choco --no-progress install #{packages.join(' ')}",
+    "run" => "choco install --no-progress #{packages.join(' ')}",
   }
 end
 

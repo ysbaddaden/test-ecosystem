@@ -92,7 +92,7 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: choco --no-progress install fossil hg
+      run: choco install --no-progress fossil hg
     - run: git config --global core.autocrlf false
     - if: success() || failure()
       uses: ./.github/actions/mysql
