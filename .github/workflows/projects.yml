@@ -116,7 +116,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
-      run: choco install sqlite
+      run: choco --no-progress install sqlite
     - name: 'sync: checkout'
       run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: 'sync: install dependencies'

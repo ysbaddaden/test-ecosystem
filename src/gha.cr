@@ -74,7 +74,7 @@ end
 unless (packages = projects.flat_map(&.packages("windows")).compact).empty?
   windows_steps << Step{
     "name" => "Install system dependencies",
-    "run" => "choco install #{packages.join(' ')}",
+    "run" => "choco --no-progress install #{packages.join(' ')}",
   }
 end
 
