@@ -1,0 +1,23 @@
+---
+name: Formats
+"on":
+  push: 
+  pull_request: 
+  workflow_dispatch:
+    inputs:
+      crystal:
+        type: string
+        default: nightly
+      shards:
+        type: string
+        default: nightly
+jobs:
+  Formats:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: minitest
+      run: crystal tool format

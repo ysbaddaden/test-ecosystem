@@ -1,0 +1,9 @@
+name: "sync"
+source: "https://github.com/ysbaddaden/sync.git"
+commands:
+  - make test
+  - make test CRFLAGS='-Dpreview_mt'
+  - make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+formats:
+  - crystal tool format
+

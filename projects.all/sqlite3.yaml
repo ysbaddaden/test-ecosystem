@@ -1,0 +1,16 @@
+name: "sqlite3"
+source: "https://github.com/crystal-lang/crystal-sqlite3.git"
+packages:
+  linux:
+    - sqlite3-dev
+  darwin:
+    - sqlite
+  windows:
+    - sqlite
+commands:
+  - crystal spec
+  - crystal spec -Dpreview_mt
+  - crystal spec -Dpreview_mt -Dexecution_context
+formats:
+  - crystal tool format
+

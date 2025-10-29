@@ -1,0 +1,68 @@
+---
+name: Projects
+"on":
+  push: 
+  pull_request: 
+  workflow_dispatch:
+    inputs:
+      crystal:
+        type: string
+        default: nightly
+      shards:
+        type: string
+        default: nightly
+jobs:
+  Linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: 'minitest: checkout'
+      run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
+    - name: 'minitest: install dependencies'
+      run: shards install
+      working-directory: minitest
+    - name: 'minitest: make test'
+      run: make test
+      working-directory: minitest
+    - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
+      run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+      working-directory: minitest
+  macOS:
+    runs-on: macos-latest
+    steps:
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: 'minitest: checkout'
+      run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
+    - name: 'minitest: install dependencies'
+      run: shards install
+      working-directory: minitest
+    - name: 'minitest: make test'
+      run: make test
+      working-directory: minitest
+    - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
+      run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+      working-directory: minitest
+  Windows:
+    runs-on: windows-latest
+    steps:
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: 'minitest: checkout'
+      run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
+    - name: 'minitest: install dependencies'
+      run: shards install
+      working-directory: minitest
+    - name: 'minitest: make test'
+      run: make test
+      working-directory: minitest
+    - name: 'minitest: make test CRFLAGS=''-Dpreview_mt -Dexecution_context'''
+      run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+      working-directory: minitest

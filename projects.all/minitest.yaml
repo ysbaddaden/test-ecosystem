@@ -1,0 +1,7 @@
+name: "minitest"
+source: "https://github.com/ysbaddaden/minitest.cr.git"
+commands:
+  - make test
+  - make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+formats:
+  - crystal tool format

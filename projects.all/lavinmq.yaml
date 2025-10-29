@@ -1,0 +1,17 @@
+name: "lavinmq"
+source: "https://github.com/cloudamqp/lavinmq.git"
+systems:
+  - darwin
+  - linux
+packages:
+  darwin:
+    - etcd
+    - lz4
+  linux:
+    - etcd-server
+    - liblz4-dev
+commands:
+  - make bin/lavinmq bin/lavinmqctl bin/lavinmqperf
+  - make test
+formats:
+  - make format
