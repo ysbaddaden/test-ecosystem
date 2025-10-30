@@ -58,6 +58,12 @@ jobs:
       name: kemal-session
       run: crystal tool format
       working-directory: kemal-session
+    - run: git clone "https://github.com/spider-gazelle/bindata.git" "bindata"
+      if: success() || failure()
+    - if: success() || failure()
+      name: bindata
+      run: crystal tool format
+      working-directory: bindata
     - run: git clone "https://github.com/crystal-community/msgpack-crystal.git" "msgpack"
       if: success() || failure()
     - if: success() || failure()
@@ -142,6 +148,12 @@ jobs:
       name: baked_file_system
       run: crystal tool format
       working-directory: baked_file_system
+    - run: git clone "https://github.com/spider-gazelle/openssl_ext.git" "openssl_ext"
+      if: success() || failure()
+    - if: success() || failure()
+      name: openssl_ext
+      run: crystal tool format
+      working-directory: openssl_ext
     - run: git clone "https://github.com/jwaldrip/admiral.cr.git" "admiral"
       if: success() || failure()
     - if: success() || failure()

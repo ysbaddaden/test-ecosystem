@@ -1,0 +1,17 @@
+---
+name: openssl_ext
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/spider-gazelle/openssl_ext.git" "openssl_ext"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: openssl_ext
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: openssl_ext
+    shell: ${{ inputs.shell }}

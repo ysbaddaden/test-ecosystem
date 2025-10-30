@@ -1,0 +1,17 @@
+---
+name: bindata
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/spider-gazelle/bindata.git" "bindata"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: bindata
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: bindata
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,6 @@
+name: "bindata"
+source: "https://github.com/spider-gazelle/bindata.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format
