@@ -12,7 +12,7 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: timecop
     shell: ${{ inputs.shell }}
-  - run: git apply $GITHUB_ACTION_PATH/project.patch
+  - run: git apply --recount --ignore-space-change --ignore-whitespace $GITHUB_ACTION_PATH/project.patch
     working-directory: timecop
     shell: ${{ inputs.shell }}
   - run: crystal spec
