@@ -95,7 +95,7 @@ module GHA
 
     if project.patch
       steps << Step{
-        "run" => "git apply $GITHUB_ACTIONS_PATH/project.patch",
+        "run" => "git apply $GITHUB_ACTION_PATH/project.patch",
         "working-directory" => project.name,
         "shell" => "${{ inputs.shell }}",
       }
