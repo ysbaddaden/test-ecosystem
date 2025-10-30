@@ -190,6 +190,12 @@ jobs:
       name: pg
       run: crystal tool format
       working-directory: pg
+    - run: git clone "https://github.com/luckyframework/avram.git" "avram"
+      if: success() || failure()
+    - if: success() || failure()
+      name: avram
+      run: crystal tool format
+      working-directory: avram
     - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
       if: success() || failure()
     - if: success() || failure()
