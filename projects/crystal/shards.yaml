@@ -1,5 +1,9 @@
 name: "shards"
 source: "https://github.com/crystal-lang/shards.git"
+systems:
+  - linux
+  - darwin
+  #- windows fails to find hg executable
 packages:
   linux:
     - fossil

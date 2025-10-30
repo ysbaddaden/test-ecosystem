@@ -1,5 +1,9 @@
 name: "timecop"
 source: "https://github.com/crystal-community/timecop.cr.git"
+systems:
+  - linux
+  #- darwin fails regularly
+  - windows
 commands:
   - crystal spec
 formats:

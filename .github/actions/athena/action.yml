@@ -12,42 +12,75 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh clock
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh console
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh dependency_injection
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh dotenv
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh event_dispatcher
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh framework
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh image_size
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh mercure
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
+  - run: ./scripts/test.sh mime
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh negotiation
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh routing
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh serializer
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh spec
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh validator
     working-directory: athena
     shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml

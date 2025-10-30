@@ -11,6 +11,8 @@ packages:
     - libmagic
   # windows:
   #   - ???
+env:
+  SHARDS_OVERRIDE: shard.dev.yml
 commands:
   - ./scripts/test.sh clock
   - ./scripts/test.sh console
@@ -20,6 +22,7 @@ commands:
   - ./scripts/test.sh framework
   - ./scripts/test.sh image_size
   - ./scripts/test.sh mercure
+  - ./scripts/test.sh mime
   - ./scripts/test.sh negotiation
   - ./scripts/test.sh routing
   - ./scripts/test.sh serializer

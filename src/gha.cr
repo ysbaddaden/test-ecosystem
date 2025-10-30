@@ -71,11 +71,17 @@ module GHA
   end
 
   def self.shards_install_step(project)
-    Step{
+    step = Step{
       "run" => "shards install --skip-postinstall --skip-executables",
       "working-directory" => project.name,
-      "shell" => "${{ inputs.shell }}"
+      "shell" => "${{ inputs.shell }}",
     }
+    if h = project.env
+      env = Hash(String, String).new
+      h.each { |k, v| env[k] = v }
+      step["env"] = env
+    end
+    step
   end
 
   def self.project_composite_action_steps(project)

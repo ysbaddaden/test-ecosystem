@@ -12,6 +12,8 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: pg
     shell: ${{ inputs.shell }}
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
   - run: crystal spec
     working-directory: pg
     shell: ${{ inputs.shell }}
