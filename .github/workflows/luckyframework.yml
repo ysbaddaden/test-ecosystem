@@ -24,14 +24,8 @@ jobs:
       name: 'Project: lucky'
       uses: ./.github/actions/lucky
     - if: success() || failure()
-      name: 'Project: teeplate'
-      uses: ./.github/actions/teeplate
-    - if: success() || failure()
-      name: 'Project: luck_router'
-      uses: ./.github/actions/luck_router
-    - if: success() || failure()
-      name: 'Project: shell-table'
-      uses: ./.github/actions/shell-table
+      name: 'Project: lucky_router'
+      uses: ./.github/actions/lucky_router
     - if: success() || failure()
       name: 'Project: wordsmith'
       uses: ./.github/actions/wordsmith
@@ -53,14 +47,8 @@ jobs:
       name: 'Project: lucky'
       uses: ./.github/actions/lucky
     - if: success() || failure()
-      name: 'Project: teeplate'
-      uses: ./.github/actions/teeplate
-    - if: success() || failure()
-      name: 'Project: luck_router'
-      uses: ./.github/actions/luck_router
-    - if: success() || failure()
-      name: 'Project: shell-table'
-      uses: ./.github/actions/shell-table
+      name: 'Project: lucky_router'
+      uses: ./.github/actions/lucky_router
     - if: success() || failure()
       name: 'Project: wordsmith'
       uses: ./.github/actions/wordsmith
@@ -85,18 +73,8 @@ jobs:
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: teeplate'
-      uses: ./.github/actions/teeplate
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: luck_router'
-      uses: ./.github/actions/luck_router
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: shell-table'
-      uses: ./.github/actions/shell-table
+      name: 'Project: lucky_router'
+      uses: ./.github/actions/lucky_router
       with:
         shell: pwsh
     - if: success() || failure()

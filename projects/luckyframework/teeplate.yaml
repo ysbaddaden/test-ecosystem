@@ -1,6 +1,0 @@
-name: "teeplate"
-source: "https://github.com/luckyframework/teeplate.git"
-commands:
-  - crystal spec
-formats:
-  - crystal tool format

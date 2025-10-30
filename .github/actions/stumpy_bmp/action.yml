@@ -7,7 +7,7 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/stumpycr/stumpy_bmp.cr" "stumpy_bmp"
+  - run: git clone "https://github.com/stumpycr/stumpy_bmp.git" "stumpy_bmp"
     shell: ${{ inputs.shell }}
   - run: shards install
     working-directory: stumpy_bmp

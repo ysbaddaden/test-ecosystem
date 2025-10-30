@@ -12,30 +12,27 @@ runs:
   - run: shards install
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/badssl_spec.cr
+  - run: bin/crystal spec spec/manual/digest_large_file_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/digest_large_file_spec.cr
+  - run: bin/crystal spec spec/manual/find_executable_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/find_executable_spec.cr
+  - run: bin/crystal spec spec/manual/gzip_large_file_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/gzip_large_file_spec.cr
+  - run: bin/crystal spec spec/manual/hash_large_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/hash_large_spec.cr
+  - run: bin/crystal spec spec/manual/https_client_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/https_client_spec.cr
+  - run: bin/crystal spec spec/manual/string_normalize_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/string_normalize_spec.cr
+  - run: bin/crystal spec spec/manual/string_to_f32_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/string_to_f32_spec.cr
-    working-directory: crystal
-    shell: ${{ inputs.shell }}
-  - run: crystal spec spec/manual/string_to_f_supplemental_spec.cr
+  - run: bin/crystal spec spec/manual/string_to_f_supplemental_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}

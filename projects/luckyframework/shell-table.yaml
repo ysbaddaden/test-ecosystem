@@ -1,6 +1,0 @@
-name: "shell-table"
-source: "https://github.com/luckyframework/shell-table.git"
-commands:
-  - crystal spec
-formats:
-  - crystal tool format

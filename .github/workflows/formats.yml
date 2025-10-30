@@ -96,23 +96,23 @@ jobs:
     - name: admiral
       run: crystal tool format
       working-directory: admiral
-    - run: git clone "https://github.com/stumpycr/stumpy_jpeg.cr" "stumpy_jpeg"
+    - run: git clone "https://github.com/stumpycr/stumpy_jpeg.git" "stumpy_jpeg"
     - name: stumpy_jpeg
       run: crystal tool format
       working-directory: stumpy_jpeg
-    - run: git clone "https://github.com/stumpycr/stumpy_bmp.cr" "stumpy_bmp"
+    - run: git clone "https://github.com/stumpycr/stumpy_bmp.git" "stumpy_bmp"
     - name: stumpy_bmp
       run: crystal tool format
       working-directory: stumpy_bmp
-    - run: git clone "https://github.com/stumpycr/stumpy_png.cr" "stumpy_png"
+    - run: git clone "https://github.com/stumpycr/stumpy_png.git" "stumpy_png"
     - name: stumpy_png
       run: crystal tool format
       working-directory: stumpy_png
-    - run: git clone "https://github.com/stumpycr/stumpy_gif.cr" "stumpy_gif"
+    - run: git clone "https://github.com/stumpycr/stumpy_gif.git" "stumpy_gif"
     - name: stumpy_gif
       run: crystal tool format
       working-directory: stumpy_gif
-    - run: git clone "https://github.com/stumpycr/stumpy_core.cr" "stumpy_core"
+    - run: git clone "https://github.com/stumpycr/stumpy_core.git" "stumpy_core"
     - name: stumpy_core
       run: crystal tool format
       working-directory: stumpy_core
@@ -144,18 +144,10 @@ jobs:
     - name: lucky
       run: crystal tool format
       working-directory: lucky
-    - run: git clone "https://github.com/luckyframework/teeplate.git" "teeplate"
-    - name: teeplate
+    - run: git clone "https://github.com/luckyframework/lucky_router.git" "lucky_router"
+    - name: lucky_router
       run: crystal tool format
-      working-directory: teeplate
-    - run: git clone "https://github.com/luckyframework/luck_router.git" "luck_router"
-    - name: luck_router
-      run: crystal tool format
-      working-directory: luck_router
-    - run: git clone "https://github.com/luckyframework/shell-table.git" "shell-table"
-    - name: shell-table
-      run: crystal tool format
-      working-directory: shell-table
+      working-directory: lucky_router
     - run: git clone "https://github.com/luckyframework/wordsmith.git" "wordsmith"
     - name: wordsmith
       run: crystal tool format

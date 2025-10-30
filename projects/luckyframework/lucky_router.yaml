@@ -1,5 +1,5 @@
-name: "luck_router"
-source: "https://github.com/luckyframework/luck_router.git"
+name: "lucky_router"
+source: "https://github.com/luckyframework/lucky_router.git"
 commands:
   - crystal spec
 formats:

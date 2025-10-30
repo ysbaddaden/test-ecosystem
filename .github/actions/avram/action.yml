@@ -12,8 +12,12 @@ runs:
   - run: shards install
     working-directory: avram
     shell: ${{ inputs.shell }}
+  - run: createdb -O postgres avram
+    working-directory: avram
+    shell: ${{ inputs.shell }}
+    env: &1
+      DATABASE_URL: postgresql://postgres:postgres@localhost/avram
   - run: crystal spec
     working-directory: avram
     shell: ${{ inputs.shell }}
-    env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
+    env: *1
