@@ -18,8 +18,17 @@ runs:
     shell: ${{ inputs.shell }}
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/avram
+      SAMPLE_DATABASE_URL: postgresql://postgres:postgres@localhost/sample_backup
+  - run: psql -h localhost -c "CREATE DATABASE sample_backup" "user=postgres password=postgres
+      dbname=postgres"
+    working-directory: avram
+    shell: ${{ inputs.shell }}
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost/avram
+      SAMPLE_DATABASE_URL: postgresql://postgres:postgres@localhost/sample_backup
   - run: crystal spec
     working-directory: avram
     shell: ${{ inputs.shell }}
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/avram
+      SAMPLE_DATABASE_URL: postgresql://postgres:postgres@localhost/sample_backup
