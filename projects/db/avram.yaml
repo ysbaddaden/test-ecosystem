@@ -5,7 +5,7 @@ services:
 env:
   DATABASE_URL: "postgresql://postgres:postgres@localhost/avram"
 commands:
-  - createdb -O postgres avram
+  - createdb -h localhost -w -O postgres avram
   - crystal spec
 formats:
   - crystal tool format
