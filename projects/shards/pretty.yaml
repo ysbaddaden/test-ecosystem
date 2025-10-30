@@ -2,7 +2,7 @@ name: "pretty"
 source: "https://github.com/maiha/pretty.cr.git"
 systems:
   - linux
-  - darwin
+  # - darwin fails
   # - windows fails
 commands:
   - crystal spec

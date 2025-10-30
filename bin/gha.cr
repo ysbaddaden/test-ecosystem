@@ -62,6 +62,8 @@ workflow_projects.each do |workflow_name, projects|
 
   # GENERATE COMPOSITE ACTION FOR EACH PROJECT
   projects.each do |project|
+    next unless steps = GHA.project_composite_action_steps(project)
+
     Dir.mkdir_p(".github/actions/#{project.name}")
 
     print "write .github/actions/#{project.name}/action.yaml\n"
@@ -73,7 +75,7 @@ workflow_projects.each do |workflow_name, projects|
         },
         "runs" => {
           "using" => "composite",
-          "steps" => GHA.project_composite_action_steps(project),
+          "steps" => steps,
         }
       }.to_yaml(file)
     end

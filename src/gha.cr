@@ -79,6 +79,9 @@ module GHA
   end
 
   def self.project_composite_action_steps(project)
+    return unless commands = project.commands
+    return if commands.empty?
+
     steps = [
       GHA.clone_step(project),
       GHA.shards_install_step(project),
@@ -89,7 +92,7 @@ module GHA
       h.each { |k, v| env[k] = v }
     end
 
-    project.commands.try(&.each do |command|
+    commands.each do |command|
       step = Step{
         "run" => command,
         "working-directory" => project.name,
@@ -97,7 +100,7 @@ module GHA
       }
       step["env"] = env.dup if env
       steps << step
-    end)
+    end
 
     steps
   end

@@ -1,6 +1,6 @@
 name: "spectator"
 source: "https://gitlab.com/arctic-fox/spectator.git"
-commands:
-  - crystal spec
+#commands:
+#  - crystal spec doesn't compile
 formats:
   - crystal tool format

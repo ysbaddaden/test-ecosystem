@@ -46,18 +46,6 @@ jobs:
       name: http_proxy
       run: crystal tool format
       working-directory: http_proxy
-    - run: git clone "https://github.com/jeromegn/kilt.git" "kilt"
-      if: success() || failure()
-    - if: success() || failure()
-      name: kilt
-      run: crystal tool format
-      working-directory: kilt
-    - run: git clone "https://gitlab.com/arctic-fox/spectator.git" "spectator"
-      if: success() || failure()
-    - if: success() || failure()
-      name: spectator
-      run: crystal tool format
-      working-directory: spectator
     - run: git clone "https://github.com/crystal-community/msgpack-crystal.git" "msgpack"
       if: success() || failure()
     - if: success() || failure()

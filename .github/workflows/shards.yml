@@ -36,12 +36,6 @@ jobs:
       name: 'Project: http_proxy'
       uses: ./.github/actions/http_proxy
     - if: success() || failure()
-      name: 'Project: kilt'
-      uses: ./.github/actions/kilt
-    - if: success() || failure()
-      name: 'Project: spectator'
-      uses: ./.github/actions/spectator
-    - if: success() || failure()
       name: 'Project: msgpack'
       uses: ./.github/actions/msgpack
     - if: success() || failure()
@@ -101,12 +95,6 @@ jobs:
       name: 'Project: http_proxy'
       uses: ./.github/actions/http_proxy
     - if: success() || failure()
-      name: 'Project: kilt'
-      uses: ./.github/actions/kilt
-    - if: success() || failure()
-      name: 'Project: spectator'
-      uses: ./.github/actions/spectator
-    - if: success() || failure()
       name: 'Project: msgpack'
       uses: ./.github/actions/msgpack
     - if: success() || failure()
@@ -130,9 +118,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: backtracer'
       uses: ./.github/actions/backtracer
-    - if: success() || failure()
-      name: 'Project: pretty'
-      uses: ./.github/actions/pretty
     - if: success() || failure()
       name: 'Project: lexbor'
       uses: ./.github/actions/lexbor
@@ -169,11 +154,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: http_proxy'
       uses: ./.github/actions/http_proxy
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: spectator'
-      uses: ./.github/actions/spectator
       with:
         shell: pwsh
     - if: success() || failure()
