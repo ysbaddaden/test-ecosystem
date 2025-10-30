@@ -94,7 +94,7 @@ module GHA
         "working-directory" => project.name,
         "shell" => "${{ inputs.shell }}",
       }
-      step["env"] = env if env
+      step["env"] = env.dup if env
       steps << step
     end)
 

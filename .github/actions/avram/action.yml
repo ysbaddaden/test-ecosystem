@@ -15,9 +15,10 @@ runs:
   - run: createdb -O postgres avram
     working-directory: avram
     shell: ${{ inputs.shell }}
-    env: &1
+    env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/avram
   - run: crystal spec
     working-directory: avram
     shell: ${{ inputs.shell }}
-    env: *1
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost/avram
