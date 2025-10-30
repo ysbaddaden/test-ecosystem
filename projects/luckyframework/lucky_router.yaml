@@ -1,0 +1,6 @@
+name: "luck_router"
+source: "https://github.com/luckyframework/luck_router.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

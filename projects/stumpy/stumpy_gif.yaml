@@ -1,0 +1,6 @@
+name: "stumpy_gif"
+source: "https://github.com/stumpycr/stumpy_gif.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

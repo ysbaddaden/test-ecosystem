@@ -1,0 +1,17 @@
+---
+name: halite
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/icyleaf/halite.git" "halite"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: halite
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: halite
+    shell: ${{ inputs.shell }}

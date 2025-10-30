@@ -1,0 +1,6 @@
+name: "kemal"
+source: "https://github.com/kemalcr/kemal.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

@@ -1,0 +1,6 @@
+name: "lexbor"
+source: "https://github.com/kostya/lexbor.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

@@ -1,0 +1,6 @@
+name: "webmock"
+source: "https://github.com/manastech/webmock.cr.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

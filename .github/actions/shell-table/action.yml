@@ -1,0 +1,17 @@
+---
+name: shell-table
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/luckyframework/shell-table.git" "shell-table"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: shell-table
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: shell-table
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,17 @@
+---
+name: backtracer
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/Sija/backtracer.cr.git" "backtracer"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: backtracer
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: backtracer
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,17 @@
+---
+name: msgpack
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/crystal-community/msgpack-crystal.cr" "msgpack"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: msgpack
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: msgpack
+    shell: ${{ inputs.shell }}

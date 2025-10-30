@@ -1,0 +1,19 @@
+---
+name: avram
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/luckyframework/avram.git" "avram"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: avram
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: avram
+    shell: ${{ inputs.shell }}
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost/postgres

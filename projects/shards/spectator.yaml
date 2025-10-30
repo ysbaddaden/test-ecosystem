@@ -1,0 +1,6 @@
+name: "spectator"
+source: "https://github.com/artic-fox/spectator.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

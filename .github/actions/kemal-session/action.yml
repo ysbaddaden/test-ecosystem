@@ -1,0 +1,17 @@
+---
+name: kemal-session
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: kemal-session
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: kemal-session
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,6 @@
+name: "lucky"
+source: "https://github.com/luckyframework/lucky.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

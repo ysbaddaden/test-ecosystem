@@ -1,0 +1,17 @@
+---
+name: radix
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/luislavena/radix.git" "radix"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: radix
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: radix
+    shell: ${{ inputs.shell }}

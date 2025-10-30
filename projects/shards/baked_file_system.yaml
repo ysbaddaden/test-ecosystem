@@ -1,0 +1,10 @@
+name: "baked_file_system"
+source: "https://github.com/schovi/baked_file_system.git"
+systems:
+  - linux
+  - darwin
+  # - windows doesn't compile
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

@@ -21,11 +21,65 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - if: success() || failure()
+      name: 'Project: time_format'
+      uses: ./.github/actions/time_format
+    - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
     - if: success() || failure()
+      name: 'Project: webmock'
+      uses: ./.github/actions/webmock
+    - if: success() || failure()
+      name: 'Project: slang'
+      uses: ./.github/actions/slang
+    - if: success() || failure()
+      name: 'Project: radix'
+      uses: ./.github/actions/radix
+    - if: success() || failure()
+      name: 'Project: http_proxy'
+      uses: ./.github/actions/http_proxy
+    - if: success() || failure()
+      name: 'Project: kilt'
+      uses: ./.github/actions/kilt
+    - if: success() || failure()
+      name: 'Project: spectator'
+      uses: ./.github/actions/spectator
+    - if: success() || failure()
+      name: 'Project: msgpack'
+      uses: ./.github/actions/msgpack
+    - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync
+    - if: success() || failure()
+      name: 'Project: markd'
+      uses: ./.github/actions/markd
+    - if: success() || failure()
+      name: 'Project: crinja'
+      uses: ./.github/actions/crinja
+    - if: success() || failure()
+      name: 'Project: future'
+      uses: ./.github/actions/future
+    - if: success() || failure()
+      name: 'Project: halite'
+      uses: ./.github/actions/halite
+    - if: success() || failure()
+      name: 'Project: exception_page'
+      uses: ./.github/actions/exception_page
+    - if: success() || failure()
+      name: 'Project: backtracer'
+      uses: ./.github/actions/backtracer
+    - if: success() || failure()
+      name: 'Project: pretty'
+      uses: ./.github/actions/pretty
+    - if: success() || failure()
+      name: 'Project: lexbor'
+      uses: ./.github/actions/lexbor
+    - if: success() || failure()
+      name: 'Project: baked_file_system'
+      uses: ./.github/actions/baked_file_system
+    - if: success() || failure()
+      name: 'Project: admiral'
+      uses: ./.github/actions/admiral
   macOS:
     runs-on: macos-latest
     steps:
@@ -35,11 +89,65 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - if: success() || failure()
+      name: 'Project: time_format'
+      uses: ./.github/actions/time_format
+    - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
     - if: success() || failure()
+      name: 'Project: webmock'
+      uses: ./.github/actions/webmock
+    - if: success() || failure()
+      name: 'Project: slang'
+      uses: ./.github/actions/slang
+    - if: success() || failure()
+      name: 'Project: radix'
+      uses: ./.github/actions/radix
+    - if: success() || failure()
+      name: 'Project: http_proxy'
+      uses: ./.github/actions/http_proxy
+    - if: success() || failure()
+      name: 'Project: kilt'
+      uses: ./.github/actions/kilt
+    - if: success() || failure()
+      name: 'Project: spectator'
+      uses: ./.github/actions/spectator
+    - if: success() || failure()
+      name: 'Project: msgpack'
+      uses: ./.github/actions/msgpack
+    - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync
+    - if: success() || failure()
+      name: 'Project: markd'
+      uses: ./.github/actions/markd
+    - if: success() || failure()
+      name: 'Project: crinja'
+      uses: ./.github/actions/crinja
+    - if: success() || failure()
+      name: 'Project: future'
+      uses: ./.github/actions/future
+    - if: success() || failure()
+      name: 'Project: halite'
+      uses: ./.github/actions/halite
+    - if: success() || failure()
+      name: 'Project: exception_page'
+      uses: ./.github/actions/exception_page
+    - if: success() || failure()
+      name: 'Project: backtracer'
+      uses: ./.github/actions/backtracer
+    - if: success() || failure()
+      name: 'Project: pretty'
+      uses: ./.github/actions/pretty
+    - if: success() || failure()
+      name: 'Project: lexbor'
+      uses: ./.github/actions/lexbor
+    - if: success() || failure()
+      name: 'Project: baked_file_system'
+      uses: ./.github/actions/baked_file_system
+    - if: success() || failure()
+      name: 'Project: admiral'
+      uses: ./.github/actions/admiral
   Windows:
     runs-on: windows-latest
     steps:
@@ -50,7 +158,87 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - run: git config --global core.autocrlf false
     - if: success() || failure()
+      name: 'Project: time_format'
+      uses: ./.github/actions/time_format
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: webmock'
+      uses: ./.github/actions/webmock
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: slang'
+      uses: ./.github/actions/slang
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: radix'
+      uses: ./.github/actions/radix
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: http_proxy'
+      uses: ./.github/actions/http_proxy
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: spectator'
+      uses: ./.github/actions/spectator
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: msgpack'
+      uses: ./.github/actions/msgpack
+      with:
+        shell: pwsh
+    - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: markd'
+      uses: ./.github/actions/markd
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: crinja'
+      uses: ./.github/actions/crinja
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: future'
+      uses: ./.github/actions/future
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: halite'
+      uses: ./.github/actions/halite
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: exception_page'
+      uses: ./.github/actions/exception_page
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: backtracer'
+      uses: ./.github/actions/backtracer
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: pretty'
+      uses: ./.github/actions/pretty
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: lexbor'
+      uses: ./.github/actions/lexbor
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: admiral'
+      uses: ./.github/actions/admiral
       with:
         shell: pwsh

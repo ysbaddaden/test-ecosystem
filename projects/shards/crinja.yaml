@@ -1,0 +1,6 @@
+name: "crinja"
+source: "https://github.com/straight-shoota/crinja.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

@@ -1,0 +1,17 @@
+---
+name: spectator
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/artic-fox/spectator.git" "spectator"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: spectator
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: spectator
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,6 @@
+name: "stumpy_core"
+source: "https://github.com/stumpycr/stumpy_core.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

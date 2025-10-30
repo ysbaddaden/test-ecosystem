@@ -1,0 +1,6 @@
+name: "future"
+source: "https://github.com/crystal-community/future.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

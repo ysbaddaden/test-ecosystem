@@ -1,0 +1,6 @@
+name: "stumpy_png"
+source: "https://github.com/stumpycr/stumpy_png.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

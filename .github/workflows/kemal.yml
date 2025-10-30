@@ -20,14 +20,12 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends fossil mercurial
     - if: success() || failure()
-      name: 'Project: crystal'
-      uses: ./.github/actions/crystal
+      name: 'Project: kemal-session'
+      uses: ./.github/actions/kemal-session
     - if: success() || failure()
-      name: 'Project: shards'
-      uses: ./.github/actions/shards
+      name: 'Project: kemal'
+      uses: ./.github/actions/kemal
   macOS:
     runs-on: macos-latest
     steps:
@@ -36,14 +34,12 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - name: Install system dependencies
-      run: brew install fossil mercurial
     - if: success() || failure()
-      name: 'Project: crystal'
-      uses: ./.github/actions/crystal
+      name: 'Project: kemal-session'
+      uses: ./.github/actions/kemal-session
     - if: success() || failure()
-      name: 'Project: shards'
-      uses: ./.github/actions/shards
+      name: 'Project: kemal'
+      uses: ./.github/actions/kemal
   Windows:
     runs-on: windows-latest
     steps:
@@ -52,16 +48,14 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - name: Install system dependencies
-      run: choco install --no-progress fossil hg
     - run: git config --global core.autocrlf false
     - if: success() || failure()
-      name: 'Project: crystal'
-      uses: ./.github/actions/crystal
+      name: 'Project: kemal-session'
+      uses: ./.github/actions/kemal-session
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: shards'
-      uses: ./.github/actions/shards
+      name: 'Project: kemal'
+      uses: ./.github/actions/kemal
       with:
         shell: pwsh

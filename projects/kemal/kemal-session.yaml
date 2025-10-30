@@ -1,0 +1,6 @@
+name: "kemal-session"
+source: "https://github.com/kemalcr/kemal-session.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

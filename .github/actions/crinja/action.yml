@@ -1,0 +1,17 @@
+---
+name: crinja
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/straight-shoota/crinja.cr" "crinja"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: crinja
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: crinja
+    shell: ${{ inputs.shell }}

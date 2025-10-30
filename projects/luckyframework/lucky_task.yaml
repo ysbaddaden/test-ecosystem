@@ -1,0 +1,6 @@
+name: "lucky_task"
+source: "https://github.com/luckyframework/lucky_task.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

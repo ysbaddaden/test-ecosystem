@@ -1,0 +1,6 @@
+name: "backtracer"
+source: "https://github.com/Sija/backtracer.cr.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

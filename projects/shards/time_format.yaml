@@ -1,0 +1,6 @@
+name: "time_format"
+source: "https://github.com/vladfaust/time_format.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

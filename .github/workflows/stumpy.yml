@@ -20,29 +20,21 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "5.7"
-    - uses: ikalnytskyi/action-setup-postgres@v8
-      with:
-        postgres-version: "16"
-    - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
     - if: success() || failure()
-      name: 'Project: mysql'
-      uses: ./.github/actions/mysql
+      name: 'Project: stumpy_jpeg'
+      uses: ./.github/actions/stumpy_jpeg
     - if: success() || failure()
-      name: 'Project: pg'
-      uses: ./.github/actions/pg
+      name: 'Project: stumpy_bmp'
+      uses: ./.github/actions/stumpy_bmp
     - if: success() || failure()
-      name: 'Project: avram'
-      uses: ./.github/actions/avram
+      name: 'Project: stumpy_png'
+      uses: ./.github/actions/stumpy_png
     - if: success() || failure()
-      name: 'Project: db'
-      uses: ./.github/actions/db
+      name: 'Project: stumpy_gif'
+      uses: ./.github/actions/stumpy_gif
     - if: success() || failure()
-      name: 'Project: sqlite3'
-      uses: ./.github/actions/sqlite3
+      name: 'Project: stumpy_core'
+      uses: ./.github/actions/stumpy_core
   macOS:
     runs-on: macos-latest
     steps:
@@ -51,29 +43,21 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "5.7"
-    - uses: ikalnytskyi/action-setup-postgres@v8
-      with:
-        postgres-version: "16"
-    - name: Install system dependencies
-      run: brew install sqlite
     - if: success() || failure()
-      name: 'Project: mysql'
-      uses: ./.github/actions/mysql
+      name: 'Project: stumpy_jpeg'
+      uses: ./.github/actions/stumpy_jpeg
     - if: success() || failure()
-      name: 'Project: pg'
-      uses: ./.github/actions/pg
+      name: 'Project: stumpy_bmp'
+      uses: ./.github/actions/stumpy_bmp
     - if: success() || failure()
-      name: 'Project: avram'
-      uses: ./.github/actions/avram
+      name: 'Project: stumpy_png'
+      uses: ./.github/actions/stumpy_png
     - if: success() || failure()
-      name: 'Project: db'
-      uses: ./.github/actions/db
+      name: 'Project: stumpy_gif'
+      uses: ./.github/actions/stumpy_gif
     - if: success() || failure()
-      name: 'Project: sqlite3'
-      uses: ./.github/actions/sqlite3
+      name: 'Project: stumpy_core'
+      uses: ./.github/actions/stumpy_core
   Windows:
     runs-on: windows-latest
     steps:
@@ -82,30 +66,29 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "5.7"
-    - uses: ikalnytskyi/action-setup-postgres@v8
-      with:
-        postgres-version: "16"
     - run: git config --global core.autocrlf false
     - if: success() || failure()
-      name: 'Project: mysql'
-      uses: ./.github/actions/mysql
+      name: 'Project: stumpy_jpeg'
+      uses: ./.github/actions/stumpy_jpeg
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: pg'
-      uses: ./.github/actions/pg
+      name: 'Project: stumpy_bmp'
+      uses: ./.github/actions/stumpy_bmp
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: avram'
-      uses: ./.github/actions/avram
+      name: 'Project: stumpy_png'
+      uses: ./.github/actions/stumpy_png
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: db'
-      uses: ./.github/actions/db
+      name: 'Project: stumpy_gif'
+      uses: ./.github/actions/stumpy_gif
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: stumpy_core'
+      uses: ./.github/actions/stumpy_core
       with:
         shell: pwsh

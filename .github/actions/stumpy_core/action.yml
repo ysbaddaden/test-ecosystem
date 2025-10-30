@@ -1,0 +1,17 @@
+---
+name: stumpy_core
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/stumpycr/stumpy_core.cr" "stumpy_core"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: stumpy_core
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: stumpy_core
+    shell: ${{ inputs.shell }}

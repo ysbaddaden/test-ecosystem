@@ -1,0 +1,17 @@
+---
+name: markd
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/icyleaf/markd.git" "markd"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: markd
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: markd
+    shell: ${{ inputs.shell }}

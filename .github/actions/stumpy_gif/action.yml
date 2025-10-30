@@ -1,0 +1,17 @@
+---
+name: stumpy_gif
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/stumpycr/stumpy_gif.cr" "stumpy_gif"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: stumpy_gif
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: stumpy_gif
+    shell: ${{ inputs.shell }}

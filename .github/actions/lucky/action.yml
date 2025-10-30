@@ -1,0 +1,17 @@
+---
+name: lucky
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/luckyframework/lucky.git" "lucky"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: lucky
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: lucky
+    shell: ${{ inputs.shell }}

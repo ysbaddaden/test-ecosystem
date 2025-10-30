@@ -1,0 +1,6 @@
+name: "msgpack"
+source: "https://github.com/crystal-community/msgpack-crystal.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

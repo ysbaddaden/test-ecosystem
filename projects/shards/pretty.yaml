@@ -1,0 +1,6 @@
+name: "pretty"
+source: "https://github.com/maiha/pretty.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

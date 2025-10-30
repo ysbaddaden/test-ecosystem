@@ -1,0 +1,10 @@
+name: "kilt"
+source: "https://github.com/jeromegn/kilt.git"
+systems:
+  - linux
+  - darwin
+  # - windows doesn't compile
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

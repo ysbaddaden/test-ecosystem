@@ -1,0 +1,6 @@
+name: "stumpy_bmp"
+source: "https://github.com/stumpycr/stumpy_bmp.cr"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

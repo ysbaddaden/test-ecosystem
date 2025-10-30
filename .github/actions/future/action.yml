@@ -1,0 +1,17 @@
+---
+name: future
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/crystal-community/future.git" "future"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: future
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: future
+    shell: ${{ inputs.shell }}

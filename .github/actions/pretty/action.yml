@@ -1,0 +1,17 @@
+---
+name: pretty
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/maiha/pretty.cr" "pretty"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: pretty
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: pretty
+    shell: ${{ inputs.shell }}

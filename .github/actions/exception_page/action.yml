@@ -1,0 +1,17 @@
+---
+name: exception_page
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/crystal-loot/exception_page.git" "exception_page"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: exception_page
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: exception_page
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,17 @@
+---
+name: http_proxy
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/mamantoha/http_proxy.cr" "http_proxy"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: http_proxy
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: http_proxy
+    shell: ${{ inputs.shell }}

@@ -1,0 +1,17 @@
+---
+name: admiral
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/jwaldrip/admiral.cr" "admiral"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: admiral
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: admiral
+    shell: ${{ inputs.shell }}

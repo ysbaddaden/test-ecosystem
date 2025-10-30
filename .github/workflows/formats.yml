@@ -16,14 +16,106 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - run: git clone "https://github.com/vladfaust/time_format.cr" "time_format"
+    - name: time_format
+      run: crystal tool format
+      working-directory: time_format
     - run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
     - name: minitest
       run: crystal tool format
       working-directory: minitest
+    - run: git clone "https://github.com/manastech/webmock.cr.git" "webmock"
+    - name: webmock
+      run: crystal tool format
+      working-directory: webmock
+    - run: git clone "https://github.com/jeromegn/slang.cr" "slang"
+    - name: slang
+      run: crystal tool format
+      working-directory: slang
+    - run: git clone "https://github.com/luislavena/radix.git" "radix"
+    - name: radix
+      run: crystal tool format
+      working-directory: radix
+    - run: git clone "https://github.com/mamantoha/http_proxy.cr" "http_proxy"
+    - name: http_proxy
+      run: crystal tool format
+      working-directory: http_proxy
+    - run: git clone "https://github.com/jeromegn/kilt.git" "kilt"
+    - name: kilt
+      run: crystal tool format
+      working-directory: kilt
+    - run: git clone "https://github.com/artic-fox/spectator.git" "spectator"
+    - name: spectator
+      run: crystal tool format
+      working-directory: spectator
+    - run: git clone "https://github.com/crystal-community/msgpack-crystal.cr" "msgpack"
+    - name: msgpack
+      run: crystal tool format
+      working-directory: msgpack
     - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: sync
       run: crystal tool format
       working-directory: sync
+    - run: git clone "https://github.com/icyleaf/markd.git" "markd"
+    - name: markd
+      run: crystal tool format
+      working-directory: markd
+    - run: git clone "https://github.com/straight-shoota/crinja.cr" "crinja"
+    - name: crinja
+      run: crystal tool format
+      working-directory: crinja
+    - run: git clone "https://github.com/crystal-community/future.git" "future"
+    - name: future
+      run: crystal tool format
+      working-directory: future
+    - run: git clone "https://github.com/icyleaf/halite.git" "halite"
+    - name: halite
+      run: crystal tool format
+      working-directory: halite
+    - run: git clone "https://github.com/crystal-loot/exception_page.git" "exception_page"
+    - name: exception_page
+      run: crystal tool format
+      working-directory: exception_page
+    - run: git clone "https://github.com/Sija/backtracer.cr.git" "backtracer"
+    - name: backtracer
+      run: crystal tool format
+      working-directory: backtracer
+    - run: git clone "https://github.com/maiha/pretty.cr" "pretty"
+    - name: pretty
+      run: crystal tool format
+      working-directory: pretty
+    - run: git clone "https://github.com/kostya/lexbor.git" "lexbor"
+    - name: lexbor
+      run: crystal tool format
+      working-directory: lexbor
+    - run: git clone "https://github.com/schovi/baked_file_system.git" "baked_file_system"
+    - name: baked_file_system
+      run: crystal tool format
+      working-directory: baked_file_system
+    - run: git clone "https://github.com/jwaldrip/admiral.cr" "admiral"
+    - name: admiral
+      run: crystal tool format
+      working-directory: admiral
+    - run: git clone "https://github.com/stumpycr/stumpy_jpeg.cr" "stumpy_jpeg"
+    - name: stumpy_jpeg
+      run: crystal tool format
+      working-directory: stumpy_jpeg
+    - run: git clone "https://github.com/stumpycr/stumpy_bmp.cr" "stumpy_bmp"
+    - name: stumpy_bmp
+      run: crystal tool format
+      working-directory: stumpy_bmp
+    - run: git clone "https://github.com/stumpycr/stumpy_png.cr" "stumpy_png"
+    - name: stumpy_png
+      run: crystal tool format
+      working-directory: stumpy_png
+    - run: git clone "https://github.com/stumpycr/stumpy_gif.cr" "stumpy_gif"
+    - name: stumpy_gif
+      run: crystal tool format
+      working-directory: stumpy_gif
+    - run: git clone "https://github.com/stumpycr/stumpy_core.cr" "stumpy_core"
+    - name: stumpy_core
+      run: crystal tool format
+      working-directory: stumpy_core
     - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
     - name: shards
       run: crystal tool format src spec
@@ -36,6 +128,10 @@ jobs:
     - name: pg
       run: crystal tool format
       working-directory: pg
+    - run: git clone "https://github.com/luckyframework/avram.git" "avram"
+    - name: avram
+      run: crystal tool format
+      working-directory: avram
     - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
     - name: db
       run: crystal tool format
@@ -44,6 +140,42 @@ jobs:
     - name: sqlite3
       run: crystal tool format
       working-directory: sqlite3
+    - run: git clone "https://github.com/luckyframework/lucky.git" "lucky"
+    - name: lucky
+      run: crystal tool format
+      working-directory: lucky
+    - run: git clone "https://github.com/luckyframework/teeplate.git" "teeplate"
+    - name: teeplate
+      run: crystal tool format
+      working-directory: teeplate
+    - run: git clone "https://github.com/luckyframework/luck_router.git" "luck_router"
+    - name: luck_router
+      run: crystal tool format
+      working-directory: luck_router
+    - run: git clone "https://github.com/luckyframework/shell-table.git" "shell-table"
+    - name: shell-table
+      run: crystal tool format
+      working-directory: shell-table
+    - run: git clone "https://github.com/luckyframework/wordsmith.git" "wordsmith"
+    - name: wordsmith
+      run: crystal tool format
+      working-directory: wordsmith
+    - run: git clone "https://github.com/luckyframework/lucky_task.git" "lucky_task"
+    - name: lucky_task
+      run: crystal tool format
+      working-directory: lucky_task
+    - run: git clone "https://github.com/luckyframework/habitat.git" "habitat"
+    - name: habitat
+      run: crystal tool format
+      working-directory: habitat
+    - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
+    - name: kemal-session
+      run: crystal tool format
+      working-directory: kemal-session
+    - run: git clone "https://github.com/kemalcr/kemal.git" "kemal"
+    - name: kemal
+      run: crystal tool format
+      working-directory: kemal
     - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
     - name: invidious
       run: crystal tool format

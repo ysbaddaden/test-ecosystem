@@ -1,0 +1,17 @@
+---
+name: luck_router
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/luckyframework/luck_router.git" "luck_router"
+    shell: ${{ inputs.shell }}
+  - run: shards install
+    working-directory: luck_router
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: luck_router
+    shell: ${{ inputs.shell }}

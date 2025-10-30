@@ -1,0 +1,10 @@
+name: "avram"
+source: "https://github.com/luckyframework/avram.git"
+services:
+  - postgreqsl
+env:
+  DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format
