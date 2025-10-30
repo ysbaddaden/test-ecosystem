@@ -125,7 +125,7 @@ module GHA
       "name" => "Project: #{project.name}",
       "uses" => "./.github/actions/#{project.name}",
     }
-    step["with"] = { "shell" => "pwsh" } if system == "windows"
+    # step["with"] = { "shell" => "pwsh" } if system == "windows"
     step
   end
 

@@ -217,108 +217,66 @@ jobs:
     - if: success() || failure()
       name: 'Project: stumpy_jpeg'
       uses: ./.github/actions/stumpy_jpeg
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: webmock'
       uses: ./.github/actions/webmock
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: slang'
       uses: ./.github/actions/slang
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: radix'
       uses: ./.github/actions/radix
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: http_proxy'
       uses: ./.github/actions/http_proxy
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: kemal-session'
       uses: ./.github/actions/kemal-session
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: bindata'
       uses: ./.github/actions/bindata
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: msgpack'
       uses: ./.github/actions/msgpack
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: markd'
       uses: ./.github/actions/markd
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: crinja'
       uses: ./.github/actions/crinja
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: future'
       uses: ./.github/actions/future
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: halite'
       uses: ./.github/actions/halite
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: stumpy_gif'
       uses: ./.github/actions/stumpy_gif
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: stumpy_core'
       uses: ./.github/actions/stumpy_core
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: kemal'
       uses: ./.github/actions/kemal
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: lexbor'
       uses: ./.github/actions/lexbor
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: openssl_ext'
       uses: ./.github/actions/openssl_ext
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: admiral'
       uses: ./.github/actions/admiral
-      with:
-        shell: pwsh
   crystal-linux:
     runs-on: ubuntu-latest
     steps:
@@ -366,8 +324,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: crystal'
       uses: ./.github/actions/crystal
-      with:
-        shell: pwsh
   db-linux:
     runs-on: ubuntu-latest
     steps:
@@ -449,23 +405,15 @@ jobs:
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: pg'
       uses: ./.github/actions/pg
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: avram'
       uses: ./.github/actions/avram
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: db'
       uses: ./.github/actions/db
-      with:
-        shell: pwsh
   luckyframework-linux:
     runs-on: ubuntu-latest
     steps:
@@ -525,28 +473,18 @@ jobs:
     - if: success() || failure()
       name: 'Project: lucky'
       uses: ./.github/actions/lucky
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: lucky_router'
       uses: ./.github/actions/lucky_router
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: wordsmith'
       uses: ./.github/actions/wordsmith
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: lucky_task'
       uses: ./.github/actions/lucky_task
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: habitat'
       uses: ./.github/actions/habitat
-      with:
-        shell: pwsh
   tools-linux:
     runs-on: ubuntu-latest
     steps:
