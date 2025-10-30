@@ -37,6 +37,4 @@ You can configure defaults using ENV variables. See `bin/gha.cr` for details.
 
 ## TODO
 
-- [ ] group projects in sub-directories (e.g. `projects/db`,
-  `projects/lucky_framework`, ...)
-- [ ] create a workflow for each directory
+- [ ] 1 workflow with a job for each directory+system instead of a workflow per directory

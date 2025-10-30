@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/luckyframework/lucky_router.git" "lucky_router"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: lucky_router
     shell: ${{ inputs.shell }}
   - run: crystal spec

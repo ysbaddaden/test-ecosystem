@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/luckyframework/avram.git" "avram"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: avram
     shell: ${{ inputs.shell }}
   - run: createdb -O postgres avram

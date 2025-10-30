@@ -7,9 +7,9 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/maiha/pretty.cr" "pretty"
+  - run: git clone "https://github.com/maiha/pretty.cr.git" "pretty"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: pretty
     shell: ${{ inputs.shell }}
   - run: crystal spec

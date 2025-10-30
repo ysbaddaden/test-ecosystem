@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/crystal-loot/exception_page.git" "exception_page"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: exception_page
     shell: ${{ inputs.shell }}
   - run: crystal spec

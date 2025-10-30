@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: lavinmq
     shell: ${{ inputs.shell }}
   - run: make bin/lavinmq bin/lavinmqctl bin/lavinmqperf

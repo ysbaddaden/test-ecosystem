@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/schovi/baked_file_system.git" "baked_file_system"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: baked_file_system
     shell: ${{ inputs.shell }}
   - run: crystal spec

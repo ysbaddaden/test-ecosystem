@@ -7,9 +7,9 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/mamantoha/http_proxy.cr" "http_proxy"
+  - run: git clone "https://github.com/mamantoha/http_proxy.git" "http_proxy"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: http_proxy
     shell: ${{ inputs.shell }}
   - run: crystal spec

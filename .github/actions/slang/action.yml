@@ -7,9 +7,9 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/jeromegn/slang.cr" "slang"
+  - run: git clone "https://github.com/jeromegn/slang" "slang"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: slang
     shell: ${{ inputs.shell }}
   - run: crystal spec

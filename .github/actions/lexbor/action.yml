@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/kostya/lexbor.git" "lexbor"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: lexbor
     shell: ${{ inputs.shell }}
   - run: crystal spec

@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: mysql
     shell: ${{ inputs.shell }}
   - run: crystal spec

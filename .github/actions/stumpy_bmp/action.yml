@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/stumpycr/stumpy_bmp.git" "stumpy_bmp"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: stumpy_bmp
     shell: ${{ inputs.shell }}
   - run: crystal spec

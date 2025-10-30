@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: sync
     shell: ${{ inputs.shell }}
   - run: make test

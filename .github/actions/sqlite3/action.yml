@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: sqlite3
     shell: ${{ inputs.shell }}
   - run: crystal spec

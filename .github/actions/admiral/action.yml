@@ -7,9 +7,9 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/jwaldrip/admiral.cr" "admiral"
+  - run: git clone "https://github.com/jwaldrip/admiral.cr.git" "admiral"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: admiral
     shell: ${{ inputs.shell }}
   - run: crystal spec

@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: kemal-session
     shell: ${{ inputs.shell }}
   - run: crystal spec

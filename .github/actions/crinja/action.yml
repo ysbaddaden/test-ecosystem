@@ -7,9 +7,9 @@ inputs:
 runs:
   using: composite
   steps:
-  - run: git clone "https://github.com/straight-shoota/crinja.cr" "crinja"
+  - run: git clone "https://github.com/straight-shoota/crinja.git" "crinja"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: crinja
     shell: ${{ inputs.shell }}
   - run: crystal spec

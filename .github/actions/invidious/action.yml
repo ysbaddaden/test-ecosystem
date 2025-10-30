@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: invidious
     shell: ${{ inputs.shell }}
   - run: crystal build src/invidious.cr

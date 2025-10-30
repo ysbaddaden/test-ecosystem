@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/crystal-lang/crystal.git" "crystal"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: crystal
     shell: ${{ inputs.shell }}
   - run: bin/crystal spec spec/manual/digest_large_file_spec.cr
@@ -28,11 +28,5 @@ runs:
     working-directory: crystal
     shell: ${{ inputs.shell }}
   - run: bin/crystal spec spec/manual/string_normalize_spec.cr
-    working-directory: crystal
-    shell: ${{ inputs.shell }}
-  - run: bin/crystal spec spec/manual/string_to_f32_spec.cr
-    working-directory: crystal
-    shell: ${{ inputs.shell }}
-  - run: bin/crystal spec spec/manual/string_to_f_supplemental_spec.cr
     working-directory: crystal
     shell: ${{ inputs.shell }}

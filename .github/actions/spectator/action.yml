@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/artic-fox/spectator.git" "spectator"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: spectator
     shell: ${{ inputs.shell }}
   - run: crystal spec

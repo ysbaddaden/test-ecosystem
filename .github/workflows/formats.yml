@@ -16,10 +16,6 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - run: git clone "https://github.com/vladfaust/time_format.cr" "time_format"
-    - name: time_format
-      run: crystal tool format
-      working-directory: time_format
     - run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
     - name: minitest
       run: crystal tool format
@@ -28,7 +24,7 @@ jobs:
     - name: webmock
       run: crystal tool format
       working-directory: webmock
-    - run: git clone "https://github.com/jeromegn/slang.cr" "slang"
+    - run: git clone "https://github.com/jeromegn/slang" "slang"
     - name: slang
       run: crystal tool format
       working-directory: slang
@@ -36,7 +32,7 @@ jobs:
     - name: radix
       run: crystal tool format
       working-directory: radix
-    - run: git clone "https://github.com/mamantoha/http_proxy.cr" "http_proxy"
+    - run: git clone "https://github.com/mamantoha/http_proxy.git" "http_proxy"
     - name: http_proxy
       run: crystal tool format
       working-directory: http_proxy
@@ -48,7 +44,7 @@ jobs:
     - name: spectator
       run: crystal tool format
       working-directory: spectator
-    - run: git clone "https://github.com/crystal-community/msgpack-crystal.cr" "msgpack"
+    - run: git clone "https://github.com/crystal-community/msgpack-crystal.git" "msgpack"
     - name: msgpack
       run: crystal tool format
       working-directory: msgpack
@@ -60,7 +56,7 @@ jobs:
     - name: markd
       run: crystal tool format
       working-directory: markd
-    - run: git clone "https://github.com/straight-shoota/crinja.cr" "crinja"
+    - run: git clone "https://github.com/straight-shoota/crinja.git" "crinja"
     - name: crinja
       run: crystal tool format
       working-directory: crinja
@@ -80,7 +76,7 @@ jobs:
     - name: backtracer
       run: crystal tool format
       working-directory: backtracer
-    - run: git clone "https://github.com/maiha/pretty.cr" "pretty"
+    - run: git clone "https://github.com/maiha/pretty.cr.git" "pretty"
     - name: pretty
       run: crystal tool format
       working-directory: pretty
@@ -92,7 +88,7 @@ jobs:
     - name: baked_file_system
       run: crystal tool format
       working-directory: baked_file_system
-    - run: git clone "https://github.com/jwaldrip/admiral.cr" "admiral"
+    - run: git clone "https://github.com/jwaldrip/admiral.cr.git" "admiral"
     - name: admiral
       run: crystal tool format
       working-directory: admiral

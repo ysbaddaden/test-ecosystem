@@ -9,7 +9,7 @@ runs:
   steps:
   - run: git clone "https://github.com/luislavena/radix.git" "radix"
     shell: ${{ inputs.shell }}
-  - run: shards install
+  - run: shards install --skip-postinstall --skip-executables
     working-directory: radix
     shell: ${{ inputs.shell }}
   - run: crystal spec

@@ -21,9 +21,6 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - if: success() || failure()
-      name: 'Project: time_format'
-      uses: ./.github/actions/time_format
-    - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
     - if: success() || failure()
@@ -88,9 +85,6 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - if: success() || failure()
-      name: 'Project: time_format'
-      uses: ./.github/actions/time_format
     - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
@@ -157,11 +151,6 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - run: git config --global core.autocrlf false
-    - if: success() || failure()
-      name: 'Project: time_format'
-      uses: ./.github/actions/time_format
-      with:
-        shell: pwsh
     - if: success() || failure()
       name: 'Project: webmock'
       uses: ./.github/actions/webmock
