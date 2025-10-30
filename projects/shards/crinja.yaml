@@ -1,5 +1,5 @@
 name: "crinja"
-source: "https://github.com/straight-shoota/crinja.cr"
+source: "https://github.com/straight-shoota/crinja.git"
 commands:
   - crystal spec
 formats:

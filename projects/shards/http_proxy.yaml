@@ -1,5 +1,5 @@
 name: "http_proxy"
-source: "https://github.com/mamantoha/http_proxy.cr"
+source: "https://github.com/mamantoha/http_proxy.git"
 commands:
   - crystal spec
 formats:

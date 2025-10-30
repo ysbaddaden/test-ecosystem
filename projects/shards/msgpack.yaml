@@ -1,5 +1,5 @@
 name: "msgpack"
-source: "https://github.com/crystal-community/msgpack-crystal.cr"
+source: "https://github.com/crystal-community/msgpack-crystal.git"
 commands:
   - crystal spec
 formats:

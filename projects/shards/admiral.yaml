@@ -1,5 +1,5 @@
 name: "admiral"
-source: "https://github.com/jwaldrip/admiral.cr"
+source: "https://github.com/jwaldrip/admiral.cr.git"
 commands:
   - crystal spec
 formats:

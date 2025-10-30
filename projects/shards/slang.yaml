@@ -1,5 +1,5 @@
 name: "slang"
-source: "https://github.com/jeromegn/slang.cr"
+source: "https://github.com/jeromegn/slang"
 commands:
   - crystal spec
 formats:
