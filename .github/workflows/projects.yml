@@ -12,7 +12,7 @@ name: Projects
         type: string
         default: nightly
 jobs:
-  shards (Linux):
+  shards-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
@@ -80,7 +80,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: admiral'
       uses: ./.github/actions/admiral
-  shards (macOS):
+  shards-darwin:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v5
@@ -145,7 +145,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: admiral'
       uses: ./.github/actions/admiral
-  shards (Windows):
+  shards-windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v5
@@ -235,7 +235,7 @@ jobs:
       uses: ./.github/actions/admiral
       with:
         shell: pwsh
-  crystal (Linux):
+  crystal-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
@@ -251,7 +251,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: shards'
       uses: ./.github/actions/shards
-  crystal (macOS):
+  crystal-darwin:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v5
@@ -267,7 +267,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: shards'
       uses: ./.github/actions/shards
-  crystal (Windows):
+  crystal-windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v5
@@ -289,7 +289,7 @@ jobs:
       uses: ./.github/actions/shards
       with:
         shell: pwsh
-  db (Linux):
+  db-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
@@ -320,7 +320,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: sqlite3'
       uses: ./.github/actions/sqlite3
-  db (macOS):
+  db-darwin:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v5
@@ -351,7 +351,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: sqlite3'
       uses: ./.github/actions/sqlite3
-  db (Windows):
+  db-windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v5
@@ -387,7 +387,7 @@ jobs:
       uses: ./.github/actions/db
       with:
         shell: pwsh
-  luckyframework (Linux):
+  luckyframework-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
@@ -410,7 +410,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: habitat'
       uses: ./.github/actions/habitat
-  luckyframework (macOS):
+  luckyframework-darwin:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v5
@@ -433,7 +433,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: habitat'
       uses: ./.github/actions/habitat
-  luckyframework (Windows):
+  luckyframework-windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v5
@@ -468,7 +468,7 @@ jobs:
       uses: ./.github/actions/habitat
       with:
         shell: pwsh
-  kemal (Linux):
+  kemal-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5
@@ -482,7 +482,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: kemal'
       uses: ./.github/actions/kemal
-  kemal (macOS):
+  kemal-darwin:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v5
@@ -496,7 +496,7 @@ jobs:
     - if: success() || failure()
       name: 'Project: kemal'
       uses: ./.github/actions/kemal
-  kemal (Windows):
+  kemal-windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v5
@@ -516,7 +516,7 @@ jobs:
       uses: ./.github/actions/kemal
       with:
         shell: pwsh
-  apps (Linux):
+  apps-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v5

@@ -101,21 +101,21 @@ job_projects.each do |job_name, projects|
   end
 
   unless linux_steps_count == linux_steps.size
-    jobs["#{job_name} (Linux)"] = Job{
+    jobs["#{job_name}-linux"] = Job{
       "runs-on" => DEFAULT_LINUX_RUNNER,
       "steps" => linux_steps,
     }
   end
 
   unless darwin_steps_count == darwin_steps.size
-    jobs["#{job_name} (macOS)"] = Job{
+    jobs["#{job_name}-darwin"] = Job{
       "runs-on" => DEFAULT_MACOS_RUNNER,
       "steps" => darwin_steps,
     }
   end
 
   unless windows_steps_count == windows_steps.size
-    jobs["#{job_name} (Windows)"] = Job{
+    jobs["#{job_name}-windows"] = Job{
       "runs-on" => DEFAULT_WINDOWS_RUNNER,
       "steps" => windows_steps,
     }
