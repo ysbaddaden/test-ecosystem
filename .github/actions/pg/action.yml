@@ -14,6 +14,8 @@ runs:
     shell: ${{ inputs.shell }}
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
+  - run: git apply $GITHUB_ACTIONS_PATH/project.patch
+    working-directory: pg
   - run: crystal spec
     working-directory: pg
     shell: ${{ inputs.shell }}

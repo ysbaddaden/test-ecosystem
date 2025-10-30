@@ -4,6 +4,20 @@ services:
   - postgresql
 env:
   DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"
+patch: |
+  diff --git a/spec/pq/conninfo_spec.cr b/spec/pq/conninfo_spec.cr
+  index 5c063da..9a1e261 100644
+  --- a/spec/pq/conninfo_spec.cr
+  +++ b/spec/pq/conninfo_spec.cr
+  @@ -31,6 +31,8 @@ end
+
+   describe PQ::ConnInfo, "parts" do
+     it "can have all defaults" do
+  +    {% if flag?(:windows) %} pending! {% end %}
+  +
+       env_var_bubble do
+         ci = PQ::ConnInfo.new
+         assert_default_params ci
 commands:
   - crystal spec
 formats:

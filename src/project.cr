@@ -8,6 +8,7 @@ class Project
   property systems : Array(String) = %w[darwin linux windows]
   property packages : Hash(String, Array(String)) = Hash(String, Array(String)).new
   property services : Array(String) | Nil
+  property patch : String | Nil
   property env : Hash(String, String) | Nil
   property commands : String | Array(String) | Nil
   property formats : String | Array(String) | Nil

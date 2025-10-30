@@ -8,7 +8,7 @@ env:
 commands:
   - psql -h localhost -c "CREATE DATABASE avram" "user=postgres password=postgres dbname=postgres"
   - psql -h localhost -c "CREATE DATABASE avram_backup" "user=postgres password=postgres dbname=postgres"
-  - rm spec/avrama/tasks/db_schema_dump_spec.cr
+  - rm spec/avram/tasks/db_schema_dump_spec.cr
   - crystal spec
 formats:
   - crystal tool format

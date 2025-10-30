@@ -93,6 +93,13 @@ module GHA
       GHA.shards_install_step(project),
     ]
 
+    if project.patch
+      steps << Step{
+        "run" => "git apply $GITHUB_ACTIONS_PATH/project.patch",
+        "working-directory" => project.name,
+      }
+    end
+
     if h = project.env
       env = Hash(String, String).new
       h.each { |k, v| env[k] = v }

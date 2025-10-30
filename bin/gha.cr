@@ -68,6 +68,11 @@ job_projects.each do |job_name, projects|
 
     Dir.mkdir_p(".github/actions/#{project.name}")
 
+    if patch = project.patch
+      print "write .github/actions/#{project.name}/project.patch\n"
+      File.write(".github/actions/#{project.name}/project.patch", patch)
+    end
+
     print "write .github/actions/#{project.name}/action.yaml\n"
     File.open(".github/actions/#{project.name}/action.yml", "w") do |file|
       {

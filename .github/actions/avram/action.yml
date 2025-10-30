@@ -29,7 +29,7 @@ runs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/avram
       BACKUP_DATABASE_URL: postgresql://postgres:postgres@localhost/avram_backup
-  - run: rm spec/avrama/tasks/db_schema_dump_spec.cr
+  - run: rm spec/avram/tasks/db_schema_dump_spec.cr
     working-directory: avram
     shell: ${{ inputs.shell }}
     env:

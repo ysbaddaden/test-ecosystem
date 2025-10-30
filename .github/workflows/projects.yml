@@ -172,6 +172,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: timecop'
+      uses: ./.github/actions/timecop
+    - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
     - if: success() || failure()
