@@ -89,6 +89,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: timecop'
+      uses: ./.github/actions/timecop
+    - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
     - if: success() || failure()
@@ -168,6 +171,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: halite'
       uses: ./.github/actions/halite
+    - if: success() || failure()
+      name: 'Project: timecop'
+      uses: ./.github/actions/timecop
     - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
@@ -268,6 +274,11 @@ jobs:
     - if: success() || failure()
       name: 'Project: halite'
       uses: ./.github/actions/halite
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: timecop'
+      uses: ./.github/actions/timecop
       with:
         shell: pwsh
     - if: success() || failure()
@@ -536,6 +547,43 @@ jobs:
     - if: success() || failure()
       name: 'Project: habitat'
       uses: ./.github/actions/habitat
+      with:
+        shell: pwsh
+  tools-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - if: success() || failure()
+      name: 'Project: ameba'
+      uses: ./.github/actions/ameba
+  tools-darwin:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - if: success() || failure()
+      name: 'Project: ameba'
+      uses: ./.github/actions/ameba
+  tools-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - run: git config --global core.autocrlf false
+    - uses: ilammy/msvc-dev-cmd@v1
+    - if: success() || failure()
+      name: 'Project: ameba'
+      uses: ./.github/actions/ameba
       with:
         shell: pwsh
   apps-linux:

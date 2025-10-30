@@ -1,0 +1,7 @@
+name: "ameba"
+source: "https://github.com/crystal-ameba/ameba.git"
+commands:
+  - shards build
+  - crystal spec
+formats:
+  - crystal tool format

@@ -106,6 +106,12 @@ jobs:
       name: halite
       run: crystal tool format
       working-directory: halite
+    - run: git clone "https://github.com/crystal-community/timecop.cr.git" "timecop"
+      if: success() || failure()
+    - if: success() || failure()
+      name: timecop
+      run: crystal tool format
+      working-directory: timecop
     - run: git clone "https://github.com/crystal-loot/exception_page.git" "exception_page"
       if: success() || failure()
     - if: success() || failure()
@@ -232,6 +238,12 @@ jobs:
       name: habitat
       run: crystal tool format
       working-directory: habitat
+    - run: git clone "https://github.com/crystal-ameba/ameba.git" "ameba"
+      if: success() || failure()
+    - if: success() || failure()
+      name: ameba
+      run: crystal tool format
+      working-directory: ameba
     - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
       if: success() || failure()
     - if: success() || failure()

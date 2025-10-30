@@ -1,0 +1,6 @@
+name: "timecop"
+source: "https://github.com/crystal-community/timecop.cr.git"
+commands:
+  - crystal spec
+formats:
+  - crystal tool format
