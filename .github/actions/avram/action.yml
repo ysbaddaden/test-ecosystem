@@ -12,7 +12,8 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: avram
     shell: ${{ inputs.shell }}
-  - run: psql -c "CREATE DATABASE avram" "user=postgres password=postgres dbname=postgres"
+  - run: psql -h localhost -c "CREATE DATABASE avram" "user=postgres password=postgres
+      dbname=postgres"
     working-directory: avram
     shell: ${{ inputs.shell }}
     env:

@@ -22,6 +22,12 @@ jobs:
       name: minitest
       run: crystal tool format
       working-directory: minitest
+    - run: git clone "https://github.com/stumpycr/stumpy_jpeg.git" "stumpy_jpeg"
+      if: success() || failure()
+    - if: success() || failure()
+      name: stumpy_jpeg
+      run: crystal tool format
+      working-directory: stumpy_jpeg
     - run: git clone "https://github.com/manastech/webmock.cr.git" "webmock"
       if: success() || failure()
     - if: success() || failure()
@@ -88,6 +94,18 @@ jobs:
       name: exception_page
       run: crystal tool format
       working-directory: exception_page
+    - run: git clone "https://github.com/stumpycr/stumpy_gif.git" "stumpy_gif"
+      if: success() || failure()
+    - if: success() || failure()
+      name: stumpy_gif
+      run: crystal tool format
+      working-directory: stumpy_gif
+    - run: git clone "https://github.com/stumpycr/stumpy_core.git" "stumpy_core"
+      if: success() || failure()
+    - if: success() || failure()
+      name: stumpy_core
+      run: crystal tool format
+      working-directory: stumpy_core
     - run: git clone "https://github.com/Sija/backtracer.cr.git" "backtracer"
       if: success() || failure()
     - if: success() || failure()
@@ -118,30 +136,6 @@ jobs:
       name: admiral
       run: crystal tool format
       working-directory: admiral
-    - run: git clone "https://github.com/stumpycr/stumpy_jpeg.git" "stumpy_jpeg"
-      if: success() || failure()
-    - if: success() || failure()
-      name: stumpy_jpeg
-      run: crystal tool format
-      working-directory: stumpy_jpeg
-    - run: git clone "https://github.com/stumpycr/stumpy_png.git" "stumpy_png"
-      if: success() || failure()
-    - if: success() || failure()
-      name: stumpy_png
-      run: crystal tool format
-      working-directory: stumpy_png
-    - run: git clone "https://github.com/stumpycr/stumpy_gif.git" "stumpy_gif"
-      if: success() || failure()
-    - if: success() || failure()
-      name: stumpy_gif
-      run: crystal tool format
-      working-directory: stumpy_gif
-    - run: git clone "https://github.com/stumpycr/stumpy_core.git" "stumpy_core"
-      if: success() || failure()
-    - if: success() || failure()
-      name: stumpy_core
-      run: crystal tool format
-      working-directory: stumpy_core
     - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
       if: success() || failure()
     - if: success() || failure()

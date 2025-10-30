@@ -24,6 +24,9 @@ jobs:
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
     - if: success() || failure()
+      name: 'Project: stumpy_jpeg'
+      uses: ./.github/actions/stumpy_jpeg
+    - if: success() || failure()
       name: 'Project: webmock'
       uses: ./.github/actions/webmock
     - if: success() || failure()
@@ -56,6 +59,12 @@ jobs:
     - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
+    - if: success() || failure()
+      name: 'Project: stumpy_gif'
+      uses: ./.github/actions/stumpy_gif
+    - if: success() || failure()
+      name: 'Project: stumpy_core'
+      uses: ./.github/actions/stumpy_core
     - if: success() || failure()
       name: 'Project: backtracer'
       uses: ./.github/actions/backtracer
@@ -83,6 +92,9 @@ jobs:
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
     - if: success() || failure()
+      name: 'Project: stumpy_jpeg'
+      uses: ./.github/actions/stumpy_jpeg
+    - if: success() || failure()
       name: 'Project: webmock'
       uses: ./.github/actions/webmock
     - if: success() || failure()
@@ -115,6 +127,12 @@ jobs:
     - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
+    - if: success() || failure()
+      name: 'Project: stumpy_gif'
+      uses: ./.github/actions/stumpy_gif
+    - if: success() || failure()
+      name: 'Project: stumpy_core'
+      uses: ./.github/actions/stumpy_core
     - if: success() || failure()
       name: 'Project: backtracer'
       uses: ./.github/actions/backtracer
@@ -137,6 +155,11 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - run: git config --global core.autocrlf false
     - if: success() || failure()
+      name: 'Project: stumpy_jpeg'
+      uses: ./.github/actions/stumpy_jpeg
+      with:
+        shell: pwsh
+    - if: success() || failure()
       name: 'Project: webmock'
       uses: ./.github/actions/webmock
       with:
@@ -189,6 +212,16 @@ jobs:
     - if: success() || failure()
       name: 'Project: exception_page'
       uses: ./.github/actions/exception_page
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: stumpy_gif'
+      uses: ./.github/actions/stumpy_gif
+      with:
+        shell: pwsh
+    - if: success() || failure()
+      name: 'Project: stumpy_core'
+      uses: ./.github/actions/stumpy_core
       with:
         shell: pwsh
     - if: success() || failure()
