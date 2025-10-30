@@ -385,9 +385,6 @@ jobs:
       name: 'Project: pg'
       uses: ./.github/actions/pg
     - if: success() || failure()
-      name: 'Project: avram'
-      uses: ./.github/actions/avram
-    - if: success() || failure()
       name: 'Project: db'
       uses: ./.github/actions/db
     - if: success() || failure()
@@ -415,9 +412,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: pg'
       uses: ./.github/actions/pg
-    - if: success() || failure()
-      name: 'Project: avram'
-      uses: ./.github/actions/avram
     - if: success() || failure()
       name: 'Project: db'
       uses: ./.github/actions/db
@@ -448,11 +442,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: pg'
       uses: ./.github/actions/pg
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: avram'
-      uses: ./.github/actions/avram
       with:
         shell: pwsh
     - if: success() || failure()
