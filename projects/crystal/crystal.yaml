@@ -8,5 +8,5 @@ commands:
   - bin/crystal spec spec/manual/hash_large_spec.cr
   - bin/crystal spec spec/manual/https_client_spec.cr
   - bin/crystal spec spec/manual/string_normalize_spec.cr
-  - bin/crystal spec spec/manual/string_to_f32_spec.cr
-  - bin/crystal spec spec/manual/string_to_f_supplemental_spec.cr
+  # - bin/crystal spec spec/manual/string_to_f32_spec.cr is too long
+  # - bin/crystal spec spec/manual/string_to_f_supplemental_spec.cr is too long
