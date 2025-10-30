@@ -132,7 +132,7 @@ File.open(".github/workflows/projects.yml", "w") do |file|
     "on" => {
       "push" => nil,
       "pull_request" => nil,
-      "job_dispatch" => {
+      "workflow_dispatch" => {
         "inputs" => {
           "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
           "shards" => { "type" => "string", "default" => DEFAULT_SHARDS },
@@ -150,7 +150,7 @@ File.open(".github/workflows/formats.yml", "w") do |file|
     "on" => {
       "push" => nil,
       "pull_request" => nil,
-      "job_dispatch" => {
+      "workflow_dispatch" => {
         "inputs": {
           "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
         }
