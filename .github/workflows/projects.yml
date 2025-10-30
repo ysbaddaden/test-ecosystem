@@ -563,21 +563,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: ameba'
       uses: ./.github/actions/ameba
-  tools-windows:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v5
-    - uses: crystal-lang/install-crystal@v1
-      with:
-        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
-        shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - run: git config --global core.autocrlf false
-    - uses: ilammy/msvc-dev-cmd@v1
-    - if: success() || failure()
-      name: 'Project: ameba'
-      uses: ./.github/actions/ameba
-      with:
-        shell: pwsh
   apps-linux:
     runs-on: ubuntu-latest
     steps:

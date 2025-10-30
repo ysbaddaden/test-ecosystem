@@ -1,5 +1,9 @@
 name: "ameba"
 source: "https://github.com/crystal-ameba/ameba.git"
+systems:
+  - linux
+  - darwin
+  # - windows fails
 commands:
   - shards build
   - crystal spec
