@@ -7,6 +7,7 @@ class Project
   property source : String
   property systems : Array(String) = %w[darwin linux windows]
   property packages : Hash(String, Array(String)) = Hash(String, Array(String)).new
+  property services : Array(String) | Nil
   property env : Hash(String, String) | Nil
   property commands : String | Array(String) | Nil
   property formats : String | Array(String) | Nil
@@ -26,6 +27,14 @@ class Project
 
   def packages(system)
     @packages[system]?
+  end
+
+  def service?(name)
+    if services = @services
+      services.includes?(name)
+    else
+      false
+    end
   end
 end
 

@@ -1,216 +1,104 @@
-#! /usr/bin/env -S crystal i
-
-require "./project"
-
-DEFAULT_CRYSTAL = ENV.fetch("DEFAULT_CRYSTAL", "nightly")
-DEFAULT_SHARDS = ENV.fetch("DEFAULT_SHARDS", "nightly")
-DEFAULT_LINUX_RUNNER = ENV.fetch("DEFAULT_LINUX_RUNNER", "ubuntu-latest")
-DEFAULT_MACOS_RUNNER = ENV.fetch("DEFAULT_MACOS_RUNNER", "macos-latest")
-DEFAULT_WINDOWS_RUNNER = ENV.fetch("DEFAULT_WINDOWS_RUNNER", "windows-latest")
-
 alias Step = Hash(String, Hash(String, String) | String)
 
-projects = Dir.glob("./projects/*.yaml").map do |path|
-  File.open(path) { |file| Project.from_yaml(file) }
-end
+module GHA
+  def self.mysql_service_steps
+    [Step{
+      "uses" => "shogo82148/actions-setup-mysql@v1",
+      "with" => {
+        "mysql-version" => "5.7"
+      }
+    }]
+  end
 
-linux_steps = [] of Step
-darwin_steps = [] of Step
-windows_steps = [] of Step
-format_steps = [] of Step
+  def self.postgresql_service_steps
+    [Step{
+      "uses" => "ikalnytskyi/action-setup-postgres@v8",
+      "with" => {
+        "postgres-version" => "16",
+      }
+    }]
+  end
 
-jobs = [
-  linux_steps,
-  darwin_steps,
-  windows_steps
-]
+  def self.install_packages_steps(projects, system)
+    packages = projects.flat_map(&.packages(system)).compact
+    return [] of Step if packages.empty?
 
-# CHECKOUT
-jobs.each do |steps|
-  steps << Step{
-    "uses" => "actions/checkout@v5",
-  }
-end
+    case system
+    when "linux"
+      [Step{
+        "name" => "Install system dependencies",
+        "run" => "sudo apt-get install --quiet --yes --no-install-recommends #{packages.join(' ')}",
+      }]
+    when "darwin"
+      [Step{
+        "name" => "Install system dependencies",
+        "run" => "brew install #{packages.join(' ')}",
+      }]
+    when "windows"
+      [Step{
+        "name" => "Install system dependencies",
+        "run" => "choco install --no-progress #{packages.join(' ')}",
+      }]
+    else
+      raise "fatal: unsupported system #{system}"
+    end
+  end
 
-# INSTALL CRYSTAL + SHARDS
-[*jobs, format_steps].each do |steps|
-  steps << Step{
-    "uses" => "crystal-lang/install-crystal@v1",
-    "with" => {
-      "crystal" => "${{ github.event.inputs.crystal || '#{DEFAULT_CRYSTAL}' }}",
-      "shards" => "${{ github.event.inputs.shards || '#{DEFAULT_SHARDS}' }}",
-    },
-  }
-end
-
-# INSTALL SERVICES
-jobs.each do |steps|
-  steps << Step{
-    "uses" => "shogo82148/actions-setup-mysql@v1",
-    "with" => {
-      "mysql-version" => "5.7"
-    }
-  }
-  steps << Step{
-    "uses" => "ikalnytskyi/action-setup-postgres@v8",
-    "with" => {
-      "postgres-version" => "16",
-    }
-  }
-end
-
-# INSTALL SYSTEM DEPENDENCIES
-unless (packages = projects.flat_map(&.packages("linux")).compact).empty?
-  linux_steps << Step{
-    "name" => "Install system dependencies",
-    "run" => "sudo apt-get install --quiet --yes --no-install-recommends #{packages.join(' ')}",
-  }
-end
-
-unless (packages = projects.flat_map(&.packages("darwin")).compact).empty?
-  darwin_steps << Step{
-    "name" => "Install system dependencies",
-    "run" => "brew install #{packages.join(' ')}",
-  }
-end
-
-unless (packages = projects.flat_map(&.packages("windows")).compact).empty?
-  windows_steps << Step{
-    "name" => "Install system dependencies",
-    "run" => "choco install --no-progress #{packages.join(' ')}",
-  }
-end
-
-# SETUP SYSTEM
-windows_steps << Step{
-  "run" => "git config --global core.autocrlf false",
-}
-
-# GENERATE COMPOSITE ACTION FOR EACH PROJECT
-projects.each do |project|
-  steps = [
-    Step{
+  def self.clone_step(project, composite = true)
+    step = Step{
       "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
-      "shell" => "${{ inputs.shell }}"
-    },
+    }
+    step["shell"] = "${{ inputs.shell }}" if composite
+    step
+  end
+
+  def self.shards_install_step(project)
     Step{
       "run" => "shards install",
       "working-directory" => project.name,
       "shell" => "${{ inputs.shell }}"
-    },
-  ]
-
-  if h = project.env
-    env = Hash(String, String).new
-    h.each { |k, v| env[k] = v }
+    }
   end
 
-  project.commands.try(&.each do |command|
+  def self.project_composite_action_steps(project)
+    steps = [
+      GHA.clone_step(project),
+      GHA.shards_install_step(project),
+    ]
+
+    if h = project.env
+      env = Hash(String, String).new
+      h.each { |k, v| env[k] = v }
+    end
+
+    project.commands.try(&.each do |command|
+      step = Step{
+        "run" => command,
+        "working-directory" => project.name,
+        "shell" => "${{ inputs.shell }}",
+      }
+      step["env"] = env if env
+      steps << step
+    end)
+
+    steps
+  end
+
+  def self.run_project_action_step(project, system)
     step = Step{
-      "run" => command,
-      "working-directory" => project.name,
-      "shell" => "${{ inputs.shell }}",
+      "if" => "success() || failure()",
+      "name" => "Project: #{project.name}",
+      "uses" => "./.github/actions/#{project.name}",
     }
-    step["env"] = env if env
-    steps << step
-  end)
-
-  Dir.mkdir_p(".github/actions/#{project.name}")
-
-  File.open(".github/actions/#{project.name}/action.yml", "w") do |file|
-    {
-      "name" => project.name,
-      "inputs" => {
-        "shell" => { "type" => "string", "default" => "bash" },
-      },
-      "runs" => {
-        "using" => "composite",
-        "steps" => steps,
-      }
-    }.to_yaml(file)
+    step["with"] = { "shell" => "pwsh" } if system == "windows"
+    step
   end
 
-  # CALL THE COMPOSITE ACTION
-  run_step = Step{
-    "if" => "success() || failure()",
-    "uses" => "./.github/actions/#{project.name}",
-  }
-
-  if project.systems.includes?("linux")
-    linux_steps << run_step.dup
-  end
-  if project.systems.includes?("darwin")
-    darwin_steps << run_step.dup
-  end
-  if project.systems.includes?("windows")
-    step = run_step.dup
-    step["with"] = { "shell" => "pwsh" }
-    windows_steps << step
-  end
-
-  # ADD FORMAT STEP
-  if formats = project.formats
-    format_steps << Step{
-      "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
-    }
-    format_steps << Step{
-      "name" => project.name,
+  def self.format_step(name, formats)
+    Step{
+      "name" => name,
       "run" => formats.join("\n"),
-      "working-directory" => project.name,
+      "working-directory" => name,
     }
   end
-end
-
-# GENERATE THE WORKFLOWS
-Dir.mkdir_p(".github/workflows")
-
-File.open(".github/workflows/projects.yml", "w") do |file|
-  {
-    "name" => "Projects",
-    "on" => {
-      "push" => nil,
-      "pull_request" => nil,
-      "workflow_dispatch" => {
-        "inputs": {
-          "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
-          "shards" => { "type" => "string", "default" => DEFAULT_SHARDS },
-        }
-      }
-    },
-    "jobs" => {
-      "Linux" => {
-        "runs-on" => DEFAULT_LINUX_RUNNER,
-        "steps" => linux_steps,
-      },
-      "macOS" => {
-        "runs-on" => DEFAULT_MACOS_RUNNER,
-        "steps" => darwin_steps,
-      },
-      "Windows" => {
-        "runs-on" => DEFAULT_WINDOWS_RUNNER,
-        "steps" => windows_steps,
-      },
-    },
-  }.to_yaml(file)
-end
-
-File.open(".github/workflows/formats.yml", "w") do |file|
-  {
-    "name" => "Formats",
-    "on" => {
-      "push" => nil,
-      "pull_request" => nil,
-      "workflow_dispatch" => {
-        "inputs": {
-          "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
-        }
-      }
-    },
-    "jobs" => {
-      "Formats" => {
-        "runs-on" => DEFAULT_LINUX_RUNNER,
-        "steps" => format_steps,
-      },
-    },
-  }.to_yaml(file)
 end

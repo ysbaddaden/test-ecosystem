@@ -1,5 +1,7 @@
 name: "mysql"
 source: "https://github.com/crystal-lang/crystal-mysql.git"
+services:
+  - mysql
 commands:
   - crystal spec
 formats:
