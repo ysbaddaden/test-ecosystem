@@ -22,13 +22,6 @@ runs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/avram
       BACKUP_DATABASE_URL: postgresql://postgres:postgres@localhost/avram_backup
-  - run: psql -h localhost -c "CREATE DATABASE avram_backup" "user=postgres password=postgres
-      dbname=postgres"
-    working-directory: avram
-    shell: ${{ inputs.shell }}
-    env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost/avram
-      BACKUP_DATABASE_URL: postgresql://postgres:postgres@localhost/avram_backup
   - run: rm spec/avram/tasks/db_schema_dump_spec.cr
     working-directory: avram
     shell: ${{ inputs.shell }}
