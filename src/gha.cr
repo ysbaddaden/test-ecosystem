@@ -1,5 +1,5 @@
 alias Step = Hash(String, Hash(String, String) | String)
-alias Job = Hash(String, Hash(String, String | Array(Step)))
+alias Job = Hash(String, String | Array(Step))
 
 module GHA
   def self.install_crystal_step(crystal, shards)

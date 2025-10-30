@@ -8,7 +8,7 @@ Steps to contribute:
 
 - To modify a project, edit a `.yaml` file in the `projects/` directory.
 - To add a project, create a `.yaml` file in the `projects/` directory.
-- Run `make` or `./bin/gha.cr` to update the GitHub Actions and Workflows.
+- Run `make` to update the GitHub Actions and Workflows.
 - Commit everything and push.
 
 You can configure defaults using ENV variables. See `bin/gha.cr` for details.

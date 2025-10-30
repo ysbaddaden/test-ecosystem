@@ -3,7 +3,7 @@ name: Formats
 "on":
   push: 
   pull_request: 
-  workflow_dispatch:
+  job_dispatch:
     inputs:
       crystal:
         type: string

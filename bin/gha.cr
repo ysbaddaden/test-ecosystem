@@ -11,26 +11,24 @@ POSTGRESQL_VERSION = ENV.fetch("POSTGRESQL_VERSION", "16")
 require "../src/project"
 require "../src/gha"
 
-workflow_projects = Hash(String, Array(Project)).new
+job_projects = Hash(String, Array(Project)).new
 
 Dir.glob("./projects/*/*.yaml").each do |path|
   project = File.open(path) { |file| Project.from_yaml(file) }
   name = File.basename(File.dirname(path))
-  hash = workflow_projects[name] ||= Array(Project).new
+  hash = job_projects[name] ||= Array(Project).new
   hash << project
 end
 
-linux_steps = [] of Step
-darwin_steps = [] of Step
-windows_steps = [] of Step
+jobs = Hash(String, Job).new
 
 format_steps = [] of Step
 format_steps << GHA.install_crystal_step(DEFAULT_CRYSTAL, DEFAULT_SHARDS)
 
-workflow_projects.each do |workflow_name, projects|
-  linux_steps.clear
-  darwin_steps.clear
-  windows_steps.clear
+job_projects.each do |job_name, projects|
+  linux_steps = [] of Step
+  darwin_steps = [] of Step
+  windows_steps = [] of Step
 
   # SETUP
   {linux_steps, darwin_steps, windows_steps}.each do |steps|
@@ -102,53 +100,47 @@ workflow_projects.each do |workflow_name, projects|
     end
   end
 
-  # GENERATE THE WORKFLOWS
-  Dir.mkdir_p(".github/workflows")
-
-  # FIXME: don't create job if it has no steps
-
-  print "write .github/workflows/#{workflow_name}.yml\n"
-  File.open(".github/workflows/#{workflow_name}.yml", "w") do |file|
-    workflow = {
-      "name" => "#{workflow_name}",
-      "on" => {
-        "push" => nil,
-        "pull_request" => nil,
-        "workflow_dispatch" => {
-          "inputs" => {
-            "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
-            "shards" => { "type" => "string", "default" => DEFAULT_SHARDS },
-          }
-        }
-      },
-      "jobs" => Job.new,
+  unless linux_steps_count == linux_steps.size
+    jobs["#{job_name} (Linux)"] = Job{
+      "runs-on" => DEFAULT_LINUX_RUNNER,
+      "steps" => linux_steps,
     }
-
-    jobs = workflow["jobs"].as(Job)
-
-    unless linux_steps_count == linux_steps.size
-      jobs["Linux"] = {
-        "runs-on" => DEFAULT_LINUX_RUNNER,
-        "steps" => linux_steps,
-      }
-    end
-
-    unless darwin_steps_count == darwin_steps.size
-      jobs["macOS"] = {
-        "runs-on" => DEFAULT_MACOS_RUNNER,
-        "steps" => darwin_steps,
-      }
-    end
-
-    unless windows_steps_count == windows_steps.size
-      jobs["Windows"] = {
-        "runs-on" => DEFAULT_WINDOWS_RUNNER,
-        "steps" => windows_steps,
-      }
-    end
-
-    workflow.to_yaml(file)
   end
+
+  unless darwin_steps_count == darwin_steps.size
+    jobs["#{job_name} (macOS)"] = Job{
+      "runs-on" => DEFAULT_MACOS_RUNNER,
+      "steps" => darwin_steps,
+    }
+  end
+
+  unless windows_steps_count == windows_steps.size
+    jobs["#{job_name} (Windows)"] = Job{
+      "runs-on" => DEFAULT_WINDOWS_RUNNER,
+      "steps" => windows_steps,
+    }
+  end
+end
+
+# GENERATE THE WORKFLOWS
+Dir.mkdir_p(".github/workflows")
+
+print "write .github/workflows/projects.yml\n"
+File.open(".github/workflows/projects.yml", "w") do |file|
+  {
+    "name" => "Projects",
+    "on" => {
+      "push" => nil,
+      "pull_request" => nil,
+      "job_dispatch" => {
+        "inputs" => {
+          "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
+          "shards" => { "type" => "string", "default" => DEFAULT_SHARDS },
+        }
+      }
+    },
+    "jobs" => jobs,
+  }.to_yaml(file)
 end
 
 print "write .github/workflows/formats.yml\n"
@@ -158,7 +150,7 @@ File.open(".github/workflows/formats.yml", "w") do |file|
     "on" => {
       "push" => nil,
       "pull_request" => nil,
-      "workflow_dispatch" => {
+      "job_dispatch" => {
         "inputs": {
           "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
         }
