@@ -1,0 +1,53 @@
+---
+name: athena
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/athena-framework/athena.git" "athena"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh clock
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh console
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh dependency_injection
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh dotenv
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh event_dispatcher
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh framework
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh image_size
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh mercure
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh negotiation
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh routing
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh serializer
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh spec
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+  - run: ./scripts/test.sh validator
+    working-directory: athena
+    shell: ${{ inputs.shell }}

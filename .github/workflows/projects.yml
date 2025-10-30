@@ -12,6 +12,32 @@ name: Projects
         type: string
         default: nightly
 jobs:
+  athena-framework-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: Install system dependencies
+      run: sudo apt-get install --quiet --yes --no-install-recommends libmagic-dev
+    - if: success() || failure()
+      name: 'Project: athena'
+      uses: ./.github/actions/athena
+  athena-framework-darwin:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: Install system dependencies
+      run: brew install libmagic
+    - if: success() || failure()
+      name: 'Project: athena'
+      uses: ./.github/actions/athena
   shards-linux:
     runs-on: ubuntu-latest
     steps:

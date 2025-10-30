@@ -1,0 +1,29 @@
+name: "athena"
+source: "https://github.com/athena-framework/athena.git"
+systems:
+  - linux
+  - darwin
+  #- windows
+packages:
+  linux:
+    - libmagic-dev
+  darwin:
+    - libmagic
+  # windows:
+  #   - ???
+commands:
+  - ./scripts/test.sh clock
+  - ./scripts/test.sh console
+  - ./scripts/test.sh dependency_injection
+  - ./scripts/test.sh dotenv
+  - ./scripts/test.sh event_dispatcher
+  - ./scripts/test.sh framework
+  - ./scripts/test.sh image_size
+  - ./scripts/test.sh mercure
+  - ./scripts/test.sh negotiation
+  - ./scripts/test.sh routing
+  - ./scripts/test.sh serializer
+  - ./scripts/test.sh spec
+  - ./scripts/test.sh validator
+formats:
+  - crystal tool format

@@ -16,6 +16,12 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - run: git clone "https://github.com/athena-framework/athena.git" "athena"
+      if: success() || failure()
+    - if: success() || failure()
+      name: athena
+      run: crystal tool format
+      working-directory: athena
     - run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
       if: success() || failure()
     - if: success() || failure()
