@@ -71,7 +71,7 @@ module GHA
 
   def self.shards_install_step(project)
     Step{
-      "run" => "shards install",
+      "run" => "shards install --skip-postinstall --skip-executables",
       "working-directory" => project.name,
       "shell" => "${{ inputs.shell }}"
     }
