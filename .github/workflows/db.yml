@@ -28,28 +28,12 @@ jobs:
         postgres-version: "16"
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
-        etcd-server liblz4-dev fossil mercurial libsqlite3-dev
-    - if: success() || failure()
-      name: 'Project: minitest'
-      uses: ./.github/actions/minitest
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
     - if: success() || failure()
-      name: 'Project: invidious'
-      uses: ./.github/actions/invidious
-    - if: success() || failure()
-      name: 'Project: sync'
-      uses: ./.github/actions/sync
-    - if: success() || failure()
       name: 'Project: pg'
       uses: ./.github/actions/pg
-    - if: success() || failure()
-      name: 'Project: lavinmq'
-      uses: ./.github/actions/lavinmq
-    - if: success() || failure()
-      name: 'Project: shards'
-      uses: ./.github/actions/shards
     - if: success() || failure()
       name: 'Project: db'
       uses: ./.github/actions/db
@@ -71,22 +55,13 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: brew install fossil mercurial sqlite
-    - if: success() || failure()
-      name: 'Project: minitest'
-      uses: ./.github/actions/minitest
+      run: brew install sqlite
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
     - if: success() || failure()
-      name: 'Project: sync'
-      uses: ./.github/actions/sync
-    - if: success() || failure()
       name: 'Project: pg'
       uses: ./.github/actions/pg
-    - if: success() || failure()
-      name: 'Project: shards'
-      uses: ./.github/actions/shards
     - if: success() || failure()
       name: 'Project: db'
       uses: ./.github/actions/db
@@ -107,8 +82,6 @@ jobs:
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
         postgres-version: "16"
-    - name: Install system dependencies
-      run: choco install --no-progress fossil hg
     - run: git config --global core.autocrlf false
     - if: success() || failure()
       name: 'Project: mysql'
@@ -116,18 +89,8 @@ jobs:
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: sync'
-      uses: ./.github/actions/sync
-      with:
-        shell: pwsh
-    - if: success() || failure()
       name: 'Project: pg'
       uses: ./.github/actions/pg
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: shards'
-      uses: ./.github/actions/shards
       with:
         shell: pwsh
     - if: success() || failure()

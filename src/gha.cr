@@ -1,20 +1,37 @@
 alias Step = Hash(String, Hash(String, String) | String)
+alias Job = Hash(String, Hash(String, String | Array(Step)))
 
 module GHA
-  def self.mysql_service_steps
+  def self.install_crystal_step(crystal, shards)
+    Step{
+      "uses" => "crystal-lang/install-crystal@v1",
+      "with" => {
+        "crystal" => "${{ github.event.inputs.crystal || '#{crystal}' }}",
+        "shards" => "${{ github.event.inputs.shards || '#{shards}' }}",
+      },
+    }
+  end
+
+  def self.checkout_step
+    Step{
+      "uses" => "actions/checkout@v5",
+    }
+  end
+
+  def self.mysql_service_steps(version)
     [Step{
       "uses" => "shogo82148/actions-setup-mysql@v1",
       "with" => {
-        "mysql-version" => "5.7"
+        "mysql-version" => version,
       }
     }]
   end
 
-  def self.postgresql_service_steps
+  def self.postgresql_service_steps(version)
     [Step{
       "uses" => "ikalnytskyi/action-setup-postgres@v8",
       "with" => {
-        "postgres-version" => "16",
+        "postgres-version" => version
       }
     }]
   end

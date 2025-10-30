@@ -20,30 +20,22 @@ jobs:
     - name: minitest
       run: crystal tool format
       working-directory: minitest
-    - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
-    - name: mysql
-      run: crystal tool format
-      working-directory: mysql
-    - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
-    - name: invidious
-      run: crystal tool format
-      working-directory: invidious
     - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
     - name: sync
       run: crystal tool format
       working-directory: sync
-    - run: git clone "https://github.com/will/crystal-pg.git" "pg"
-    - name: pg
-      run: crystal tool format
-      working-directory: pg
-    - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
-    - name: lavinmq
-      run: make format
-      working-directory: lavinmq
     - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
     - name: shards
       run: crystal tool format src spec
       working-directory: shards
+    - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
+    - name: mysql
+      run: crystal tool format
+      working-directory: mysql
+    - run: git clone "https://github.com/will/crystal-pg.git" "pg"
+    - name: pg
+      run: crystal tool format
+      working-directory: pg
     - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
     - name: db
       run: crystal tool format
@@ -52,3 +44,11 @@ jobs:
     - name: sqlite3
       run: crystal tool format
       working-directory: sqlite3
+    - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
+    - name: invidious
+      run: crystal tool format
+      working-directory: invidious
+    - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
+    - name: lavinmq
+      run: make format
+      working-directory: lavinmq

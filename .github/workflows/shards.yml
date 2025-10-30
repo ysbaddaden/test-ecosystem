@@ -1,0 +1,56 @@
+---
+name: Projects
+"on":
+  push: 
+  pull_request: 
+  workflow_dispatch:
+    inputs:
+      crystal:
+        type: string
+        default: nightly
+      shards:
+        type: string
+        default: nightly
+jobs:
+  Linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - if: success() || failure()
+      name: 'Project: minitest'
+      uses: ./.github/actions/minitest
+    - if: success() || failure()
+      name: 'Project: sync'
+      uses: ./.github/actions/sync
+  macOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - if: success() || failure()
+      name: 'Project: minitest'
+      uses: ./.github/actions/minitest
+    - if: success() || failure()
+      name: 'Project: sync'
+      uses: ./.github/actions/sync
+  Windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - run: git config --global core.autocrlf false
+    - if: success() || failure()
+      name: 'Project: sync'
+      uses: ./.github/actions/sync
+      with:
+        shell: pwsh
