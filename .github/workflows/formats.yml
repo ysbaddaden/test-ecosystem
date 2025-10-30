@@ -52,6 +52,12 @@ jobs:
       name: http_proxy
       run: crystal tool format
       working-directory: http_proxy
+    - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
+      if: success() || failure()
+    - if: success() || failure()
+      name: kemal-session
+      run: crystal tool format
+      working-directory: kemal-session
     - run: git clone "https://github.com/crystal-community/msgpack-crystal.git" "msgpack"
       if: success() || failure()
     - if: success() || failure()
@@ -118,6 +124,12 @@ jobs:
       name: pretty
       run: crystal tool format
       working-directory: pretty
+    - run: git clone "https://github.com/kemalcr/kemal.git" "kemal"
+      if: success() || failure()
+    - if: success() || failure()
+      name: kemal
+      run: crystal tool format
+      working-directory: kemal
     - run: git clone "https://github.com/kostya/lexbor.git" "lexbor"
       if: success() || failure()
     - if: success() || failure()
@@ -202,18 +214,6 @@ jobs:
       name: habitat
       run: crystal tool format
       working-directory: habitat
-    - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
-      if: success() || failure()
-    - if: success() || failure()
-      name: kemal-session
-      run: crystal tool format
-      working-directory: kemal-session
-    - run: git clone "https://github.com/kemalcr/kemal.git" "kemal"
-      if: success() || failure()
-    - if: success() || failure()
-      name: kemal
-      run: crystal tool format
-      working-directory: kemal
     - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
       if: success() || failure()
     - if: success() || failure()
