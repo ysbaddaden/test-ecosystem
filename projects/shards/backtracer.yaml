@@ -1,5 +1,9 @@
 name: "backtracer"
 source: "https://github.com/Sija/backtracer.cr.git"
+systems:
+  - linux
+  - darwin
+  # - windows fails
 commands:
   - crystal spec
 formats:

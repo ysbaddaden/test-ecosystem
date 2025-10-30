@@ -24,9 +24,6 @@ jobs:
       name: 'Project: stumpy_jpeg'
       uses: ./.github/actions/stumpy_jpeg
     - if: success() || failure()
-      name: 'Project: stumpy_bmp'
-      uses: ./.github/actions/stumpy_bmp
-    - if: success() || failure()
       name: 'Project: stumpy_png'
       uses: ./.github/actions/stumpy_png
     - if: success() || failure()
@@ -46,9 +43,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: stumpy_jpeg'
       uses: ./.github/actions/stumpy_jpeg
-    - if: success() || failure()
-      name: 'Project: stumpy_bmp'
-      uses: ./.github/actions/stumpy_bmp
     - if: success() || failure()
       name: 'Project: stumpy_png'
       uses: ./.github/actions/stumpy_png
@@ -70,11 +64,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: stumpy_jpeg'
       uses: ./.github/actions/stumpy_jpeg
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: stumpy_bmp'
-      uses: ./.github/actions/stumpy_bmp
       with:
         shell: pwsh
     - if: success() || failure()

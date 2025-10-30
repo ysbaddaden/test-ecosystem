@@ -1,5 +1,5 @@
 name: "spectator"
-source: "https://github.com/artic-fox/spectator.git"
+source: "https://gitlab.com/arctic-fox/spectator.git"
 commands:
   - crystal spec
 formats:

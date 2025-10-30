@@ -91,7 +91,7 @@ workflow_projects.each do |workflow_name, projects|
 
     # ADD FORMAT STEP
     if formats = project.formats
-      format_steps << GHA.clone_step(project, composite: false)
+      format_steps << GHA.clone_step(project, composite: false, test: "success() || failure()")
       format_steps << GHA.format_step(project.name, formats)
     end
   end

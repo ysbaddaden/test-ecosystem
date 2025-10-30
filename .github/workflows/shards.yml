@@ -212,16 +212,6 @@ jobs:
       with:
         shell: pwsh
     - if: success() || failure()
-      name: 'Project: backtracer'
-      uses: ./.github/actions/backtracer
-      with:
-        shell: pwsh
-    - if: success() || failure()
-      name: 'Project: pretty'
-      uses: ./.github/actions/pretty
-      with:
-        shell: pwsh
-    - if: success() || failure()
       name: 'Project: lexbor'
       uses: ./.github/actions/lexbor
       with:

@@ -61,10 +61,11 @@ module GHA
     end
   end
 
-  def self.clone_step(project, composite = true)
+  def self.clone_step(project, composite = true, test = nil)
     step = Step{
       "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
     }
+    step["if"] = test if test
     step["shell"] = "${{ inputs.shell }}" if composite
     step
   end
@@ -113,6 +114,7 @@ module GHA
 
   def self.format_step(name, formats)
     Step{
+      "if" => "success() || failure()",
       "name" => name,
       "run" => formats.join("\n"),
       "working-directory" => name,
