@@ -1,5 +1,5 @@
 ---
-name: Projects
+name: crystal
 "on":
   push: 
   pull_request: 

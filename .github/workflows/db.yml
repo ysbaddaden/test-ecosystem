@@ -1,5 +1,5 @@
 ---
-name: Projects
+name: db
 "on":
   push: 
   pull_request: 

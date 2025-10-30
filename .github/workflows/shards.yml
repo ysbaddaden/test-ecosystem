@@ -1,5 +1,5 @@
 ---
-name: Projects
+name: shards
 "on":
   push: 
   pull_request: 

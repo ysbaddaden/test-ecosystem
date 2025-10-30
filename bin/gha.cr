@@ -27,7 +27,7 @@ windows_steps = [] of Step
 format_steps = [] of Step
 format_steps << GHA.install_crystal_step(DEFAULT_CRYSTAL, DEFAULT_SHARDS)
 
-workflow_projects.each do |workflow, projects|
+workflow_projects.each do |workflow_name, projects|
   linux_steps.clear
   darwin_steps.clear
   windows_steps.clear
@@ -101,10 +101,10 @@ workflow_projects.each do |workflow, projects|
 
   # FIXME: don't create job if it has no steps
 
-  print "write .github/workflows/#{workflow}.yml\n"
-  File.open(".github/workflows/#{workflow}.yml", "w") do |file|
+  print "write .github/workflows/#{workflow_name}.yml\n"
+  File.open(".github/workflows/#{workflow_name}.yml", "w") do |file|
     workflow = {
-      "name" => "Projects",
+      "name" => "#{workflow_name}",
       "on" => {
         "push" => nil,
         "pull_request" => nil,

@@ -1,5 +1,5 @@
 ---
-name: Projects
+name: kemal
 "on":
   push: 
   pull_request: 

@@ -1,5 +1,5 @@
 ---
-name: Projects
+name: luckyframework
 "on":
   push: 
   pull_request: 
