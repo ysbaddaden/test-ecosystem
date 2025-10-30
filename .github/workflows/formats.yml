@@ -8,6 +8,9 @@ name: Formats
       crystal:
         type: string
         default: nightly
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 jobs:
   Formats:
     runs-on: ubuntu-latest

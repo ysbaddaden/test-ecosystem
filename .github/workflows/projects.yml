@@ -11,6 +11,9 @@ name: Projects
       shards:
         type: string
         default: nightly
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 jobs:
   athena-framework-linux:
     runs-on: ubuntu-latest

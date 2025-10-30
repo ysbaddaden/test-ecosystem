@@ -97,6 +97,7 @@ module GHA
       steps << Step{
         "run" => "git apply $GITHUB_ACTIONS_PATH/project.patch",
         "working-directory" => project.name,
+        "shell" => "${{ inputs.shell }}",
       }
     end
 

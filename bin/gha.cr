@@ -144,6 +144,10 @@ File.open(".github/workflows/projects.yml", "w") do |file|
         }
       }
     },
+    "concurrency" => {
+      "group" => "${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs }}",
+      "cancel-in-progress" => "${{ github.ref != 'refs/heads/master' }}",
+    },
     "jobs" => jobs,
   }.to_yaml(file)
 end
@@ -160,6 +164,10 @@ File.open(".github/workflows/formats.yml", "w") do |file|
           "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
         }
       }
+    },
+    "concurrency" => {
+      "group" => "${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs }}",
+      "cancel-in-progress" => "${{ github.ref != 'refs/heads/master' }}",
     },
     "jobs" => {
       "Formats" => {
