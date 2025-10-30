@@ -4,10 +4,10 @@ services:
   - postgreqsl
 env:
   DATABASE_URL: "postgresql://postgres:postgres@localhost/avram"
-  SAMPLE_DATABASE_URL: "postgresql://postgres:postgres@localhost/sample_backup"
+  BACKUP_DATABASE_URL: "postgresql://postgres:postgres@localhost/avram_backup"
 commands:
   - psql -h localhost -c "CREATE DATABASE avram" "user=postgres password=postgres dbname=postgres"
-  - psql -h localhost -c "CREATE DATABASE sample_backup" "user=postgres password=postgres dbname=postgres"
+  - psql -h localhost -c "CREATE DATABASE avram_backup" "user=postgres password=postgres dbname=postgres"
   - crystal spec
 formats:
   - crystal tool format
