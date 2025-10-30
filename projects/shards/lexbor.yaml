@@ -1,6 +1,7 @@
 name: "lexbor"
 source: "https://github.com/kostya/lexbor.git"
 commands:
+  - crystal src/ext/build_ext.cr
   - crystal spec
 formats:
   - crystal tool format

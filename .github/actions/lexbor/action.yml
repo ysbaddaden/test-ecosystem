@@ -12,6 +12,9 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: lexbor
     shell: ${{ inputs.shell }}
+  - run: crystal src/ext/build_ext.cr
+    working-directory: lexbor
+    shell: ${{ inputs.shell }}
   - run: crystal spec
     working-directory: lexbor
     shell: ${{ inputs.shell }}
