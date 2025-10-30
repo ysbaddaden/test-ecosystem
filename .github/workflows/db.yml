@@ -89,6 +89,7 @@ jobs:
       with:
         postgres-version: "16"
     - run: git config --global core.autocrlf false
+    - uses: ilammy/msvc-dev-cmd@v1
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql

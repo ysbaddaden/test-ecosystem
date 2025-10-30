@@ -67,6 +67,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - run: git config --global core.autocrlf false
+    - uses: ilammy/msvc-dev-cmd@v1
     - if: success() || failure()
       name: 'Project: lucky'
       uses: ./.github/actions/lucky

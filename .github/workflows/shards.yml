@@ -154,6 +154,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - run: git config --global core.autocrlf false
+    - uses: ilammy/msvc-dev-cmd@v1
     - if: success() || failure()
       name: 'Project: stumpy_jpeg'
       uses: ./.github/actions/stumpy_jpeg

@@ -55,6 +55,7 @@ jobs:
     - name: Install system dependencies
       run: choco install --no-progress fossil hg
     - run: git config --global core.autocrlf false
+    - uses: ilammy/msvc-dev-cmd@v1
     - if: success() || failure()
       name: 'Project: crystal'
       uses: ./.github/actions/crystal

@@ -55,6 +55,10 @@ workflow_projects.each do |workflow_name, projects|
   windows_steps << Step{
     "run" => "git config --global core.autocrlf false",
   }
+  # Developer Command Prompt for Microsoft Visual C++
+  windows_steps << Step{
+    "uses" => "ilammy/msvc-dev-cmd@v1",
+  }
 
   linux_steps_count = linux_steps.size
   darwin_steps_count = darwin_steps.size
