@@ -1,5 +1,5 @@
 name: "stumpy_core"
-source: "https://github.com/stumpycr/stumpy_core.cr"
+source: "https://github.com/stumpycr/stumpy_core.git"
 commands:
   - crystal spec
 formats:

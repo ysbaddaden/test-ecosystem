@@ -1,5 +1,5 @@
 name: "stumpy_bmp"
-source: "https://github.com/stumpycr/stumpy_bmp.cr"
+source: "https://github.com/stumpycr/stumpy_bmp.git"
 commands:
   - crystal spec
 formats:

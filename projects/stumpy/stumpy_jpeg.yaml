@@ -1,5 +1,5 @@
 name: "stumpy_jpeg"
-source: "https://github.com/stumpycr/stumpy_jpeg.cr"
+source: "https://github.com/stumpycr/stumpy_jpeg.git"
 commands:
   - crystal spec
 formats:
