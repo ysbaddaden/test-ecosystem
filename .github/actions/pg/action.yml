@@ -17,13 +17,6 @@ runs:
   - run: git apply $GITHUB_ACTION_PATH/project.patch
     working-directory: pg
     shell: ${{ inputs.shell }}
-  - run: git diff
-    working-directory: pg
-    shell: ${{ inputs.shell }}
-  - name: Setup tmate session
-    uses: mxschmitt/action-tmate@v3
-    with:
-      limit-access-to-actor: true
   - run: crystal spec
     working-directory: pg
     shell: ${{ inputs.shell }}

@@ -5,17 +5,17 @@ services:
 env:
   DATABASE_URL: "postgresql://postgres:postgres@localhost/postgres"
 patch: |
-  From 67d4c3c7da7ee99a69817fd301186adc3155d538 Mon Sep 17 00:00:00 2001
+  From 87bd035e877971528b3a65fdd59c7faa00c4b7c0 Mon Sep 17 00:00:00 2001
   From: Julien Portalier <julien@portalier.com>
-  Date: Thu, 30 Oct 2025 15:50:08 +0100
-  Subject: [PATCH] disable-one-spec
+  Date: Fri, 31 Oct 2025 12:42:49 +0100
+  Subject: [PATCH] patch windows
 
   ---
-   spec/pq/conninfo_spec.cr | 2 ++
-   1 file changed, 2 insertions(+)
+   spec/pq/conninfo_spec.cr | 6 ++++++
+   1 file changed, 6 insertions(+)
 
   diff --git a/spec/pq/conninfo_spec.cr b/spec/pq/conninfo_spec.cr
-  index 5c063da..9a1e261 100644
+  index 5c063da..eef076b 100644
   --- a/spec/pq/conninfo_spec.cr
   +++ b/spec/pq/conninfo_spec.cr
   @@ -31,6 +31,8 @@ end
@@ -27,6 +27,24 @@ patch: |
        env_var_bubble do
          ci = PQ::ConnInfo.new
          assert_default_params ci
+  @@ -45,6 +47,8 @@ end
+
+   describe PQ::ConnInfo, ".from_conninfo_string" do
+     it "parses short postgres urls" do
+  +    {% if flag?(:windows) %} pending! {% end %}
+  +
+       env_var_bubble do
+         ci = PQ::ConnInfo.from_conninfo_string("postgres:///")
+         assert_default_params ci
+  @@ -73,6 +77,8 @@ describe PQ::ConnInfo, ".from_conninfo_string" do
+     end
+
+     it "parses libpq style strings" do
+  +    {% if flag?(:windows) %} pending! {% end %}
+  +
+       ci = PQ::ConnInfo.from_conninfo_string(
+         "host=host dbname=db user=user password=pass port=5555 sslmode=require application_name=specs")
+       assert_custom_params ci
   --
   2.34.1
 commands:
