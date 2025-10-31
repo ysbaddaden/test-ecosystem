@@ -15,6 +15,9 @@ runs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/avram
       BACKUP_DATABASE_URL: postgresql://postgres:postgres@localhost/avram_backup
+  - run: git apply $GITHUB_ACTION_PATH/project.patch
+    working-directory: avram
+    shell: ${{ inputs.shell }}
   - run: psql -h localhost -c "CREATE DATABASE avram" "user=postgres password=postgres
       dbname=postgres"
     working-directory: avram

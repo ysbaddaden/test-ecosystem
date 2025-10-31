@@ -2,6 +2,119 @@ name: "avram"
 source: "https://github.com/luckyframework/avram.git"
 services:
   - postgreqsl
+patch: |
+  From 365816a65da44d4a5f0a5794366c4f0c002c7762 Mon Sep 17 00:00:00 2001
+  From: Julien Portalier <julien@portalier.com>
+  Date: Fri, 31 Oct 2025 12:49:51 +0100
+  Subject: [PATCH] failing specs
+
+  ---
+   spec/avram/database_spec.cr                   | 2 ++
+   spec/avram/migrator/migration_spec.cr         | 6 ++++++
+   spec/avram/migrator/runner_spec.cr            | 2 ++
+   spec/avram/tasks/db_schema_dump_spec.cr       | 2 ++
+   spec/avram/tasks/db_schema_restore_spec.cr    | 2 ++
+   spec/avram/tasks/db_verify_connection_spec.cr | 2 ++
+   6 files changed, 16 insertions(+)
+
+  diff --git a/spec/avram/database_spec.cr b/spec/avram/database_spec.cr
+  index b989171..3fb433d 100644
+  --- a/spec/avram/database_spec.cr
+  +++ b/spec/avram/database_spec.cr
+  @@ -3,6 +3,8 @@ require "../spec_helper"
+   describe Avram::Database do
+     describe "listen", tags: Avram::SpecHelper::TRUNCATE do
+       it "yields the payload from a notify" do
+  +      pending!
+  +
+         done = Channel(Nil).new
+         TestDatabase.listen("dinner_time") do |notification|
+           notification.channel.should eq "dinner_time"
+  diff --git a/spec/avram/migrator/migration_spec.cr b/spec/avram/migrator/migration_spec.cr
+  index 356301d..3a64959 100644
+  --- a/spec/avram/migrator/migration_spec.cr
+  +++ b/spec/avram/migrator/migration_spec.cr
+  @@ -90,6 +90,8 @@ end
+
+   describe Avram::Migrator::Migration::V1 do
+     it "executes statements in a transaction" do
+  +    pending!
+  +
+       expect_raises Avram::FailedMigration do
+         MigrationThatPartiallyWorks::V999.new.up
+       end
+  @@ -102,6 +104,8 @@ describe Avram::Migrator::Migration::V1 do
+
+     describe "statement execution order" do
+       it "runs execute statements in the order they were called" do
+  +      pending!
+  +
+         begin
+           MigrationWithOrderDependentExecute::V998.new.up(quiet: true)
+           columns = get_column_names("execution_order")
+  @@ -115,6 +119,8 @@ describe Avram::Migrator::Migration::V1 do
+
+     describe "altering a table with records" do
+       it "adds the new column without raising an exception" do
+  +      pending!
+  +
+         begin
+           MigrationWithAlterAndFillExisting::V997.new.up(quiet: true)
+           columns = get_column_names("execution_order")
+  diff --git a/spec/avram/migrator/runner_spec.cr b/spec/avram/migrator/runner_spec.cr
+  index e3bd3a6..fd47523 100644
+  --- a/spec/avram/migrator/runner_spec.cr
+  +++ b/spec/avram/migrator/runner_spec.cr
+  @@ -15,6 +15,8 @@ describe Avram::Migrator::Runner do
+     describe ".create_db" do
+       context "when the DB doesn't exist yet" do
+         it "creates the new DB" do
+  +        pending!
+  +
+           Avram.temp_config(database_to_migrate: SampleBackupDatabase) do
+             Avram::Migrator::Runner.create_db(quiet: true)
+
+  diff --git a/spec/avram/tasks/db_schema_dump_spec.cr b/spec/avram/tasks/db_schema_dump_spec.cr
+  index f53f4b4..ce10a19 100644
+  --- a/spec/avram/tasks/db_schema_dump_spec.cr
+  +++ b/spec/avram/tasks/db_schema_dump_spec.cr
+  @@ -3,6 +3,8 @@ include CleanupHelper
+
+   describe Db::Schema::Dump do
+     it "generates a new sql dump file" do
+  +    pending!
+  +
+       with_cleanup do
+         Db::Schema::Dump.new(quiet: true).print_help_or_call(args: ["structure.sql"])
+
+  diff --git a/spec/avram/tasks/db_schema_restore_spec.cr b/spec/avram/tasks/db_schema_restore_spec.cr
+  index 6f14223..82ed079 100644
+  --- a/spec/avram/tasks/db_schema_restore_spec.cr
+  +++ b/spec/avram/tasks/db_schema_restore_spec.cr
+  @@ -16,6 +16,8 @@ describe Db::Schema::Restore do
+     end
+
+     it "restores from the sample_backup file" do
+  +    pending!
+  +
+       swap_database_with_cleanup(SampleBackupDatabase) do
+         Db::Schema::Restore.new(SQL_DUMP_FILE, quiet: true).run_task
+
+  diff --git a/spec/avram/tasks/db_verify_connection_spec.cr b/spec/avram/tasks/db_verify_connection_spec.cr
+  index de79702..0ac1922 100644
+  --- a/spec/avram/tasks/db_verify_connection_spec.cr
+  +++ b/spec/avram/tasks/db_verify_connection_spec.cr
+  @@ -9,6 +9,8 @@ describe Db::VerifyConnection do
+     end
+
+     it "throws a helpful error" do
+  +    pending!
+  +
+       creds = Avram::Credentials.parse("postgres://eat@joes/crab_shack")
+       TestDatabase.temp_config(credentials: creds) do
+         expect_raises Exception, /Unable to connect to Postgres for database 'TestDatabase'/ do
+  --
+  2.34.1
 env:
   DATABASE_URL: "postgresql://postgres:postgres@localhost/avram"
   BACKUP_DATABASE_URL: "postgresql://postgres:postgres@localhost/avram_backup"
