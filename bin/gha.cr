@@ -31,6 +31,9 @@ job_projects.each do |job_name, projects|
   windows_steps = [] of Step
 
   # SETUP
+  windows_steps << Step{ "run" => "git config --global core.autocrlf false" }
+  windows_steps << Step{ "uses" => "ilammy/msvc-dev-cmd@v1" }
+
   {linux_steps, darwin_steps, windows_steps}.each do |steps|
     steps << GHA.checkout_step
     steps << GHA.install_crystal_step(DEFAULT_CRYSTAL, DEFAULT_SHARDS)
@@ -49,15 +52,6 @@ job_projects.each do |job_name, projects|
   darwin_steps.concat GHA.install_packages_steps(projects, "darwin")
   windows_steps.concat GHA.install_packages_steps(projects, "windows")
 
-  # SETUP SYSTEM
-  windows_steps << Step{
-    "run" => "git config --global core.autocrlf false",
-  }
-  # Developer Command Prompt for Microsoft Visual C++
-  windows_steps << Step{
-    "uses" => "ilammy/msvc-dev-cmd@v1",
-  }
-
   linux_steps_count = linux_steps.size
   darwin_steps_count = darwin_steps.size
   windows_steps_count = windows_steps.size
@@ -70,7 +64,7 @@ job_projects.each do |job_name, projects|
 
     if patch = project.patch
       print "write .github/actions/#{project.name}/project.patch\n"
-      File.write(".github/actions/#{project.name}/project.patch", patch)
+      File.write(".github/actions/#{project.name}/project.patch", "#{patch}\n")
     end
 
     print "write .github/actions/#{project.name}/action.yaml\n"

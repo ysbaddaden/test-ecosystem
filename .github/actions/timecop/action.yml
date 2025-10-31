@@ -12,7 +12,9 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: timecop
     shell: ${{ inputs.shell }}
-  - name: Setup tmate session
-    uses: mxschmitt/action-tmate@v3
-    with:
-      limit-access-to-actor: true
+  - run: git apply $GITHUB_ACTION_PATH/project.patch
+    working-directory: timecop
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: timecop
+    shell: ${{ inputs.shell }}

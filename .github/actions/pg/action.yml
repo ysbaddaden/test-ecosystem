@@ -14,7 +14,7 @@ runs:
     shell: ${{ inputs.shell }}
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost/postgres
-  - run: git apply --recount --ignore-space-change --ignore-whitespace $GITHUB_ACTION_PATH/project.patch
+  - run: git apply $GITHUB_ACTION_PATH/project.patch
     working-directory: pg
     shell: ${{ inputs.shell }}
   - run: crystal spec
