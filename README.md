@@ -28,6 +28,9 @@ You can configure defaults using ENV variables. See `bin/gha.cr` for details.
 - `packages` (`map<string,string>`, optional): list of packages to install for
   each system (linux: apt-get, darwin: homebrew, windows: chocolatey).
 
+- `patch` (`string`, optional): a custom patch to apply to the cloned
+  repository (e.g. disable specs).
+
 - `env` (`map<string,string>`, optional): list of packages to install for each
   system (linux: apt-get, darwin: homebrew, windows: chocolatey).
 
@@ -37,4 +40,5 @@ You can configure defaults using ENV variables. See `bin/gha.cr` for details.
 
 ## TODO
 
-- [ ] 1 workflow with a job for each directory+system instead of a workflow per directory
+- [ ] add arch to the system: `linux/x86_64`, `linux/aarch64`, `darwin/x86_64`,
+  `windows/aarch64` (optional? `linux` or `darwin` would use the GHA default);
