@@ -175,6 +175,12 @@ jobs:
       name: admiral
       run: crystal tool format
       working-directory: admiral
+    - run: git clone "https://github.com/ysbaddaden/random.cr" "random"
+      if: success() || failure()
+    - if: success() || failure()
+      name: random
+      run: crystal tool format
+      working-directory: random
     - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
       if: success() || failure()
     - if: success() || failure()

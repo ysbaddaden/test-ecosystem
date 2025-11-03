@@ -1,0 +1,17 @@
+---
+name: random
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/ysbaddaden/random.cr" "random"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: random
+    shell: ${{ inputs.shell }}
+  - run: crystal spec
+    working-directory: random
+    shell: ${{ inputs.shell }}

@@ -124,6 +124,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: admiral'
       uses: ./.github/actions/admiral
+    - if: success() || failure()
+      name: 'Project: random'
+      uses: ./.github/actions/random
   shards-darwin:
     runs-on: macos-latest
     steps:
@@ -204,6 +207,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: admiral'
       uses: ./.github/actions/admiral
+    - if: success() || failure()
+      name: 'Project: random'
+      uses: ./.github/actions/random
   shards-windows:
     runs-on: windows-latest
     steps:
@@ -277,6 +283,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: admiral'
       uses: ./.github/actions/admiral
+    - if: success() || failure()
+      name: 'Project: random'
+      uses: ./.github/actions/random
   crystal-linux:
     runs-on: ubuntu-latest
     steps:
