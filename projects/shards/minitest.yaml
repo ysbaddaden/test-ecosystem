@@ -1,11 +1,6 @@
 name: "minitest"
 source: "https://github.com/ysbaddaden/minitest.cr.git"
-systems:
-  - darwin
-  - linux
-  # - windows fails to compile specs
 commands:
-  - make test
-  - make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+  - make test CRFLAGS="$CRYSTAL_FLAGS"
 formats:
   - crystal tool format

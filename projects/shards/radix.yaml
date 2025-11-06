@@ -1,6 +1,6 @@
 name: "radix"
 source: "https://github.com/luislavena/radix.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

@@ -1,6 +1,6 @@
 name: "openssl_ext"
 source: "https://github.com/spider-gazelle/openssl_ext.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

@@ -1,6 +1,6 @@
 name: "crinja"
 source: "https://github.com/straight-shoota/crinja.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

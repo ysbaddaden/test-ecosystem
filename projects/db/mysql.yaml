@@ -3,7 +3,7 @@ source: "https://github.com/crystal-lang/crystal-mysql.git"
 services:
   - mysql
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format
 

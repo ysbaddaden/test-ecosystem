@@ -1,6 +1,6 @@
 name: "lucky_router"
 source: "https://github.com/luckyframework/lucky_router.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

@@ -12,12 +12,6 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: sync
     shell: ${{ inputs.shell }}
-  - run: make test
-    working-directory: sync
-    shell: ${{ inputs.shell }}
-  - run: make test CRFLAGS='-Dpreview_mt'
-    working-directory: sync
-    shell: ${{ inputs.shell }}
-  - run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+  - run: make test CRFLAGS="$CRYSTAL_FLAGS"
     working-directory: sync
     shell: ${{ inputs.shell }}

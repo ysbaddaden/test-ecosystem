@@ -139,12 +139,16 @@ File.open(".github/workflows/projects.yml", "w") do |file|
         "inputs" => {
           "crystal" => { "type" => "string", "default" => DEFAULT_CRYSTAL },
           "shards" => { "type" => "string", "default" => DEFAULT_SHARDS },
+          "flags" => { "type" => "string", "default" => "" },
         }
       }
     },
     "concurrency" => {
       "group" => "${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs }}",
       "cancel-in-progress" => "${{ github.ref != 'refs/heads/master' }}",
+    },
+    "env" => {
+      "CRYSTAL_FLAGS" => "${{ inputs.flags }}",
     },
     "jobs" => jobs,
   }.to_yaml(file)

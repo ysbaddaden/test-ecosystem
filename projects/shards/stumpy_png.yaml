@@ -1,6 +1,6 @@
 name: "stumpy_png"
 source: "https://github.com/stumpycr/stumpy_png.git"
 #commands:
-#  - crystal spec fails with "Invalid option: --no-color"
+#  - crystal spec $CRYSTAL_FLAGS fails with "Invalid option: --no-color"
 formats:
   - crystal tool format

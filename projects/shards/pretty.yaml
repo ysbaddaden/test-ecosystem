@@ -5,6 +5,6 @@ systems:
   # - darwin fails
   # - windows fails
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

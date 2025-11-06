@@ -1,6 +1,6 @@
 name: "slang"
 source: "https://github.com/jeromegn/slang"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

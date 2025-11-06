@@ -15,8 +15,8 @@ packages:
     - fossil
     - hg
 commands:
-  - shards build
-  - crystal spec spec/unit/
-  - crystal spec spec/integration/
+  - shards build $CRYSTAL_FLAGS
+  - crystal spec $CRYSTAL_FLAGS spec/unit/
+  - crystal spec $CRYSTAL_FLAGS spec/integration/
 formats:
   - crystal tool format src spec

@@ -1,6 +1,6 @@
 name: "http_proxy"
 source: "https://github.com/mamantoha/http_proxy.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

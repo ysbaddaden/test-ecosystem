@@ -6,7 +6,7 @@ packages:
   linux:
     - libsqlite3-dev
 commands:
-  - crystal build src/invidious.cr
-  - crystal spec
+  - crystal build $CRYSTAL_FLAGS src/invidious.cr
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

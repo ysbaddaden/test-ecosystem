@@ -12,6 +12,6 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: msgpack
     shell: ${{ inputs.shell }}
-  - run: crystal spec
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: msgpack
     shell: ${{ inputs.shell }}

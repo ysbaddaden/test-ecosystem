@@ -1,6 +1,6 @@
 name: random
 source: "https://github.com/ysbaddaden/random.cr"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

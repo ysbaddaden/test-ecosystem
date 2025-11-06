@@ -1,6 +1,6 @@
 name: "halite"
 source: "https://github.com/icyleaf/halite.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

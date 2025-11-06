@@ -1,6 +1,6 @@
 name: "kemal-session"
 source: "https://github.com/kemalcr/kemal-session.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

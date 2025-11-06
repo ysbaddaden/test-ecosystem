@@ -1,6 +1,6 @@
 name: "wordsmith"
 source: "https://github.com/luckyframework/wordsmith.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

@@ -1,7 +1,7 @@
 name: "db"
 source: "https://github.com/crystal-lang/crystal-db.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format
 

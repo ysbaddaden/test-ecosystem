@@ -17,7 +17,7 @@ runs:
   - run: git apply $GITHUB_ACTION_PATH/project.patch
     working-directory: pg
     shell: ${{ inputs.shell }}
-  - run: crystal spec
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: pg
     shell: ${{ inputs.shell }}
     env:

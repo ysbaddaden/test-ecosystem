@@ -28,6 +28,6 @@ patch: |
   --
   2.34.1
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

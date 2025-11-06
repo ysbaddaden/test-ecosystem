@@ -12,7 +12,7 @@ packages:
   # windows:
   #   - sqlite
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format
 

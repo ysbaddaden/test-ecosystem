@@ -12,12 +12,12 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: shards
     shell: ${{ inputs.shell }}
-  - run: shards build
+  - run: shards build $CRYSTAL_FLAGS
     working-directory: shards
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/unit/
+  - run: crystal spec $CRYSTAL_FLAGS spec/unit/
     working-directory: shards
     shell: ${{ inputs.shell }}
-  - run: crystal spec spec/integration/
+  - run: crystal spec $CRYSTAL_FLAGS spec/integration/
     working-directory: shards
     shell: ${{ inputs.shell }}

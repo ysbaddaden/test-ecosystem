@@ -5,7 +5,7 @@ systems:
   - darwin
   # - windows fails
 commands:
-  - shards build
+  - shards build $CRYSTAL_FLAGS
   - crystal spec
 formats:
   - crystal tool format

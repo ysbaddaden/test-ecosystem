@@ -12,6 +12,6 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: lucky_router
     shell: ${{ inputs.shell }}
-  - run: crystal spec
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: lucky_router
     shell: ${{ inputs.shell }}

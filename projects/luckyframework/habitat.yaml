@@ -1,6 +1,6 @@
 name: "habitat"
 source: "https://github.com/luckyframework/habitat.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

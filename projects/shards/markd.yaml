@@ -1,6 +1,6 @@
 name: "markd"
 source: "https://github.com/icyleaf/markd.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

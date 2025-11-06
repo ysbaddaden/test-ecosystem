@@ -5,6 +5,6 @@ systems:
   - darwin
   # - windows doesn't compile
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

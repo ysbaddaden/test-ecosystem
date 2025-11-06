@@ -1,6 +1,6 @@
 name: "admiral"
 source: "https://github.com/jwaldrip/admiral.cr.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format

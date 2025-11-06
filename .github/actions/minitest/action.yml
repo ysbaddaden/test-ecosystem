@@ -12,9 +12,6 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: minitest
     shell: ${{ inputs.shell }}
-  - run: make test
-    working-directory: minitest
-    shell: ${{ inputs.shell }}
-  - run: make test CRFLAGS='-Dpreview_mt -Dexecution_context'
+  - run: make test CRFLAGS="$CRYSTAL_FLAGS"
     working-directory: minitest
     shell: ${{ inputs.shell }}

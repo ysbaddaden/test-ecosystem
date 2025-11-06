@@ -12,9 +12,9 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: invidious
     shell: ${{ inputs.shell }}
-  - run: crystal build src/invidious.cr
+  - run: crystal build $CRYSTAL_FLAGS src/invidious.cr
     working-directory: invidious
     shell: ${{ inputs.shell }}
-  - run: crystal spec
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: invidious
     shell: ${{ inputs.shell }}

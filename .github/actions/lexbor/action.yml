@@ -15,6 +15,6 @@ runs:
   - run: crystal src/ext/build_ext.cr
     working-directory: lexbor
     shell: ${{ inputs.shell }}
-  - run: crystal spec
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: lexbor
     shell: ${{ inputs.shell }}

@@ -12,6 +12,6 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: admiral
     shell: ${{ inputs.shell }}
-  - run: crystal spec
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: admiral
     shell: ${{ inputs.shell }}

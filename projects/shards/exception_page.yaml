@@ -1,6 +1,6 @@
 name: "exception_page"
 source: "https://github.com/crystal-loot/exception_page.git"
 commands:
-  - crystal spec
+  - crystal spec $CRYSTAL_FLAGS
 formats:
   - crystal tool format
