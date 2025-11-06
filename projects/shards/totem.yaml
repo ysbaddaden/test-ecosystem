@@ -1,12 +1,32 @@
 name: "totem"
 source: "https://github.com/icyleaf/totem.git"
-systems:
-  - linux
 services:
   - redis
-packages:
-  linux:
-    - etcd-server
+patch: |
+  From 2f4a9e2b2bbf66db2b37d1990457c4000731c75b Mon Sep 17 00:00:00 2001
+  From: Julien Portalier <julien@portalier.com>
+  Date: Thu, 6 Nov 2025 16:11:10 +0100
+  Subject: [PATCH] fix: disable etcd specs
+
+  ---
+   spec/totem/config_spec.cr | 2 ++
+   1 file changed, 2 insertions(+)
+
+  diff --git a/spec/totem/config_spec.cr b/spec/totem/config_spec.cr
+  index 4629665..e499fc2 100644
+  --- a/spec/totem/config_spec.cr
+  +++ b/spec/totem/config_spec.cr
+  @@ -82,6 +82,8 @@ private def with_redis
+   end
+
+   private def with_etcd
+  +  pending! "until we figure how to setup etcd on lin/mac/win"
+  +
+     endpoint = "localhost:2379"
+     client = Etcd.client(endpoint)
+     client.set("/name", {:value => "foo"})
+  --
+  2.34.1
 commands:
   - crystal spec
 formats:

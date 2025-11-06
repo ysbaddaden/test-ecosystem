@@ -50,8 +50,6 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - uses: pustovitDmytro/redis-github-action@v1.0.1
-    - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends etcd-server
     - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
@@ -161,6 +159,9 @@ jobs:
       name: 'Project: http_proxy'
       uses: ./.github/actions/http_proxy
     - if: success() || failure()
+      name: 'Project: totem'
+      uses: ./.github/actions/totem
+    - if: success() || failure()
       name: 'Project: kemal-session'
       uses: ./.github/actions/kemal-session
     - if: success() || failure()
@@ -243,6 +244,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: http_proxy'
       uses: ./.github/actions/http_proxy
+    - if: success() || failure()
+      name: 'Project: totem'
+      uses: ./.github/actions/totem
     - if: success() || failure()
       name: 'Project: kemal-session'
       uses: ./.github/actions/kemal-session

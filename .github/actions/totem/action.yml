@@ -12,6 +12,9 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: totem
     shell: ${{ inputs.shell }}
+  - run: git apply $GITHUB_ACTION_PATH/project.patch
+    working-directory: totem
+    shell: ${{ inputs.shell }}
   - run: crystal spec
     working-directory: totem
     shell: ${{ inputs.shell }}
