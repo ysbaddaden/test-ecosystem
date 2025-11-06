@@ -1,0 +1,13 @@
+name: "totem"
+source: "https://github.com/icyleaf/totem.git"
+systems:
+  - linux
+services:
+  - redis
+packages:
+  linux:
+    - etcd-server
+commands:
+  - crystal spec
+formats:
+  - crystal tool format

@@ -36,6 +36,12 @@ module GHA
     }]
   end
 
+  def self.redis_service_steps
+    [Step{
+      "uses" => "pustovitDmytro/redis-github-action@v1.0.1",
+    }]
+  end
+
   def self.install_packages_steps(projects, system)
     packages = projects.flat_map(&.packages(system)).compact
     return [] of Step if packages.empty?

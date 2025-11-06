@@ -45,6 +45,10 @@ job_projects.each do |job_name, projects|
     if projects.any?(&.service?("postgresql"))
       steps.concat GHA.postgresql_service_steps(POSTGRESQL_VERSION)
     end
+
+    if projects.any?(&.service?("redis"))
+      steps.concat GHA.redis_service_steps
+    end
   end
 
   # INSTALL SYSTEM DEPENDENCIES

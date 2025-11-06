@@ -61,6 +61,12 @@ jobs:
       name: http_proxy
       run: crystal tool format
       working-directory: http_proxy
+    - run: git clone "https://github.com/icyleaf/totem.git" "totem"
+      if: success() || failure()
+    - if: success() || failure()
+      name: totem
+      run: crystal tool format
+      working-directory: totem
     - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
       if: success() || failure()
     - if: success() || failure()
