@@ -35,5 +35,5 @@ jobs:
       working-directory: C:\ProgramData\chocolatey\lib\SQLite\tools
     - run: Add-Content -Path $env:GITHUB_ENV -Value 'LIB=$LIB;C:\ProgramData\chocolatey\lib\SQLite\tools'
       shell: pwsh
-      name: 'Project: sqlite3'
+    - name: 'Project: sqlite3'
       uses: ./.github/actions/sqlite3
