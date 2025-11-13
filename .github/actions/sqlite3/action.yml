@@ -12,6 +12,9 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: sqlite3
     shell: ${{ inputs.shell }}
+  - run: git apply $GITHUB_ACTION_PATH/project.patch
+    working-directory: sqlite3
+    shell: ${{ inputs.shell }}
   - run: crystal spec $CRYSTAL_FLAGS
     working-directory: sqlite3
     shell: ${{ inputs.shell }}

@@ -431,6 +431,8 @@ jobs:
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
         postgres-version: "16"
+    - name: Install system dependencies
+      run: choco install --no-progress sqlite
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -443,6 +445,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: db'
       uses: ./.github/actions/db
+    - if: success() || failure()
+      name: 'Project: sqlite3'
+      uses: ./.github/actions/sqlite3
   luckyframework-linux:
     runs-on: ubuntu-latest
     steps:

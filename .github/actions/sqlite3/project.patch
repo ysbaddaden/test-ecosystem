@@ -1,0 +1,15 @@
+diff --git a/src/sqlite3/lib_sqlite3.cr b/src/sqlite3/lib_sqlite3.cr
+index 310e69c..1697a76 100644
+--- a/src/sqlite3/lib_sqlite3.cr
++++ b/src/sqlite3/lib_sqlite3.cr
+@@ -1,6 +1,9 @@
+ require "./type"
+
+ @[Link("sqlite3")]
++{% if flag?(:msvc) %}
++  @[Link(dll: "sqlite3.dll")]
++{% end %}
+ lib LibSQLite3
+   type SQLite3 = Void*
+   type Statement = Void*
+
