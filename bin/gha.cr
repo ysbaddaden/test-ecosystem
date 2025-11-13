@@ -51,6 +51,12 @@ job_projects.each do |job_name, projects|
     end
   end
 
+  if projects.any?(&.service?("sqlite"))
+    linux_steps.concat GHA.sqlite_service_steps("linux")
+    darwin_steps.concat GHA.sqlite_service_steps("darwin")
+    windows_steps.concat GHA.sqlite_service_steps("windows")
+  end
+
   # INSTALL SYSTEM DEPENDENCIES
   linux_steps.concat GHA.install_packages_steps(projects, "linux")
   darwin_steps.concat GHA.install_packages_steps(projects, "darwin")

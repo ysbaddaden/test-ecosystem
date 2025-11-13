@@ -42,6 +42,30 @@ module GHA
     }]
   end
 
+  def self.sqlite_service_steps(system)
+    case system
+    when "linux"
+      [Step{ "run" => "sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev" }]
+    when "darwin"
+      [Step{ "run" => "brew install sqlite" }]
+    when "windows"
+      [
+        Step{
+          "run" => "choco install sqlite",
+        },
+        Step{
+          "run" => "lib.exe /DEF:sqlite3.def /OUT:sqlite3.lib",
+          "working-directory" => "C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools",
+        },
+        Step{
+          "run" => "echo 'LIB=$LIB:C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools' >> $GITHUB_ENV"
+        },
+      ]
+    else
+      raise "unsupported system"
+    end
+  end
+
   def self.install_packages_steps(projects, system)
     packages = projects.flat_map(&.packages(system)).compact
     return [] of Step if packages.empty?

@@ -1,12 +1,7 @@
 name: "sqlite3"
 source: "https://github.com/crystal-lang/crystal-sqlite3.git"
-packages:
-  linux:
-    - libsqlite3-dev
-  darwin:
-    - sqlite
-  windows:
-    - sqlite
+services:
+  - sqlite
 patch: |
   diff --git a/src/sqlite3/lib_sqlite3.cr b/src/sqlite3/lib_sqlite3.cr
   index 310e69c..1697a76 100644

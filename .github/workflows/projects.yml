@@ -367,8 +367,7 @@ jobs:
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
         postgres-version: "16"
-    - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
+    - run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -398,8 +397,7 @@ jobs:
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
         postgres-version: "16"
-    - name: Install system dependencies
-      run: brew install sqlite
+    - run: brew install sqlite
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -431,8 +429,10 @@ jobs:
     - uses: ikalnytskyi/action-setup-postgres@v8
       with:
         postgres-version: "16"
-    - name: Install system dependencies
-      run: choco install --no-progress sqlite
+    - run: choco install sqlite
+    - run: lib.exe /DEF:sqlite3.def /OUT:sqlite3.lib
+      working-directory: C:\ProgramData\chocolatey\lib\SQLite\tools
+    - run: echo 'LIB=$LIB:C:\ProgramData\chocolatey\lib\SQLite\tools' >> $GITHUB_ENV
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
