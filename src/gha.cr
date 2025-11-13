@@ -58,7 +58,8 @@ module GHA
           "working-directory" => "C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools",
         },
         Step{
-          "run" => "echo 'LIB=$LIB:C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools' >> $GITHUB_ENV"
+          "run" => "Add-Content -Path $env:GITHUB_ENV -Value 'LIB=$LIB;C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools'",
+          "shell" => "pwsh",
         },
       ]
     else
