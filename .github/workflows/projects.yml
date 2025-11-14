@@ -31,7 +31,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - run: choco install sqlite
-    - run: lib.exe /DEF:sqlite3.def /OUT:sqlite3.lib
+    - run: llvm-dlltool.exe -d sqlite3.def -D sqlite3.dll -l sqlite3-dynamic.lib
       working-directory: C:\ProgramData\chocolatey\lib\SQLite\tools
     - run: Add-Content -Path $env:GITHUB_ENV -Value "LIB=$env:LIB;C:\ProgramData\chocolatey\lib\SQLite\tools"
       shell: pwsh
