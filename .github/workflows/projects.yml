@@ -30,14 +30,8 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    #- run: choco install sqlite
-    #- run: llvm-dlltool.exe -d sqlite3.def -D sqlite3.dll -l sqlite3-dynamic.lib
-    #  working-directory: C:\ProgramData\chocolatey\lib\SQLite\tools
-    #- run: Add-Content -Path $env:GITHUB_ENV -Value "LIB=$env:LIB;C:\ProgramData\chocolatey\lib\SQLite\tools"
-    #  shell: pwsh
-    - run: |
-      wget https://sqlite.org/2025/sqlite-dll-win-x64-3510000.zip
-      unzip sqlite-dll-win-x64-3510000.zip
-      llvm-dlltool.exe -d sqlite3.def -D sqlite3.dll -l sqlite3-dynamic.lib
+    - run: "wget https://sqlite.org/2025/sqlite-dll-win-x64-3510000.zip"
+    - run: unzip sqlite-dll-win-x64-3510000.zip
+    - run: llvm-dlltool.exe -d sqlite3.def -D sqlite3.dll -l sqlite3-dynamic.lib
     - name: 'Project: sqlite3'
       uses: ./.github/actions/sqlite3
