@@ -1,0 +1,17 @@
+name: "sass"
+source: "https://github.com/straight-shoota/sass.cr"
+systems:
+  - linux
+  - darwin
+  #- windows
+packages:
+  linux:
+    - libsass-dev
+  darwin:
+    - libsass
+  #windows:
+  #  - ?
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

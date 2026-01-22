@@ -67,6 +67,12 @@ jobs:
       name: totem
       run: crystal tool format
       working-directory: totem
+    - run: git clone "https://github.com/straight-shoota/sass.cr" "sass"
+      if: success() || failure()
+    - if: success() || failure()
+      name: sass
+      run: crystal tool format
+      working-directory: sass
     - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
       if: success() || failure()
     - if: success() || failure()
