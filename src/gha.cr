@@ -54,8 +54,7 @@ module GHA
           "run" => "choco install sqlite",
         },
         Step{
-          # "run" => "lib.exe /DEF:sqlite3.def /OUT:sqlite3.lib",
-          "run" => "llvm-dlltool.exe -d sqlite3.def -D sqlite3.dll -l sqlite3-dynamic.lib",
+          "run" => "lib.exe /DEF:sqlite3.def /OUT:sqlite3-dynamic.lib",
           "working-directory" => "C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools",
         },
         Step{
