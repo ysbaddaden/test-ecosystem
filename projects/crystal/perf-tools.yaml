@@ -23,6 +23,6 @@ patch: |
   +  PerfTools::SchedulerTrace.every(2.seconds, details: true)
   +{% end %}
 commands:
-  - crystal build
+  - crystal run test.cr
 formats:
   - crystal tool format src spec

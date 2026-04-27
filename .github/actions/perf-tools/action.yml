@@ -15,6 +15,6 @@ runs:
   - run: git apply $GITHUB_ACTION_PATH/project.patch
     working-directory: perf-tools
     shell: ${{ inputs.shell }}
-  - run: crystal build
+  - run: crystal run test.cr
     working-directory: perf-tools
     shell: ${{ inputs.shell }}
