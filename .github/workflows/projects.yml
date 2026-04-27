@@ -1,8 +1,8 @@
 ---
 name: Projects
 "on":
-  push: 
-  pull_request: 
+  push:
+  pull_request:
   workflow_dispatch:
     inputs:
       crystal:
@@ -330,6 +330,9 @@ jobs:
       name: 'Project: crystal'
       uses: ./.github/actions/crystal
     - if: success() || failure()
+      name: 'Project: perf-tools'
+      uses: ./.github/actions/perf-tools
+    - if: success() || failure()
       name: 'Project: shards'
       uses: ./.github/actions/shards
   crystal-darwin:
@@ -345,6 +348,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: crystal'
       uses: ./.github/actions/crystal
+    - if: success() || failure()
+      name: 'Project: perf-tools'
+      uses: ./.github/actions/perf-tools
     - if: success() || failure()
       name: 'Project: shards'
       uses: ./.github/actions/shards
@@ -363,6 +369,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: crystal'
       uses: ./.github/actions/crystal
+    - if: success() || failure()
+      name: 'Project: perf-tools'
+      uses: ./.github/actions/perf-tools
   db-linux:
     runs-on: ubuntu-latest
     steps:

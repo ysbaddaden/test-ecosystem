@@ -1,8 +1,8 @@
 ---
 name: Formats
 "on":
-  push: 
-  pull_request: 
+  push:
+  pull_request:
   workflow_dispatch:
     inputs:
       crystal:
@@ -193,6 +193,12 @@ jobs:
       name: random
       run: crystal tool format
       working-directory: random
+    - run: git clone "https://github.com/crystal-lang/perf-tools.git" "perf-tools"
+      if: success() || failure()
+    - if: success() || failure()
+      name: perf-tools
+      run: crystal tool format src spec
+      working-directory: perf-tools
     - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
       if: success() || failure()
     - if: success() || failure()

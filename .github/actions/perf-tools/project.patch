@@ -1,0 +1,22 @@
+diff --git a/test.cr b/test.cr
+new file mode 100644
+index 0000000..4cd755a
+--- /dev/null
++++ b/test.cr
+@@ -0,0 +1,15 @@
++{% unless flag?(:preview_mt) %}
++  require "./src/perf_tools/mem_prof"
++{% end %}
++
++require "./src/perf_tools/fiber_trace"
++
++{% if flag?(:execution_context) %}
++  require "./src/perf_tools/scheduler_trace"
++
++  {% if flag?(:unix) %}
++    PerfTools::SchedulerTrace.on(Signal::USR1, details: true)
++  {% end %}
++
++  PerfTools::SchedulerTrace.every(2.seconds, details: true)
++{% end %}
+
