@@ -121,6 +121,12 @@ jobs:
       name: halite
       run: crystal tool format
       working-directory: halite
+    - run: git clone "https://github.com/coverallsapp/coverage-reporter.git" "coverage-reporter"
+      if: success() || failure()
+    - if: success() || failure()
+      name: coverage-reporter
+      run: crystal tool format
+      working-directory: coverage-reporter
     - run: git clone "https://github.com/crystal-community/timecop.cr.git" "timecop"
       if: success() || failure()
     - if: success() || failure()

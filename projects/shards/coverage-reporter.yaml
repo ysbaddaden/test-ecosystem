@@ -1,0 +1,10 @@
+name: "coverage-reporter"
+source: "https://github.com/coverallsapp/coverage-reporter.git"
+systems:
+  - linux
+commands:
+  - pip install coverage
+  - pip install pytest
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
