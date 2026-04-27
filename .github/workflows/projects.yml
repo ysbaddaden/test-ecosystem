@@ -369,9 +369,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: crystal'
       uses: ./.github/actions/crystal
-    - if: success() || failure()
-      name: 'Project: perf-tools'
-      uses: ./.github/actions/perf-tools
   db-linux:
     runs-on: ubuntu-latest
     steps:

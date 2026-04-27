@@ -1,5 +1,9 @@
 name: "perf-tools"
 source: "https://github.com/crystal-lang/perf-tools.git"
+systems:
+  - linux
+  - darwin
+  #- windows segfaults
 patch: |
   diff --git a/test.cr b/test.cr
   new file mode 100644
