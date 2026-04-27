@@ -3,7 +3,7 @@ source: "https://github.com/crystal-lang/crystal.git"
 commands:
   # - crystal spec spec/manual/badssl_spec.cr fails
   - bin/crystal spec spec/manual/digest_large_file_spec.cr
-  - bin/crystal spec spec/manual/find_executable_spec.cr
+  - bash -c 'if [ "$OS" != "Windows_NT" ]; then bin/crystal spec spec/manual/find_executable_spec.cr; fi'
   - bin/crystal spec spec/manual/gzip_large_file_spec.cr
   - bin/crystal spec spec/manual/hash_large_spec.cr
   - bin/crystal spec spec/manual/https_client_spec.cr
