@@ -14,12 +14,15 @@ packages:
 env:
   SHARDS_OVERRIDE: shard.dev.yml
 commands:
+  - ./scripts/test.sh mercure all bundle
   - ./scripts/test.sh clock
   - ./scripts/test.sh console
   - ./scripts/test.sh dependency_injection
   - ./scripts/test.sh dotenv
   - ./scripts/test.sh event_dispatcher
   - ./scripts/test.sh framework
+  - ./scripts/test.sh http
+  - ./scripts/test.sh http_kernel
   - ./scripts/test.sh image_size
   - ./scripts/test.sh mercure
   - ./scripts/test.sh mime

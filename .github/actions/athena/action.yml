@@ -14,6 +14,11 @@ runs:
     shell: ${{ inputs.shell }}
     env:
       SHARDS_OVERRIDE: shard.dev.yml
+  - run: ./scripts/test.sh mercure all bundle
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh clock
     working-directory: athena
     shell: ${{ inputs.shell }}
@@ -40,6 +45,16 @@ runs:
     env:
       SHARDS_OVERRIDE: shard.dev.yml
   - run: ./scripts/test.sh framework
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
+  - run: ./scripts/test.sh http
+    working-directory: athena
+    shell: ${{ inputs.shell }}
+    env:
+      SHARDS_OVERRIDE: shard.dev.yml
+  - run: ./scripts/test.sh http_kernel
     working-directory: athena
     shell: ${{ inputs.shell }}
     env:
