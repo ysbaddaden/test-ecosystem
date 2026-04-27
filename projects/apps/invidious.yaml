@@ -6,6 +6,8 @@ packages:
   linux:
     - libsqlite3-dev
 commands:
+  - git submodule init
+  - git submodule update
   - crystal build $CRYSTAL_FLAGS src/invidious.cr
   - crystal spec $CRYSTAL_FLAGS
 formats:

@@ -12,6 +12,12 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: invidious
     shell: ${{ inputs.shell }}
+  - run: git submodule init
+    working-directory: invidious
+    shell: ${{ inputs.shell }}
+  - run: git submodule update
+    working-directory: invidious
+    shell: ${{ inputs.shell }}
   - run: crystal build $CRYSTAL_FLAGS src/invidious.cr
     working-directory: invidious
     shell: ${{ inputs.shell }}
