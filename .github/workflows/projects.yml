@@ -305,9 +305,6 @@ jobs:
       name: 'Project: kemal'
       uses: ./.github/actions/kemal
     - if: success() || failure()
-      name: 'Project: lexbor'
-      uses: ./.github/actions/lexbor
-    - if: success() || failure()
       name: 'Project: openssl_ext'
       uses: ./.github/actions/openssl_ext
     - if: success() || failure()

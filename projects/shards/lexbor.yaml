@@ -1,5 +1,9 @@
 name: "lexbor"
 source: "https://github.com/kostya/lexbor.git"
+systems:
+  - linux
+  - darwin
+  # - windows fails to compile lexbor
 commands:
   - crystal src/ext/build_ext.cr
   - crystal spec $CRYSTAL_FLAGS
