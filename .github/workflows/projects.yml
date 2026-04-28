@@ -562,10 +562,26 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
-        etcd-server liblz4-dev
+        libxml2-utils etcd-server liblz4-dev
     - if: success() || failure()
       name: 'Project: invidious'
       uses: ./.github/actions/invidious
     - if: success() || failure()
+      name: 'Project: mint-lang'
+      uses: ./.github/actions/mint-lang
+    - if: success() || failure()
       name: 'Project: lavinmq'
       uses: ./.github/actions/lavinmq
+  apps-darwin:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - name: Install system dependencies
+      run: brew install libxml2
+    - if: success() || failure()
+      name: 'Project: mint-lang'
+      uses: ./.github/actions/mint-lang

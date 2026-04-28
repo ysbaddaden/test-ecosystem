@@ -283,6 +283,12 @@ jobs:
       name: invidious
       run: crystal tool format
       working-directory: invidious
+    - run: git clone "https://github.com/mint-lang/mint.git" "mint-lang"
+      if: success() || failure()
+    - if: success() || failure()
+      name: mint-lang
+      run: crystal tool format
+      working-directory: mint-lang
     - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
       if: success() || failure()
     - if: success() || failure()
