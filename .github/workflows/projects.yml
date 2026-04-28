@@ -564,6 +564,9 @@ jobs:
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
         libxml2-utils etcd-server liblz4-dev
     - if: success() || failure()
+      name: 'Project: noir'
+      uses: ./.github/actions/noir
+    - if: success() || failure()
       name: 'Project: invidious'
       uses: ./.github/actions/invidious
     - if: success() || failure()

@@ -1,0 +1,9 @@
+name: "noir"
+source: "https://github.com/owasp-noir/noir.git"
+systems:
+  - linux
+commands:
+  - shards build $CRYSTAL_FLAGS
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
