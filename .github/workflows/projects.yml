@@ -106,9 +106,6 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
-      name: 'Project: coverage-reporter'
-      uses: ./.github/actions/coverage-reporter
-    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -572,6 +569,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: mint-lang'
       uses: ./.github/actions/mint-lang
+    - if: success() || failure()
+      name: 'Project: coverage-reporter'
+      uses: ./.github/actions/coverage-reporter
     - if: success() || failure()
       name: 'Project: lavinmq'
       uses: ./.github/actions/lavinmq
