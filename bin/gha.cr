@@ -11,6 +11,10 @@ POSTGRESQL_VERSION = ENV.fetch("POSTGRESQL_VERSION", "16")
 require "../src/project"
 require "../src/gha"
 
+def say(message)
+  puts message if ENV.has_key?("VERBOSE")
+end
+
 job_projects = Hash(String, Array(Project)).new
 
 Dir.glob("./projects/*/*.yaml").each do |path|
@@ -67,11 +71,11 @@ job_projects.each do |job_name, projects|
     Dir.mkdir_p(".github/actions/#{project.name}")
 
     if patch = project.patch
-      print "write .github/actions/#{project.name}/project.patch\n"
+      say("write .github/actions/#{project.name}/project.patch")
       File.write(".github/actions/#{project.name}/project.patch", "#{patch}\n")
     end
 
-    print "write .github/actions/#{project.name}/action.yaml\n"
+    say("write .github/actions/#{project.name}/action.yml")
     File.open(".github/actions/#{project.name}/action.yml", "w") do |file|
       {
         "name" => project.name,
@@ -128,7 +132,7 @@ end
 # GENERATE THE WORKFLOWS
 Dir.mkdir_p(".github/workflows")
 
-print "write .github/workflows/projects.yml\n"
+say("write .github/workflows/projects.yml")
 File.open(".github/workflows/projects.yml", "w") do |file|
   {
     "name" => "Projects",
@@ -154,7 +158,7 @@ File.open(".github/workflows/projects.yml", "w") do |file|
   }.to_yaml(file)
 end
 
-print "write .github/workflows/formats.yml\n"
+say("write .github/workflows/formats.yml")
 File.open(".github/workflows/formats.yml", "w") do |file|
   {
     "name" => "Formats",
