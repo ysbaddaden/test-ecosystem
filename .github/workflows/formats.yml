@@ -79,6 +79,12 @@ jobs:
       name: kemal-session
       run: crystal tool format
       working-directory: kemal-session
+    - run: git clone "https://github.com/wyhaines/splay_tree_map.cr.git" "splay_tree_map"
+      if: success() || failure()
+    - if: success() || failure()
+      name: splay_tree_map
+      run: crystal tool format
+      working-directory: splay_tree_map
     - run: git clone "https://github.com/spider-gazelle/bindata.git" "bindata"
       if: success() || failure()
     - if: success() || failure()
@@ -127,6 +133,12 @@ jobs:
       name: halite
       run: crystal tool format
       working-directory: halite
+    - run: git clone "https://github.com/mamantoha/crest.git" "crest"
+      if: success() || failure()
+    - if: success() || failure()
+      name: crest
+      run: crystal tool format
+      working-directory: crest
     - run: git clone "https://github.com/crystal-lang-tools/crystal-tree-sitter.git"
         "crystal-tree-sitter"
       if: success() || failure()
@@ -254,6 +266,18 @@ jobs:
       name: sqlite3
       run: crystal tool format
       working-directory: sqlite3
+    - run: git clone "https://github.com/Crecto/crecto.git" "crecto"
+      if: success() || failure()
+    - if: success() || failure()
+      name: crecto
+      run: crystal tool format
+      working-directory: crecto
+    - run: git clone "https://github.com/stefanwille/crystal-redis.git" "redis"
+      if: success() || failure()
+    - if: success() || failure()
+      name: redis
+      run: crystal tool format
+      working-directory: redis
     - run: git clone "https://github.com/luckyframework/lucky.git" "lucky"
       if: success() || failure()
     - if: success() || failure()
@@ -308,6 +332,12 @@ jobs:
       name: noir
       run: crystal tool format
       working-directory: noir
+    - run: git clone "https://github.com/cooperhammond/irs" "irs"
+      if: success() || failure()
+    - if: success() || failure()
+      name: irs
+      run: crystal tool format
+      working-directory: irs
     - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
       if: success() || failure()
     - if: success() || failure()

@@ -1,0 +1,15 @@
+name: "crecto"
+source: "https://github.com/Crecto/crecto.git"
+systems:
+  - linux
+  - darwin
+packages:
+  linux:
+    - libsqlite3-dev
+  darwin:
+    - sqlite
+commands:
+  - crystal spec --tag unit
+  # - crystal spec spec/integration/
+formats:
+  - crystal tool format

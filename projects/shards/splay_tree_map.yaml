@@ -1,0 +1,6 @@
+name: "splay_tree_map"
+source: "https://github.com/wyhaines/splay_tree_map.cr.git"
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

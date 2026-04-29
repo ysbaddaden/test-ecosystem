@@ -1,0 +1,6 @@
+name: "irs"
+source: "https://github.com/cooperhammond/irs"
+commands:
+  - shards build $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

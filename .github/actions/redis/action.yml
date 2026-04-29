@@ -1,0 +1,17 @@
+---
+name: redis
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/stefanwille/crystal-redis.git" "redis"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: redis
+    shell: ${{ inputs.shell }}
+  - run: crystal spec $CRYSTAL_FLAGS
+    working-directory: redis
+    shell: ${{ inputs.shell }}

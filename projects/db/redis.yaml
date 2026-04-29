@@ -1,0 +1,8 @@
+name: "redis"
+source: "https://github.com/stefanwille/crystal-redis.git"
+services:
+  - redis
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
