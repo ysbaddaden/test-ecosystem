@@ -12,9 +12,9 @@ runs:
   - run: shards install --skip-postinstall --skip-executables
     working-directory: ktistec
     shell: ${{ inputs.shell }}
-  - run: shards build $CRYSTAL_ARGS
+  - run: shards build $CRYSTAL_FLAGS
     working-directory: ktistec
     shell: ${{ inputs.shell }}
-  - run: crystal spec $CRYSTAL_ARGS
+  - run: crystal spec $CRYSTAL_FLAGS
     working-directory: ktistec
     shell: ${{ inputs.shell }}

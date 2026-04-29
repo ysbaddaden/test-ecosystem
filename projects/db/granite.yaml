@@ -1,0 +1,21 @@
+name: "granite"
+source: "https://github.com/amberframework/granite.git"
+systems:
+  - linux
+  - darwin
+services:
+  - mysql
+  - postgresql
+packages:
+  linux:
+    - libsqlite3-dev
+  darwin:
+    - sqlite
+env:
+    CURRENT_ADAPTER: sqlite
+    SQLITE_DATABASE_URL: sqlite3:./granite.db
+    SQLITE_REPLICA_URL: sqlite3:./granite_replica.db
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

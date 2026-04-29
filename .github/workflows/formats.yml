@@ -217,6 +217,12 @@ jobs:
       name: pg
       run: crystal tool format
       working-directory: pg
+    - run: git clone "https://github.com/amberframework/granite.git" "granite"
+      if: success() || failure()
+    - if: success() || failure()
+      name: granite
+      run: crystal tool format
+      working-directory: granite
     - run: git clone "https://github.com/luckyframework/avram.git" "avram"
       if: success() || failure()
     - if: success() || failure()
