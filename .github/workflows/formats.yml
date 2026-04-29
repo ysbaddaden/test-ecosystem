@@ -277,6 +277,12 @@ jobs:
       name: ameba
       run: crystal tool format
       working-directory: ameba
+    - run: git clone "https://github.com/navid-m/liger.git" "liger"
+      if: success() || failure()
+    - if: success() || failure()
+      name: liger
+      run: crystal tool format
+      working-directory: liger
     - run: git clone "https://github.com/owasp-noir/noir.git" "noir"
       if: success() || failure()
     - if: success() || failure()

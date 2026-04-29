@@ -1,0 +1,20 @@
+---
+name: liger
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/navid-m/liger.git" "liger"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: liger
+    shell: ${{ inputs.shell }}
+  - run: shards build $CRYSTAL_FLAGS
+    working-directory: liger
+    shell: ${{ inputs.shell }}
+  - run: crystal spec $CRYSTAL_FLAGS
+    working-directory: liger
+    shell: ${{ inputs.shell }}

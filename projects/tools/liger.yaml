@@ -1,0 +1,7 @@
+name: "liger"
+source: "https://github.com/navid-m/liger.git"
+commands:
+  - shards build $CRYSTAL_FLAGS
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
