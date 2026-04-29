@@ -121,6 +121,13 @@ jobs:
       name: halite
       run: crystal tool format
       working-directory: halite
+    - run: git clone "https://github.com/crystal-lang-tools/crystal-tree-sitter.git"
+        "crystal-tree-sitter"
+      if: success() || failure()
+    - if: success() || failure()
+      name: crystal-tree-sitter
+      run: crystal tool format
+      working-directory: crystal-tree-sitter
     - run: git clone "https://github.com/crystal-community/timecop.cr.git" "timecop"
       if: success() || failure()
     - if: success() || failure()

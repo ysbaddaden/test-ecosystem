@@ -106,6 +106,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: crystal-tree-sitter'
+      uses: ./.github/actions/crystal-tree-sitter
+    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -201,6 +204,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: crystal-tree-sitter'
+      uses: ./.github/actions/crystal-tree-sitter
+    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -289,6 +295,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: halite'
       uses: ./.github/actions/halite
+    - if: success() || failure()
+      name: 'Project: crystal-tree-sitter'
+      uses: ./.github/actions/crystal-tree-sitter
     - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop

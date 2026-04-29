@@ -1,0 +1,6 @@
+name: "crystal-tree-sitter"
+source: "https://github.com/crystal-lang-tools/crystal-tree-sitter.git"
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
