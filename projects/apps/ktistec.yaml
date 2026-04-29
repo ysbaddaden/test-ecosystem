@@ -1,0 +1,13 @@
+name: "ktistec"
+source: "https://github.com/toddsundsted/ktistec.git"
+packages:
+  linux:
+    - libxml2-dev
+    - libsqlite3-dev
+systems:
+  - linux
+commands:
+  - shards build $CRYSTAL_FLAGS
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

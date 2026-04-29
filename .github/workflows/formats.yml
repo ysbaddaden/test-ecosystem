@@ -301,3 +301,9 @@ jobs:
       name: lavinmq
       run: make format
       working-directory: lavinmq
+    - run: git clone "https://github.com/toddsundsted/ktistec.git" "ktistec"
+      if: success() || failure()
+    - if: success() || failure()
+      name: ktistec
+      run: crystal tool format
+      working-directory: ktistec

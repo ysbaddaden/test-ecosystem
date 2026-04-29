@@ -559,7 +559,7 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
-        libxml2-utils etcd-server liblz4-dev
+        libxml2-utils etcd-server liblz4-dev libxml2-dev libsqlite3-dev
     - if: success() || failure()
       name: 'Project: noir'
       uses: ./.github/actions/noir
@@ -575,6 +575,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: lavinmq'
       uses: ./.github/actions/lavinmq
+    - if: success() || failure()
+      name: 'Project: ktistec'
+      uses: ./.github/actions/ktistec
   apps-darwin:
     runs-on: macos-latest
     steps:
