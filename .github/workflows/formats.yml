@@ -91,6 +91,12 @@ jobs:
       name: msgpack
       run: crystal tool format
       working-directory: msgpack
+    - run: git clone "https://github.com/elbywan/crystal-lsp.git" "crystal-lsp"
+      if: success() || failure()
+    - if: success() || failure()
+      name: crystal-lsp
+      run: crystal tool format
+      working-directory: crystal-lsp
     - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
       if: success() || failure()
     - if: success() || failure()

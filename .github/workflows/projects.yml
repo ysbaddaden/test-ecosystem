@@ -91,6 +91,9 @@ jobs:
       name: 'Project: msgpack'
       uses: ./.github/actions/msgpack
     - if: success() || failure()
+      name: 'Project: crystal-lsp'
+      uses: ./.github/actions/crystal-lsp
+    - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync
     - if: success() || failure()
@@ -189,6 +192,9 @@ jobs:
       name: 'Project: msgpack'
       uses: ./.github/actions/msgpack
     - if: success() || failure()
+      name: 'Project: crystal-lsp'
+      uses: ./.github/actions/crystal-lsp
+    - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync
     - if: success() || failure()
@@ -280,6 +286,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: msgpack'
       uses: ./.github/actions/msgpack
+    - if: success() || failure()
+      name: 'Project: crystal-lsp'
+      uses: ./.github/actions/crystal-lsp
     - if: success() || failure()
       name: 'Project: sync'
       uses: ./.github/actions/sync

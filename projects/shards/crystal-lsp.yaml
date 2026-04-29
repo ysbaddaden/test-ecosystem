@@ -1,0 +1,6 @@
+name: "crystal-lsp"
+source: "https://github.com/elbywan/crystal-lsp.git"
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
