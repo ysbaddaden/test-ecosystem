@@ -284,6 +284,12 @@ jobs:
       name: ameba
       run: crystal tool format
       working-directory: ameba
+    - run: git clone "https://github.com/elbywan/crystalline.git" "crystalline"
+      if: success() || failure()
+    - if: success() || failure()
+      name: crystalline
+      run: crystal tool format
+      working-directory: crystalline
     - run: git clone "https://github.com/navid-m/liger.git" "liger"
       if: success() || failure()
     - if: success() || failure()

@@ -1,0 +1,7 @@
+name: "crystalline"
+source: "https://github.com/elbywan/crystalline.git"
+commands:
+  - shards build $CRYSTAL_FLAGS
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

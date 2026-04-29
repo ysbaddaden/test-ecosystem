@@ -555,6 +555,9 @@ jobs:
       name: 'Project: ameba'
       uses: ./.github/actions/ameba
     - if: success() || failure()
+      name: 'Project: crystalline'
+      uses: ./.github/actions/crystalline
+    - if: success() || failure()
       name: 'Project: liger'
       uses: ./.github/actions/liger
   tools-darwin:
@@ -569,6 +572,9 @@ jobs:
       name: 'Project: ameba'
       uses: ./.github/actions/ameba
     - if: success() || failure()
+      name: 'Project: crystalline'
+      uses: ./.github/actions/crystalline
+    - if: success() || failure()
       name: 'Project: liger'
       uses: ./.github/actions/liger
   tools-windows:
@@ -581,6 +587,9 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - if: success() || failure()
+      name: 'Project: crystalline'
+      uses: ./.github/actions/crystalline
     - if: success() || failure()
       name: 'Project: liger'
       uses: ./.github/actions/liger
