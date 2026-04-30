@@ -1,5 +1,10 @@
 name: "crystal-tree-sitter"
 source: "https://github.com/crystal-lang-tools/crystal-tree-sitter.git"
+systems:
+  - linux
+packages:
+  linux:
+    - libtree-sitter-dev
 commands:
   - crystal spec $CRYSTAL_FLAGS
 formats:

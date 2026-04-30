@@ -57,6 +57,7 @@ jobs:
     - uses: pustovitDmytro/redis-github-action@v1.0.1
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsass-dev
+        libtree-sitter-dev
     - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
@@ -222,9 +223,6 @@ jobs:
       name: 'Project: crest'
       uses: ./.github/actions/crest
     - if: success() || failure()
-      name: 'Project: crystal-tree-sitter'
-      uses: ./.github/actions/crystal-tree-sitter
-    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -322,9 +320,6 @@ jobs:
     - if: success() || failure()
       name: 'Project: crest'
       uses: ./.github/actions/crest
-    - if: success() || failure()
-      name: 'Project: crystal-tree-sitter'
-      uses: ./.github/actions/crystal-tree-sitter
     - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
