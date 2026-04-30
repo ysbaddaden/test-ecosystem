@@ -332,12 +332,6 @@ jobs:
       name: noir
       run: crystal tool format
       working-directory: noir
-    - run: git clone "https://github.com/cooperhammond/irs" "irs"
-      if: success() || failure()
-    - if: success() || failure()
-      name: irs
-      run: crystal tool format
-      working-directory: irs
     - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
       if: success() || failure()
     - if: success() || failure()

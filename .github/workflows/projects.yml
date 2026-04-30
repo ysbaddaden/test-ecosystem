@@ -653,9 +653,6 @@ jobs:
       name: 'Project: noir'
       uses: ./.github/actions/noir
     - if: success() || failure()
-      name: 'Project: irs'
-      uses: ./.github/actions/irs
-    - if: success() || failure()
       name: 'Project: invidious'
       uses: ./.github/actions/invidious
     - if: success() || failure()
@@ -681,21 +678,5 @@ jobs:
     - name: Install system dependencies
       run: brew install libxml2
     - if: success() || failure()
-      name: 'Project: irs'
-      uses: ./.github/actions/irs
-    - if: success() || failure()
       name: 'Project: mint-lang'
       uses: ./.github/actions/mint-lang
-  apps-windows:
-    runs-on: windows-latest
-    steps:
-    - run: git config --global core.autocrlf false
-    - uses: ilammy/msvc-dev-cmd@v1
-    - uses: actions/checkout@v5
-    - uses: crystal-lang/install-crystal@v1
-      with:
-        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
-        shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - if: success() || failure()
-      name: 'Project: irs'
-      uses: ./.github/actions/irs
