@@ -1,0 +1,8 @@
+# Project definition for hwaro
+name: hwaro
+source: https://github.com/hahwul/hwaro.git
+systems:
+  - linux
+commands:
+  - shards build $CRYSTAL_FLAGS
+  - crystal spec $CRYSTAL_FLAGS
