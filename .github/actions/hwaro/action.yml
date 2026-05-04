@@ -1,0 +1,20 @@
+---
+name: hwaro
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/hahwul/hwaro.git" "hwaro"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: hwaro
+    shell: ${{ inputs.shell }}
+  - run: shards build $CRYSTAL_FLAGS
+    working-directory: hwaro
+    shell: ${{ inputs.shell }}
+  - run: crystal spec $CRYSTAL_FLAGS
+    working-directory: hwaro
+    shell: ${{ inputs.shell }}

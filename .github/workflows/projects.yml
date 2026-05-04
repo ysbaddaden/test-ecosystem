@@ -571,6 +571,9 @@ jobs:
       name: 'Project: noir'
       uses: ./.github/actions/noir
     - if: success() || failure()
+      name: 'Project: hwaro'
+      uses: ./.github/actions/hwaro
+    - if: success() || failure()
       name: 'Project: invidious'
       uses: ./.github/actions/invidious
     - if: success() || failure()
