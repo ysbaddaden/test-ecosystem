@@ -9,7 +9,7 @@ packages:
   darwin:
     - libxml2
 commands:
-  - shards build $CRYSTAL_FLAGS
+  - shards build mint $CRYSTAL_FLAGS
   - crystal spec $CRYSTAL_FLAGS
   - crystal spec spec_cli/*_spec.cr spec_cli/**/*_spec.cr $CRYSTAL_FLAGS
 formats:
