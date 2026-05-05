@@ -451,9 +451,6 @@ jobs:
       name: 'Project: pg'
       uses: ./.github/actions/pg
     - if: success() || failure()
-      name: 'Project: granite'
-      uses: ./.github/actions/granite
-    - if: success() || failure()
       name: 'Project: avram'
       uses: ./.github/actions/avram
     - if: success() || failure()
