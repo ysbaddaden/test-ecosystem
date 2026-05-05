@@ -85,6 +85,9 @@ jobs:
       name: 'Project: kemal-session'
       uses: ./.github/actions/kemal-session
     - if: success() || failure()
+      name: 'Project: splay_tree_map'
+      uses: ./.github/actions/splay_tree_map
+    - if: success() || failure()
       name: 'Project: bindata'
       uses: ./.github/actions/bindata
     - if: success() || failure()
@@ -106,6 +109,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: crest'
+      uses: ./.github/actions/crest
+    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -114,6 +120,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: stumpy_gif'
       uses: ./.github/actions/stumpy_gif
+    - if: success() || failure()
+      name: 'Project: http2'
+      uses: ./.github/actions/http2
     - if: success() || failure()
       name: 'Project: stumpy_core'
       uses: ./.github/actions/stumpy_core
@@ -180,6 +189,9 @@ jobs:
       name: 'Project: kemal-session'
       uses: ./.github/actions/kemal-session
     - if: success() || failure()
+      name: 'Project: splay_tree_map'
+      uses: ./.github/actions/splay_tree_map
+    - if: success() || failure()
       name: 'Project: bindata'
       uses: ./.github/actions/bindata
     - if: success() || failure()
@@ -201,6 +213,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: crest'
+      uses: ./.github/actions/crest
+    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -209,6 +224,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: stumpy_gif'
       uses: ./.github/actions/stumpy_gif
+    - if: success() || failure()
+      name: 'Project: http2'
+      uses: ./.github/actions/http2
     - if: success() || failure()
       name: 'Project: stumpy_core'
       uses: ./.github/actions/stumpy_core
@@ -269,6 +287,9 @@ jobs:
       name: 'Project: kemal-session'
       uses: ./.github/actions/kemal-session
     - if: success() || failure()
+      name: 'Project: splay_tree_map'
+      uses: ./.github/actions/splay_tree_map
+    - if: success() || failure()
       name: 'Project: bindata'
       uses: ./.github/actions/bindata
     - if: success() || failure()
@@ -290,6 +311,9 @@ jobs:
       name: 'Project: halite'
       uses: ./.github/actions/halite
     - if: success() || failure()
+      name: 'Project: crest'
+      uses: ./.github/actions/crest
+    - if: success() || failure()
       name: 'Project: timecop'
       uses: ./.github/actions/timecop
     - if: success() || failure()
@@ -298,6 +322,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: stumpy_gif'
       uses: ./.github/actions/stumpy_gif
+    - if: success() || failure()
+      name: 'Project: http2'
+      uses: ./.github/actions/http2
     - if: success() || failure()
       name: 'Project: stumpy_core'
       uses: ./.github/actions/stumpy_core
@@ -545,6 +572,9 @@ jobs:
     - if: success() || failure()
       name: 'Project: ameba'
       uses: ./.github/actions/ameba
+    - if: success() || failure()
+      name: 'Project: liger'
+      uses: ./.github/actions/liger
   tools-darwin:
     runs-on: macos-latest
     steps:
@@ -556,6 +586,22 @@ jobs:
     - if: success() || failure()
       name: 'Project: ameba'
       uses: ./.github/actions/ameba
+    - if: success() || failure()
+      name: 'Project: liger'
+      uses: ./.github/actions/liger
+  tools-windows:
+    runs-on: windows-latest
+    steps:
+    - run: git config --global core.autocrlf false
+    - uses: ilammy/msvc-dev-cmd@v1
+    - uses: actions/checkout@v5
+    - uses: crystal-lang/install-crystal@v1
+      with:
+        crystal: ${{ github.event.inputs.crystal || 'nightly' }}
+        shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - if: success() || failure()
+      name: 'Project: liger'
+      uses: ./.github/actions/liger
   apps-linux:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,6 @@
+name: "crest"
+source: "https://github.com/mamantoha/crest.git"
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

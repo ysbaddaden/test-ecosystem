@@ -1,0 +1,20 @@
+---
+name: http2
+inputs:
+  shell:
+    type: string
+    default: bash
+runs:
+  using: composite
+  steps:
+  - run: git clone "https://github.com/ysbaddaden/http2.git" "http2"
+    shell: ${{ inputs.shell }}
+  - run: shards install --skip-postinstall --skip-executables
+    working-directory: http2
+    shell: ${{ inputs.shell }}
+  - run: make bin/server CRFLAGS=$CRYSTAL_FLAGS
+    working-directory: http2
+    shell: ${{ inputs.shell }}
+  - run: make test CRFLAGS=$CRYSTAL_FLAGS
+    working-directory: http2
+    shell: ${{ inputs.shell }}
