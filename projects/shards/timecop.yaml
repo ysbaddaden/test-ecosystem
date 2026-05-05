@@ -5,20 +5,11 @@ systems:
   - darwin
   - windows
 patch: |
-  From 1b567ddbe5ca8ad2c1db01c091282a89d90cd2ee Mon Sep 17 00:00:00 2001
-  From: Julien Portalier <julien@portalier.com>
-  Date: Thu, 30 Oct 2025 15:52:17 +0100
-  Subject: [PATCH] disable_specs
-
-  ---
-   spec/timecop_spec.cr | 2 ++
-   1 file changed, 2 insertions(+)
-
   diff --git a/spec/timecop_spec.cr b/spec/timecop_spec.cr
-  index fc0b656..b26272d 100644
+  index 41775d5..a64b888 100644
   --- a/spec/timecop_spec.cr
   +++ b/spec/timecop_spec.cr
-  @@ -98,6 +98,7 @@ describe Timecop do
+  @@ -121,6 +121,7 @@ describe Timecop do
 
      context ".scale" do
        it "keeps time moving at an accelerated rate" do
@@ -26,7 +17,7 @@ patch: |
          time = Time.local(2008, 10, 10, 10, 10, 10)
          Timecop.scale(time, 4) do
            start = Time.local
-  @@ -114,6 +115,7 @@ describe Timecop do
+  @@ -137,6 +138,7 @@ describe Timecop do
 
        context "monotonic" do
          it "keeps time moving at an accelerated rate" do
@@ -34,8 +25,14 @@ patch: |
            time = Time.local(2008, 10, 10, 10, 10, 10)
            Timecop.scale(time, 4) do
              start = Time.monotonic
-  --
-  2.34.1
+  @@ -148,6 +150,7 @@ describe Timecop do
+
+       context "instant" do
+         it "keeps time moving at an accelerated rate" do
+  +        pending! if {{ flag?(:darwin) }}
+           time = Time.local(2008, 10, 10, 10, 10, 10)
+           Timecop.scale(time, 4) do
+             start = Time.instant
 commands:
   - crystal spec $CRYSTAL_FLAGS
 formats:
