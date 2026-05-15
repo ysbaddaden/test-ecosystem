@@ -408,8 +408,11 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
-        libsqlite3-dev
+      run: sudo apt-get install --quiet --yes --no-install-recommends librocksdb-dev
+        libsqlite3-dev libsqlite3-dev
+    - if: success() || failure()
+      name: 'Project: rocksdb'
+      uses: ./.github/actions/rocksdb
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -443,7 +446,10 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: brew install sqlite sqlite
+      run: brew install rocksdb sqlite sqlite
+    - if: success() || failure()
+      name: 'Project: rocksdb'
+      uses: ./.github/actions/rocksdb
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql

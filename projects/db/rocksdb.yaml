@@ -1,0 +1,15 @@
+name: "rocksdb"
+source: "https://github.com/maiha/rocksdb.cr"
+systems:
+  - linux
+  - darwin
+packages:
+  linux:
+    - librocksdb-dev
+  darwin:
+    - rocksdb
+
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format

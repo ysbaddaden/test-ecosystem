@@ -223,6 +223,12 @@ jobs:
       name: shards
       run: crystal tool format src spec
       working-directory: shards
+    - run: git clone "https://github.com/maiha/rocksdb.cr" "rocksdb"
+      if: success() || failure()
+    - if: success() || failure()
+      name: rocksdb
+      run: crystal tool format
+      working-directory: rocksdb
     - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
       if: success() || failure()
     - if: success() || failure()
