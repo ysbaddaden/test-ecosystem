@@ -409,7 +409,6 @@ jobs:
         postgres-version: "16"
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
-        libsqlite3-dev
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -443,7 +442,7 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: brew install sqlite sqlite
+      run: brew install sqlite
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -609,7 +608,7 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
       run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
-        libxml2-utils etcd-server liblz4-dev libxml2-dev libsqlite3-dev
+        libxml2-utils etcd-server liblz4-dev libxml2-dev
     - if: success() || failure()
       name: 'Project: noir'
       uses: ./.github/actions/noir

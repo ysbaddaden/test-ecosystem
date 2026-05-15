@@ -43,7 +43,7 @@ module GHA
   end
 
   def self.install_packages_steps(projects, system)
-    packages = projects.flat_map(&.packages(system)).compact
+    packages = projects.flat_map(&.packages(system)).compact.uniq
     return [] of Step if packages.empty?
 
     case system
