@@ -1,0 +1,14 @@
+name: couchdb
+source: https://github.com/threez/couchdb.cr
+systems:
+  - linux
+  - darwin
+packages:
+  linux:
+    - libsqlite3-dev
+  darwin:
+    - sqlite
+commands:
+  - crystal spec $CRYSTAL_FLAGS
+formats:
+  - crystal tool format
