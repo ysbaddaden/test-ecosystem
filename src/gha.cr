@@ -69,7 +69,7 @@ module GHA
 
   def self.clone_step(project, composite = true, test = nil)
     step = Step{
-      "run" => "git clone #{project.source.inspect} #{project.name.inspect}",
+      "run" => "git clone --depth 1 #{project.source.inspect} #{project.name.inspect}",
     }
     step["if"] = test if test
     step["shell"] = "${{ inputs.shell }}" if composite
