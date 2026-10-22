@@ -29,7 +29,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libmagic-dev
+      run: sudo apt-get install --quiet --yes --no-install-recommends lld mold libmagic-dev
     - if: success() || failure()
       name: 'Project: athena'
       uses: ./.github/actions/athena
@@ -56,7 +56,7 @@ jobs:
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - uses: pustovitDmytro/redis-github-action@v1.0.1
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libsass-dev
+      run: sudo apt-get install --quiet --yes --no-install-recommends lld mold libsass-dev
     - if: success() || failure()
       name: 'Project: minitest'
       uses: ./.github/actions/minitest
@@ -349,7 +349,8 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends fossil mercurial
+      run: sudo apt-get install --quiet --yes --no-install-recommends lld mold fossil
+        mercurial
     - if: success() || failure()
       name: 'Project: crystal'
       uses: ./.github/actions/crystal
@@ -408,7 +409,7 @@ jobs:
       with:
         postgres-version: "16"
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
+      run: sudo apt-get install --quiet --yes --no-install-recommends lld mold libsqlite3-dev
     - if: success() || failure()
       name: 'Project: mysql'
       uses: ./.github/actions/mysql
@@ -607,7 +608,7 @@ jobs:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
     - name: Install system dependencies
-      run: sudo apt-get install --quiet --yes --no-install-recommends libsqlite3-dev
+      run: sudo apt-get install --quiet --yes --no-install-recommends lld mold libsqlite3-dev
         libxml2-utils etcd-server liblz4-dev libxml2-dev
     - if: success() || failure()
       name: 'Project: noir'

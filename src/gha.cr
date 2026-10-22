@@ -50,7 +50,7 @@ module GHA
     when "linux"
       [Step{
         "name" => "Install system dependencies",
-        "run" => "sudo apt-get install --quiet --yes --no-install-recommends #{packages.join(' ')}",
+        "run" => "sudo apt-get install --quiet --yes --no-install-recommends lld mold #{packages.join(' ')}",
       }]
     when "darwin"
       [Step{
