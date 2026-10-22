@@ -19,319 +19,330 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - run: git clone "https://github.com/athena-framework/athena.git" "athena"
+    - run: git clone --depth 1 "https://github.com/athena-framework/athena.git" "athena"
       if: success() || failure()
     - if: success() || failure()
       name: athena
       run: crystal tool format
       working-directory: athena
-    - run: git clone "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
+    - run: git clone --depth 1 "https://github.com/ysbaddaden/minitest.cr.git" "minitest"
       if: success() || failure()
     - if: success() || failure()
       name: minitest
       run: crystal tool format
       working-directory: minitest
-    - run: git clone "https://github.com/stumpycr/stumpy_jpeg.git" "stumpy_jpeg"
+    - run: git clone --depth 1 "https://github.com/stumpycr/stumpy_jpeg.git" "stumpy_jpeg"
       if: success() || failure()
     - if: success() || failure()
       name: stumpy_jpeg
       run: crystal tool format
       working-directory: stumpy_jpeg
-    - run: git clone "https://github.com/manastech/webmock.cr.git" "webmock"
+    - run: git clone --depth 1 "https://github.com/manastech/webmock.cr.git" "webmock"
       if: success() || failure()
     - if: success() || failure()
       name: webmock
       run: crystal tool format
       working-directory: webmock
-    - run: git clone "https://github.com/jeromegn/slang" "slang"
+    - run: git clone --depth 1 "https://github.com/jeromegn/slang" "slang"
       if: success() || failure()
     - if: success() || failure()
       name: slang
       run: crystal tool format
       working-directory: slang
-    - run: git clone "https://github.com/luislavena/radix.git" "radix"
+    - run: git clone --depth 1 "https://github.com/luislavena/radix.git" "radix"
       if: success() || failure()
     - if: success() || failure()
       name: radix
       run: crystal tool format
       working-directory: radix
-    - run: git clone "https://github.com/mamantoha/http_proxy.git" "http_proxy"
+    - run: git clone --depth 1 "https://github.com/mamantoha/http_proxy.git" "http_proxy"
       if: success() || failure()
     - if: success() || failure()
       name: http_proxy
       run: crystal tool format
       working-directory: http_proxy
-    - run: git clone "https://github.com/icyleaf/totem.git" "totem"
+    - run: git clone --depth 1 "https://github.com/icyleaf/totem.git" "totem"
       if: success() || failure()
     - if: success() || failure()
       name: totem
       run: crystal tool format
       working-directory: totem
-    - run: git clone "https://github.com/straight-shoota/sass.cr" "sass"
+    - run: git clone --depth 1 "https://github.com/straight-shoota/sass.cr" "sass"
       if: success() || failure()
     - if: success() || failure()
       name: sass
       run: crystal tool format
       working-directory: sass
-    - run: git clone "https://github.com/kemalcr/kemal-session.git" "kemal-session"
+    - run: git clone --depth 1 "https://github.com/kemalcr/kemal-session.git" "kemal-session"
       if: success() || failure()
     - if: success() || failure()
       name: kemal-session
       run: crystal tool format
       working-directory: kemal-session
-    - run: git clone "https://github.com/wyhaines/splay_tree_map.cr.git" "splay_tree_map"
+    - run: git clone --depth 1 "https://github.com/wyhaines/splay_tree_map.cr.git"
+        "splay_tree_map"
       if: success() || failure()
     - if: success() || failure()
       name: splay_tree_map
       run: crystal tool format
       working-directory: splay_tree_map
-    - run: git clone "https://github.com/spider-gazelle/bindata.git" "bindata"
+    - run: git clone --depth 1 "https://github.com/spider-gazelle/bindata.git" "bindata"
       if: success() || failure()
     - if: success() || failure()
       name: bindata
       run: crystal tool format
       working-directory: bindata
-    - run: git clone "https://github.com/crystal-community/msgpack-crystal.git" "msgpack"
+    - run: git clone --depth 1 "https://github.com/crystal-community/msgpack-crystal.git"
+        "msgpack"
       if: success() || failure()
     - if: success() || failure()
       name: msgpack
       run: crystal tool format
       working-directory: msgpack
-    - run: git clone "https://github.com/ysbaddaden/sync.git" "sync"
+    - run: git clone --depth 1 "https://github.com/ysbaddaden/sync.git" "sync"
       if: success() || failure()
     - if: success() || failure()
       name: sync
       run: crystal tool format
       working-directory: sync
-    - run: git clone "https://github.com/icyleaf/markd.git" "markd"
+    - run: git clone --depth 1 "https://github.com/icyleaf/markd.git" "markd"
       if: success() || failure()
     - if: success() || failure()
       name: markd
       run: crystal tool format
       working-directory: markd
-    - run: git clone "https://github.com/straight-shoota/crinja.git" "crinja"
+    - run: git clone --depth 1 "https://github.com/straight-shoota/crinja.git" "crinja"
       if: success() || failure()
     - if: success() || failure()
       name: crinja
       run: crystal tool format
       working-directory: crinja
-    - run: git clone "https://github.com/crystal-community/future.cr.git" "future"
+    - run: git clone --depth 1 "https://github.com/crystal-community/future.cr.git"
+        "future"
       if: success() || failure()
     - if: success() || failure()
       name: future
       run: crystal tool format
       working-directory: future
-    - run: git clone "https://github.com/icyleaf/halite.git" "halite"
+    - run: git clone --depth 1 "https://github.com/icyleaf/halite.git" "halite"
       if: success() || failure()
     - if: success() || failure()
       name: halite
       run: crystal tool format
       working-directory: halite
-    - run: git clone "https://github.com/mamantoha/crest.git" "crest"
+    - run: git clone --depth 1 "https://github.com/mamantoha/crest.git" "crest"
       if: success() || failure()
     - if: success() || failure()
       name: crest
       run: crystal tool format
       working-directory: crest
-    - run: git clone "https://github.com/crystal-community/timecop.cr.git" "timecop"
+    - run: git clone --depth 1 "https://github.com/crystal-community/timecop.cr.git"
+        "timecop"
       if: success() || failure()
     - if: success() || failure()
       name: timecop
       run: crystal tool format
       working-directory: timecop
-    - run: git clone "https://github.com/crystal-loot/exception_page.git" "exception_page"
+    - run: git clone --depth 1 "https://github.com/crystal-loot/exception_page.git"
+        "exception_page"
       if: success() || failure()
     - if: success() || failure()
       name: exception_page
       run: crystal tool format
       working-directory: exception_page
-    - run: git clone "https://github.com/stumpycr/stumpy_gif.git" "stumpy_gif"
+    - run: git clone --depth 1 "https://github.com/stumpycr/stumpy_gif.git" "stumpy_gif"
       if: success() || failure()
     - if: success() || failure()
       name: stumpy_gif
       run: crystal tool format
       working-directory: stumpy_gif
-    - run: git clone "https://github.com/ysbaddaden/http2.git" "http2"
+    - run: git clone --depth 1 "https://github.com/ysbaddaden/http2.git" "http2"
       if: success() || failure()
     - if: success() || failure()
       name: http2
       run: crystal tool format
       working-directory: http2
-    - run: git clone "https://github.com/stumpycr/stumpy_core.git" "stumpy_core"
+    - run: git clone --depth 1 "https://github.com/stumpycr/stumpy_core.git" "stumpy_core"
       if: success() || failure()
     - if: success() || failure()
       name: stumpy_core
       run: crystal tool format
       working-directory: stumpy_core
-    - run: git clone "https://github.com/Sija/backtracer.cr.git" "backtracer"
+    - run: git clone --depth 1 "https://github.com/Sija/backtracer.cr.git" "backtracer"
       if: success() || failure()
     - if: success() || failure()
       name: backtracer
       run: crystal tool format
       working-directory: backtracer
-    - run: git clone "https://github.com/maiha/pretty.cr.git" "pretty"
+    - run: git clone --depth 1 "https://github.com/maiha/pretty.cr.git" "pretty"
       if: success() || failure()
     - if: success() || failure()
       name: pretty
       run: crystal tool format
       working-directory: pretty
-    - run: git clone "https://github.com/kemalcr/kemal.git" "kemal"
+    - run: git clone --depth 1 "https://github.com/kemalcr/kemal.git" "kemal"
       if: success() || failure()
     - if: success() || failure()
       name: kemal
       run: crystal tool format
       working-directory: kemal
-    - run: git clone "https://github.com/kostya/lexbor.git" "lexbor"
+    - run: git clone --depth 1 "https://github.com/kostya/lexbor.git" "lexbor"
       if: success() || failure()
     - if: success() || failure()
       name: lexbor
       run: crystal tool format
       working-directory: lexbor
-    - run: git clone "https://github.com/schovi/baked_file_system.git" "baked_file_system"
+    - run: git clone --depth 1 "https://github.com/schovi/baked_file_system.git" "baked_file_system"
       if: success() || failure()
     - if: success() || failure()
       name: baked_file_system
       run: crystal tool format
       working-directory: baked_file_system
-    - run: git clone "https://github.com/spider-gazelle/openssl_ext.git" "openssl_ext"
+    - run: git clone --depth 1 "https://github.com/spider-gazelle/openssl_ext.git"
+        "openssl_ext"
       if: success() || failure()
     - if: success() || failure()
       name: openssl_ext
       run: crystal tool format
       working-directory: openssl_ext
-    - run: git clone "https://github.com/jwaldrip/admiral.cr.git" "admiral"
+    - run: git clone --depth 1 "https://github.com/jwaldrip/admiral.cr.git" "admiral"
       if: success() || failure()
     - if: success() || failure()
       name: admiral
       run: crystal tool format
       working-directory: admiral
-    - run: git clone "https://github.com/ysbaddaden/random.cr" "random"
+    - run: git clone --depth 1 "https://github.com/ysbaddaden/random.cr" "random"
       if: success() || failure()
     - if: success() || failure()
       name: random
       run: crystal tool format
       working-directory: random
-    - run: git clone "https://github.com/crystal-lang/perf-tools.git" "perf-tools"
+    - run: git clone --depth 1 "https://github.com/crystal-lang/perf-tools.git" "perf-tools"
       if: success() || failure()
     - if: success() || failure()
       name: perf-tools
       run: crystal tool format src spec
       working-directory: perf-tools
-    - run: git clone "https://github.com/crystal-lang/shards.git" "shards"
+    - run: git clone --depth 1 "https://github.com/crystal-lang/shards.git" "shards"
       if: success() || failure()
     - if: success() || failure()
       name: shards
       run: crystal tool format src spec
       working-directory: shards
-    - run: git clone "https://github.com/crystal-lang/crystal-mysql.git" "mysql"
+    - run: git clone --depth 1 "https://github.com/crystal-lang/crystal-mysql.git"
+        "mysql"
       if: success() || failure()
     - if: success() || failure()
       name: mysql
       run: crystal tool format
       working-directory: mysql
-    - run: git clone "https://github.com/will/crystal-pg.git" "pg"
+    - run: git clone --depth 1 "https://github.com/will/crystal-pg.git" "pg"
       if: success() || failure()
     - if: success() || failure()
       name: pg
       run: crystal tool format
       working-directory: pg
-    - run: git clone "https://github.com/amberframework/granite.git" "granite"
+    - run: git clone --depth 1 "https://github.com/amberframework/granite.git" "granite"
       if: success() || failure()
     - if: success() || failure()
       name: granite
       run: crystal tool format
       working-directory: granite
-    - run: git clone "https://github.com/luckyframework/avram.git" "avram"
+    - run: git clone --depth 1 "https://github.com/luckyframework/avram.git" "avram"
       if: success() || failure()
     - if: success() || failure()
       name: avram
       run: crystal tool format
       working-directory: avram
-    - run: git clone "https://github.com/crystal-lang/crystal-db.git" "db"
+    - run: git clone --depth 1 "https://github.com/crystal-lang/crystal-db.git" "db"
       if: success() || failure()
     - if: success() || failure()
       name: db
       run: crystal tool format
       working-directory: db
-    - run: git clone "https://github.com/crystal-lang/crystal-sqlite3.git" "sqlite3"
+    - run: git clone --depth 1 "https://github.com/crystal-lang/crystal-sqlite3.git"
+        "sqlite3"
       if: success() || failure()
     - if: success() || failure()
       name: sqlite3
       run: crystal tool format
       working-directory: sqlite3
-    - run: git clone "https://github.com/luckyframework/lucky.git" "lucky"
+    - run: git clone --depth 1 "https://github.com/luckyframework/lucky.git" "lucky"
       if: success() || failure()
     - if: success() || failure()
       name: lucky
       run: crystal tool format
       working-directory: lucky
-    - run: git clone "https://github.com/luckyframework/lucky_router.git" "lucky_router"
+    - run: git clone --depth 1 "https://github.com/luckyframework/lucky_router.git"
+        "lucky_router"
       if: success() || failure()
     - if: success() || failure()
       name: lucky_router
       run: crystal tool format
       working-directory: lucky_router
-    - run: git clone "https://github.com/luckyframework/wordsmith.git" "wordsmith"
+    - run: git clone --depth 1 "https://github.com/luckyframework/wordsmith.git" "wordsmith"
       if: success() || failure()
     - if: success() || failure()
       name: wordsmith
       run: crystal tool format
       working-directory: wordsmith
-    - run: git clone "https://github.com/luckyframework/lucky_task.git" "lucky_task"
+    - run: git clone --depth 1 "https://github.com/luckyframework/lucky_task.git"
+        "lucky_task"
       if: success() || failure()
     - if: success() || failure()
       name: lucky_task
       run: crystal tool format
       working-directory: lucky_task
-    - run: git clone "https://github.com/luckyframework/habitat.git" "habitat"
+    - run: git clone --depth 1 "https://github.com/luckyframework/habitat.git" "habitat"
       if: success() || failure()
     - if: success() || failure()
       name: habitat
       run: crystal tool format
       working-directory: habitat
-    - run: git clone "https://github.com/crystal-ameba/ameba.git" "ameba"
+    - run: git clone --depth 1 "https://github.com/crystal-ameba/ameba.git" "ameba"
       if: success() || failure()
     - if: success() || failure()
       name: ameba
       run: crystal tool format
       working-directory: ameba
-    - run: git clone "https://github.com/navid-m/liger.git" "liger"
+    - run: git clone --depth 1 "https://github.com/navid-m/liger.git" "liger"
       if: success() || failure()
     - if: success() || failure()
       name: liger
       run: crystal tool format
       working-directory: liger
-    - run: git clone "https://github.com/owasp-noir/noir.git" "noir"
+    - run: git clone --depth 1 "https://github.com/owasp-noir/noir.git" "noir"
       if: success() || failure()
     - if: success() || failure()
       name: noir
       run: crystal tool format
       working-directory: noir
-    - run: git clone "https://github.com/iv-org/invidious.git" "invidious"
+    - run: git clone --depth 1 "https://github.com/iv-org/invidious.git" "invidious"
       if: success() || failure()
     - if: success() || failure()
       name: invidious
       run: crystal tool format
       working-directory: invidious
-    - run: git clone "https://github.com/mint-lang/mint.git" "mint-lang"
+    - run: git clone --depth 1 "https://github.com/mint-lang/mint.git" "mint-lang"
       if: success() || failure()
     - if: success() || failure()
       name: mint-lang
       run: crystal tool format
       working-directory: mint-lang
-    - run: git clone "https://github.com/coverallsapp/coverage-reporter.git" "coverage-reporter"
+    - run: git clone --depth 1 "https://github.com/coverallsapp/coverage-reporter.git"
+        "coverage-reporter"
       if: success() || failure()
     - if: success() || failure()
       name: coverage-reporter
       run: crystal tool format
       working-directory: coverage-reporter
-    - run: git clone "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
+    - run: git clone --depth 1 "https://github.com/cloudamqp/lavinmq.git" "lavinmq"
       if: success() || failure()
     - if: success() || failure()
       name: lavinmq
       run: make format
       working-directory: lavinmq
-    - run: git clone "https://github.com/toddsundsted/ktistec.git" "ktistec"
+    - run: git clone --depth 1 "https://github.com/toddsundsted/ktistec.git" "ktistec"
       if: success() || failure()
     - if: success() || failure()
       name: ktistec
