@@ -17,7 +17,7 @@ patch: |
   +
   +require "./src/perf_tools/fiber_trace"
   +
-  +{% if flag?(:execution_context) %}
+  +{% if !flag?(:without_mt) && !flag?(:preview_mt) || flag?(:execution_context) %}
   +  require "./src/perf_tools/scheduler_trace"
   +
   +  {% if flag?(:unix) %}
