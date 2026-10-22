@@ -20,8 +20,15 @@ job_projects = Hash(String, Array(Project)).new
 Dir.glob("./projects/*/*.yaml").each do |path|
   project = File.open(path) { |file| Project.from_yaml(file) }
   name = File.basename(File.dirname(path))
+  next unless ARGV.empty? || ARGV.includes?(project.name)
+
   hash = job_projects[name] ||= Array(Project).new
   hash << project
+end
+
+if job_projects.empty?
+  STDERR.puts "fatal: no project to generate"
+  exit 1
 end
 
 jobs = Hash(String, Job).new
@@ -30,6 +37,8 @@ format_steps = [] of Step
 format_steps << GHA.install_crystal_step(DEFAULT_CRYSTAL, DEFAULT_SHARDS)
 
 job_projects.each do |job_name, projects|
+  next if projects.empty?
+
   linux_steps = [] of Step
   darwin_steps = [] of Step
   windows_steps = [] of Step
