@@ -28,6 +28,9 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "16"
     - if: success() || failure()
       name: 'Project: avram'
       uses: ./.github/actions/avram
@@ -39,6 +42,9 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "16"
     - if: success() || failure()
       name: 'Project: avram'
       uses: ./.github/actions/avram
@@ -52,6 +58,9 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
+    - uses: ikalnytskyi/action-setup-postgres@v8
+      with:
+        postgres-version: "16"
     - if: success() || failure()
       name: 'Project: avram'
       uses: ./.github/actions/avram

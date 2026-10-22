@@ -19,7 +19,7 @@ jobs:
       with:
         crystal: ${{ github.event.inputs.crystal || 'nightly' }}
         shards: ${{ github.event.inputs.shards || 'nightly' }}
-    - run: git clone "https://github.com/luckyframework/avram.git" "avram"
+    - run: git clone --depth 1 "https://github.com/luckyframework/avram.git" "avram"
       if: success() || failure()
     - if: success() || failure()
       name: avram

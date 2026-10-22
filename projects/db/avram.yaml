@@ -1,7 +1,7 @@
 name: "avram"
 source: "https://github.com/luckyframework/avram.git"
 services:
-  - postgreqsl
+  - postgresql
 env:
   DATABASE_URL: "postgresql://postgres:postgres@localhost/avram"
   BACKUP_DATABASE_URL: "postgresql://postgres:postgres@localhost/avram_backup"
